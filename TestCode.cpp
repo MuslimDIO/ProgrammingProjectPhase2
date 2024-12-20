@@ -1,3 +1,8 @@
+//if in debugging phase 1 state remove this comment and comment appactive in main .cpp
+//define  DEBUGGING_STATE
+
+#ifdef DEBUGGING_STATE 
+
 #include "Input.h"
 #include "Output.h"
 // BACK UP BRANCH
@@ -619,3 +624,4 @@ for (int i = 0; i < 5; i++) {
 	delete pOut;
 	return 0;
 }
+#endif

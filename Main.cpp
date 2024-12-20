@@ -1,4 +1,5 @@
-
+#define APP_ACTIVE //comment this to debug pahse 1 and uncomment definition on tesrcode.cpp
+#ifdef APP_ACTIVE
 #include "ApplicationManager.h"
 
 // This Main Function Must NOT be Changed
@@ -26,5 +27,5 @@ int main()
 
 	return 0;
 }
-
+#endif
 
