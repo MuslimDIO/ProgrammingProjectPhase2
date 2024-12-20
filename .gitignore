@@ -385,3 +385,5 @@ FodyWeavers.xsd
 Project.exe
 /ProgrammingProject_Phase1[Team27].zip
 /ProgrammingProject_Phase1[Team27].zip
+.vscode/settings.json
+.vscode/tasks.json
