@@ -1,9 +1,42 @@
 #pragma once
 #include "DEFS.h"
-// Macro To Validate Cell Position
+
+/* 
+ * MISRA-C:2012 Deviation Justification
+ * Rule: 20.9 - A macro should not be used if an inline function can be used instead.
+ * Deviation Type: Required
+ * Justification:
+ *    The macro `VALIDATE_CELL` is used to simplify repetitive validation logic across the 
+ *    codebase, specifically to check if a given cell position is valid. Using an inline 
+ *    function in this case would stop it effectivenss as this macro is used to return if not valid
+ *   Mitigation Measures:
+ *    - The macro usage is limited to validation logic.
+ *    - Unit testing ensures correct behavior of the validation logic.
+ * Reviewer: Omar Walid
+ * Approval: 
+ */
+
 #define VALIDATE_CELL(CELL)    \
 	if (!CELL##.IsValidCell()) \
 	return
+
+/* 
+ * MISRA-C:2012 Deviation Justification
+ * Rule: 20.9 - A macro should not be used if an inline function can be used instead.
+ * Deviation Type: Required
+ * Justification:
+ *    The macro `VALIDATE_CELL_NUM` is used to enforce a specific rule that the first cell 
+ *    (cell number 1) cannot be used in certain operations. This check is lightweight, 
+ *    context-specific, and consistently applied across the codebase using this macro. 
+ *     Using an inline 
+ *    function in this case would stop it effectivenss as this macro is used to return if not valid
+ * Mitigation Measures:
+ *    - The macro usage is limited to enforcing cell number rules.
+ *    - Unit tests verify that invalid cell numbers are correctly rejected.
+ *    - Static analysis tools confirm compliance with other rules.
+ * Reviewer: Omar Walid
+ * Approval: 
+ */
 
 #define VALIDATE_CELL_NUM(CELL)   \
 	if (CELL##.GetCellNum() == 1) \
