@@ -1,4 +1,8 @@
 #include "Flag.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 Flag::Flag(const CellPosition & flagposition) : GameObject(flagposition)
 {
 
@@ -21,6 +25,16 @@ void Flag::Apply(Grid* pGrid, Player* pPlayer)
 	//    Review the "pGrid" functions and decide which function can be used for that
 }
 
+
+
+void Flag::Save(ofstream &OutFile, GameObject_Type type)
+{
+	if (type == FLAG)
+	{
+		CellPosition cellPos = GetPosition();
+		OutFile << cellPos.GetCellNum() << endl;
+	}
+}
 Flag::~Flag()
 {
 

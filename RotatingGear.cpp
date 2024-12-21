@@ -1,5 +1,7 @@
 #include "RotatingGear.h"
-
+#include <fstream>
+#include <iostream>
+using namespace std;
 
 
 
@@ -27,6 +29,14 @@ bool RotatingGear::GetisClockWise() const
 	return isClockWise;
 }
 
+void RotatingGear::Save(ofstream & OutFile, GameObject_Type type)
+{
+	if (type == ROTATING_GEAR)
+	{
+		CellPosition cellPos = GetPosition();
+		OutFile << cellPos.GetCellNum() << " " << isClockWise << endl;
+	}
+}
 RotatingGear::~RotatingGear()
 {
 }

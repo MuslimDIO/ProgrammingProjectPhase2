@@ -1,21 +1,20 @@
 #include "WaterPit.h"
-
-
-
-WaterPit::WaterPit(const CellPosition & waterPitPosition):GameObject(waterPitPosition)
+#include <iostream>
+#include <fstream>
+using namespace std;
+WaterPit::WaterPit(const CellPosition &waterPitPosition) : GameObject(waterPitPosition)
 {
 }
 
-void WaterPit::Draw(Output * pOut) const
+void WaterPit::Draw(Output *pOut) const
 {
 	pOut->DrawWaterPit(position);
 }
 
-void WaterPit::Apply(Grid * pGrid, Player * pPlayer)
+void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 {
 
-	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-
+	/// TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
@@ -25,7 +24,14 @@ void WaterPit::Apply(Grid * pGrid, Player * pPlayer)
 	// 3- Update the players info which is displayed (check Grid class and decide which function to use)
 }
 
-
+ void WaterPit::Save(ofstream &OutFile, GameObject_Type type)
+{
+	if (type == WATERPIT)
+	{
+		CellPosition cellPos = GetPosition();
+		OutFile << cellPos.GetCellNum() << endl;
+	}
+}
 WaterPit::~WaterPit()
 {
 }
