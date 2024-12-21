@@ -84,6 +84,8 @@ struct UI_Info	// User Interface Info.
 	color CommandBarTextColor;	// Commands Bar text color
 
 	color CellColor;			// Default Cell color
+	color CellColor_WaterPit;
+	color CellColor_DangerZone;
 
 	color ToolBarColor;			// Toolbar color (toolbar background)
 	color StatusBarColor;		// Statusbar color (statusbar background)

@@ -41,6 +41,8 @@ Output::Output()
 
 	// Cell Color if Empty & Cell Number Font & Color
 	UI.CellColor = LIGHTSLATEBLUE;
+	UI.CellColor_DangerZone = DARKRED;
+	UI.CellColor_WaterPit = BLUE;
 	UI.CellNumFont = 13;
 	UI.CellNumColor = UI.GridLineColor;
 
@@ -732,14 +734,14 @@ void Output::DrawDangerZone(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
 	VALIDATE_CELL_NUM(cellPos);
-	DrawCell(cellPos, RED);
+	DrawCell(cellPos, UI.CellColor_DangerZone);
 }
 
 void Output::DrawWaterPit(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
 	VALIDATE_CELL_NUM(cellPos);
-	DrawCell(cellPos, BLUE);
+	DrawCell(cellPos, UI.CellColor_WaterPit);
 }
 
 Output::~Output()

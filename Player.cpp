@@ -32,8 +32,6 @@ void Player::SetHealth(int h)
 	else {
 		this->health = h;
 	}
-
-	///TODO: Do any needed validations
 }
 
 int Player::GetHealth()
@@ -48,16 +46,22 @@ void Player::Draw(Output* pOut) const
 	color playerColor = UI.PlayerColors[playerNum];
 
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor, currDirection);
-
-	///TODO: use the appropriate output function to draw the player with "playerColor"
+	(
+		///TODO: use the appropriate output function to draw the player with "playerColor"
 
 }
 
 void Player::ClearDrawing(Output* pOut) const
 {
 	///TODO: Modify the cellColor to draw the correct cellColor (hint: if cell contains non-default cellColor)
-	
 	color cellColor = UI.CellColor;
+
+	if (pCell->HasWaterPit()) {
+		cellColor = UI.CellColor_WaterPit;
+	}
+	else if (pCell->HasDangerZone()) {
+		cellColor = UI.CellColor_DangerZone;
+	}
 	
 	
 	///TODO: use the appropriate output function to draw the player with "cellColor" (to clear it)
