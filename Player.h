@@ -32,6 +32,7 @@ public:
 	void SetHealth(int h);			// A setter for the health points
 	int GetHealth();				// A getter for the health points
 
+	void RebootAndRepair();			// A function to reboot and repair the player's health points
 
 	///TODO: You can add setters and getters for data members here (if needed)
 
