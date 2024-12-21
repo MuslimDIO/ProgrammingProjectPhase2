@@ -77,7 +77,7 @@ public:
 
 	void PrintErrorMessage(string msg); // Prints an error message on statusbar, Waits for mouse click then clears statusbar
 									    // We added this function once here because it is used many times by other classes
-
+   void SaveAll(ofstream& OutFile, GameObject_Type Type); // Saves all the GameObjects of the passed Type (Belt, Player, Flag, ...etc) in the passed file
 	~Grid(); // A destructor for any needed deallcations
 };
 
