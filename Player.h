@@ -19,7 +19,7 @@ class Player
 	int health;				// Player's current health points
 
 					// owned equipments
-
+	bool canMove;
 	string ownedConsumables[MAX_CONSUMABLES];		// carried consumables
 	int consumableCount;				// carried consumables
 	string lasertype;			// carried laser type (default, double laser)
@@ -41,6 +41,9 @@ public:
 	void setLaserType(string l);	// A setter for the laser type
 	string getLaserType();			// A getter for the laser type
 
+	void setCanMove(bool c);		// A setter for the canMove
+	bool getCanMove();				// A getter for the canMove
+
 
 	void setHacked(bool h);			// A setter for the isHacked
 	bool getHacked();				// A getter for the isHacked
@@ -51,10 +54,10 @@ public:
 	int GetConsumableCount() const;	// A getter for the consumable count
 	bool UseConsumable(const string consumable, Output* pOut);	// A function to use a consumable from the player's inventory
 	
-	// ====== Game Functions ======
-	void RebootAndRepair();			// A function to reboot and repair the player's health points
 
-	///TODO: You can add setters and getters for data members here (if needed)
+
+
+	// ====== Game Functions ======
 
 	// ====== Drawing Functions ======
 

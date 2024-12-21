@@ -4,7 +4,7 @@
 
 #include "GameObject.h"
 
-Player::Player(Cell * pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT)
+Player::Player(Cell* pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT), canMove(true)
 {
 	this->pCell = pCell;
 	lasertype = "default";
@@ -54,6 +54,17 @@ string Player::getLaserType()
 	return lasertype;
 }
 
+void Player::setCanMove(bool c)
+{
+	canMove = c;
+}
+
+bool Player::getCanMove()
+{
+	return canMove;
+}
+
+
 
 void Player::setHacked(bool h)
 {
@@ -92,7 +103,7 @@ int Player::GetConsumableCount() const
 {
 	return consumableCount;
 }
-
+#if 
 bool Player::UseConsumable(const string consumable, Output* pOut)
 {
 	for (int i = 0; i < consumableCount; i++)
@@ -123,7 +134,7 @@ bool Player::UseConsumable(const string consumable, Output* pOut)
 		return false; // Consumable not found
 	}
 }
-
+#endif
 // ====== Drawing Functions ======
 
 void Player::Draw(Output* pOut) const
@@ -181,8 +192,5 @@ void Player::AppendPlayerInfo(string & playersInfo) const
 }
 
 
-void Player::RebootAndRepair() {
-    // Restore 2 health points, but do not exceed the maximum of 10
-    SetHealth(health + 2);
-	
-}
+
+
