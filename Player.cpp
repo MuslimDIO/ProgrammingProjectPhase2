@@ -23,7 +23,16 @@ Cell* Player::GetCell() const
 
 void Player::SetHealth(int h)
 {
-	this->health = h;
+	if (h < 0) {
+		this->health = 0;
+	}
+	else if (h > 10) {
+		this->health = 10;
+	}
+	else {
+		this->health = h;
+	}
+
 	///TODO: Do any needed validations
 }
 
@@ -38,6 +47,7 @@ void Player::Draw(Output* pOut) const
 {
 	color playerColor = UI.PlayerColors[playerNum];
 
+	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor, currDirection);
 
 	///TODO: use the appropriate output function to draw the player with "playerColor"
 
@@ -46,11 +56,12 @@ void Player::Draw(Output* pOut) const
 void Player::ClearDrawing(Output* pOut) const
 {
 	///TODO: Modify the cellColor to draw the correct cellColor (hint: if cell contains non-default cellColor)
+	
 	color cellColor = UI.CellColor;
 	
 	
 	///TODO: use the appropriate output function to draw the player with "cellColor" (to clear it)
-
+	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor, currDirection);
 }
 
 // ====== Game Functions ======

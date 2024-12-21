@@ -14,10 +14,10 @@ class Player
 	Direction currDirection; // Current Direction of the player
 	int health;				// Player's current health points
 
-	// owned equipments
-	// carried consumables
-	// carried laser type (default, double laser)
-	// isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
+					// owned equipments
+	 				// carried consumables
+	string lasertype;			// carried laser type (default, double laser)
+	bool isHacked; // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
 	
 	
 public:
