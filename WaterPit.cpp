@@ -32,6 +32,16 @@ void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 		OutFile << cellPos.GetCellNum() << endl;
 	}
 }
+void WaterPit::Load(ifstream &Infile, GameObject_Type type)
+{
+	if (type == WATERPIT)
+	{
+		int cellNum;
+		Infile >> cellNum; // Read the cell number
+		CellPosition cellPos = GetPosition().GetCellPositionFromNum(cellNum);
+		position = cellPos;
+	}
+}
 WaterPit::~WaterPit()
 {
 }

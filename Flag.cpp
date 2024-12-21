@@ -38,6 +38,17 @@ void Flag::Save(ofstream &OutFile, GameObject_Type type)
 		OutFile << cellPos.GetCellNum() << endl;
 	}
 }
+
+void Flag::Load(ifstream &Infile, GameObject_Type type)
+{
+	if (type == FLAG)
+	{
+		int cellNum;
+		Infile >> cellNum; // Read the cell number
+		CellPosition cellPos = GetPosition().GetCellPositionFromNum(cellNum);
+		position = cellPos;
+	}
+}
 Flag::~Flag()
 {
 

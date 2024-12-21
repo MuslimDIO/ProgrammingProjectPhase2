@@ -37,6 +37,18 @@ void RotatingGear::Save(ofstream & OutFile, GameObject_Type type)
 		OutFile << cellPos.GetCellNum() << " " << isClockWise << endl;
 	}
 }
+void RotatingGear::Load(ifstream &Infile, GameObject_Type type)
+{
+	if (type == ROTATING_GEAR)
+	{
+		int l_cellNum;
+		bool l_clockwise;
+		Infile >> l_cellNum >> l_clockwise; // Read the cell number
+		CellPosition cellPos = GetPosition().GetCellPositionFromNum(l_cellNum);
+		position = cellPos;
+		isClockWise = l_clockwise;
+	}
+}	
 RotatingGear::~RotatingGear()
 {
 }

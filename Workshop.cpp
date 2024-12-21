@@ -30,3 +30,13 @@ void Workshop::Save(ofstream &OutFile, GameObject_Type type)
 		OutFile << cellPos.GetCellNum() << endl;
 	}
 }
+void Workshop::Load(ifstream &Infile, GameObject_Type type)
+{
+	if (type == WORKSHOP)
+	{
+		int cellNum;
+		Infile >> cellNum; // Read the cell number
+		CellPosition cellPos = GetPosition().GetCellPositionFromNum(cellNum);
+		position = cellPos;
+	}
+}

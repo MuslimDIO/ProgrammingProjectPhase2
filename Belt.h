@@ -12,6 +12,7 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the belt by moving player to belt's end cell
     virtual void Save(ofstream &OutFile, GameObject_Type type); // Saves the GameObject parameters to the file
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
+	virtual void Load(ifstream &Infile, GameObject_Type type);	// Loads and Reads the GameObject parameters from the file
 	virtual ~Belt();
 };
 

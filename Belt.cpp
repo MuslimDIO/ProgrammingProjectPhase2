@@ -49,3 +49,16 @@ void Belt::Save(ofstream & OutFile, GameObject_Type type)
 	}
 
 }
+
+void Belt::Load(ifstream & Infile, GameObject_Type type)
+{
+	if (type == BELT)
+	{
+		int startCellNum, endCellNum;
+        Infile >> startCellNum >> endCellNum; // Read start and end cell numbers
+	    CellPosition l_endpos = GetEndPosition().GetCellPositionFromNum(endCellNum);
+		CellPosition l_startpos = GetPosition().GetCellPositionFromNum(startCellNum);
+		position = l_startpos;
+		endCellPos = l_endpos;
+	}
+}
