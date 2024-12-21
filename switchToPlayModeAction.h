@@ -12,7 +12,7 @@
  */
 class switchToPlayModeAction : public Action
 {
-
+public:
     /**
      * @brief Reads the parameters required for the action.
      *
@@ -45,6 +45,5 @@ class switchToPlayModeAction : public Action
      */
     ~switchToPlayModeAction();
 };
-
 
 #endif // _SWITCH_TO_PLAY_MODE_ACTION_H

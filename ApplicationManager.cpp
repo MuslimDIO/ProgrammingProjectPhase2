@@ -6,6 +6,7 @@
 #include "AddFlagAction.h"
 #include "SaveGridAction.h"
 #include "LoadGridAction.h"
+#include "switchToPlayModeAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -74,7 +75,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_PLAY_MODE:					//TODO:
-		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new switchToPlayModeAction(this); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;
     case SAVE_GRID:
 		pAct = new SaveGrid(this);
