@@ -1,4 +1,6 @@
 #include "Flag.h"
+#include "Output.h"
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -20,9 +22,10 @@ void Flag::Apply(Grid* pGrid, Player* pPlayer)
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
 	// 1- Print a message "You have reached a flag. Click to continue ..." and wait mouse click
-
+	pGrid->PrintErrorMessage("You have reached a flag. Click to continue ...");
 	// 2- Apply the flag's effect by ending the game
 	//    Review the "pGrid" functions and decide which function can be used for that
+	pGrid->SetEndGame(true);
 }
 
 
