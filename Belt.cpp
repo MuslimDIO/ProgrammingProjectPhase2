@@ -1,5 +1,7 @@
 #include "Belt.h"
-
+#include <iostream>
+#include <fstream>
+using namespace std;	
 
 Belt::Belt(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
@@ -35,4 +37,15 @@ CellPosition Belt::GetEndPosition() const
 
 Belt::~Belt()
 {
+}
+void Belt::Save(ofstream & OutFile, GameObject_Type type)
+{
+	if (type == BELT)
+	{
+      CellPosition l_startPos = GetPosition();
+	  
+
+	  OutFile << l_startPos.GetCellNum() <<"---"<< endCellPos.GetCellNum() << endl;
+	}
+
 }
