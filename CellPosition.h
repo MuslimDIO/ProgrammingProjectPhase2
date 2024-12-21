@@ -12,8 +12,8 @@
  *   Mitigation Measures:
  *    - The macro usage is limited to validation logic.
  *    - Unit testing ensures correct behavior of the validation logic.
- * Reviewer: Omar Walid
- * Approval: 
+ * Reviewer: Omar Walid(Team Leader)
+ * Approval: 21-DEC 2024 12:00 PM 
  */
 
 #define VALIDATE_CELL(CELL)    \
@@ -34,8 +34,8 @@
  *    - The macro usage is limited to enforcing cell number rules.
  *    - Unit tests verify that invalid cell numbers are correctly rejected.
  *    - Static analysis tools confirm compliance with other rules.
- * Reviewer: Omar Walid
- * Approval: 
+ * Reviewer: Omar Walid(Team Leader)
+ * Approval: 21-DEC 2024 12:00 PM 
  */
 
 #define VALIDATE_CELL_NUM(CELL)   \
