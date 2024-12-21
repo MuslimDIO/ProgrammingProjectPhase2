@@ -4,14 +4,7 @@
 
 #include <iostream>
 //////////////////////////////////////////////////////////////////////////////////////////
-// Macro To Validate Cell Position
-#define VALIDATE_CELL(CELL)    \
-	if (!CELL##.IsValidCell()) \
-	return
 
-#define VALIDATE_CELL_NUM(CELL)    \
-	if (CELL##.GetCellNum()==1) \
-	return
 
 Output::Output()
 {
@@ -378,29 +371,28 @@ void Output::CreatePlayModeToolBar() const
 
 void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, Command availableCommands[], int availableCommandsCount) const
 {
-    // Clear the commands bar area
-    ClearCommandsBar();
-    UI.InterfaceMode = MODE_PLAY;
+	// Clear the commands bar area
+	ClearCommandsBar();
+	UI.InterfaceMode = MODE_PLAY;
 
-    // Prepare images for all possible commands
-    string CommandItemImages[COMMANDS_COUNT];
-    CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
-    CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
+	// Prepare images for all possible commands
+	string CommandItemImages[COMMANDS_COUNT];
+	CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
+	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
 	CommandItemImages[MOVE_FORWARD_TWO_STEPS] = "images\\MoveForwardTwice.jpg";
-    CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\MoveBackwardCard.jpg";
-    CommandItemImages[ROTATE_LEFT] = "images\\RotateLeftCard.jpg";
-    CommandItemImages[ROTATE_RIGHT] = "images\\RotateRightCard.jpg";
-    CommandItemImages[USE_TOOLKIT] = "images\\ToolkitCard.jpg";
-    CommandItemImages[USE_HACK_DEVICE] = "images\\HackDeviceCard.jpg";
-    // Add more commands as needed with proper image file paths
+	CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\MoveBackwardCard.jpg";
+	CommandItemImages[ROTATE_LEFT] = "images\\RotateLeftCard.jpg";
+	CommandItemImages[ROTATE_RIGHT] = "images\\RotateRightCard.jpg";
+	CommandItemImages[USE_TOOLKIT] = "images\\ToolkitCard.jpg";
+	CommandItemImages[USE_HACK_DEVICE] = "images\\HackDeviceCard.jpg";
+	// Add more commands as needed with proper image file paths
 
-    // Draw saved commands in the saved commands area
-    DrawSavedCommands(savedCommands, savedCommandsCount, CommandItemImages);
+	// Draw saved commands in the saved commands area
+	DrawSavedCommands(savedCommands, savedCommandsCount, CommandItemImages);
 
-    // Draw available commands in the available commands area
-    DrawAvailableCommands(availableCommands, availableCommandsCount, CommandItemImages);
+	// Draw available commands in the available commands area
+	DrawAvailableCommands(availableCommands, availableCommandsCount, CommandItemImages);
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -632,7 +624,7 @@ void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCel
 	int triangleHeight = UI.CellHeight / 4;
 
 	// Draw the direction triangle at the center of the belt line
-	DrawTriangle(l_centerX, l_centerY, triangleHeight, triangleWidth, l_TriDirection, UI.BeltColor,FILLED, 1);
+	DrawTriangle(l_centerX, l_centerY, triangleHeight, triangleWidth, l_TriDirection, UI.BeltColor, FILLED, 1);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -659,7 +651,7 @@ void Output::DrawFlag(const CellPosition &cellPos) const
 {
 	/// DONE: Validate the cell position
 	VALIDATE_CELL(cellPos);
-    VALIDATE_CELL_NUM(cellPos);
+	VALIDATE_CELL_NUM(cellPos);
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);
 	int cellStartY = GetCellStartY(cellPos);
@@ -698,7 +690,7 @@ void Output::DrawRotatingGear(const CellPosition &cellPos, bool clockwise) const
 {
 	// Validate the cell position using the macro
 	VALIDATE_CELL(cellPos);
-    VALIDATE_CELL_NUM(cellPos);
+	VALIDATE_CELL_NUM(cellPos);
 	// Choose the appropriate image based on the gear's direction
 	string gearImage = clockwise ? "images\\Gear_Clockwise.jpg" : "images\\Gear_CounterClockwise.jpg";
 
@@ -740,14 +732,14 @@ void Output::DrawDangerZone(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
 	VALIDATE_CELL_NUM(cellPos);
-	DrawCell(cellPos,RED);
+	DrawCell(cellPos, RED);
 }
 
 void Output::DrawWaterPit(const CellPosition &cellPos) const
 {
 	VALIDATE_CELL(cellPos);
 	VALIDATE_CELL_NUM(cellPos);
-	DrawCell(cellPos,BLUE);
+	DrawCell(cellPos, BLUE);
 }
 
 Output::~Output()

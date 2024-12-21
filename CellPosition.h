@@ -1,6 +1,13 @@
 #pragma once
 #include "DEFS.h"
+// Macro To Validate Cell Position
+#define VALIDATE_CELL(CELL)    \
+	if (!CELL##.IsValidCell()) \
+	return
 
+#define VALIDATE_CELL_NUM(CELL)   \
+	if (CELL##.GetCellNum() == 1) \
+	return
 class CellPosition
 {
 	int vCell; // the vertical cell number: starts from 0 to NumVerticalCells - 1
