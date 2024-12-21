@@ -4,6 +4,12 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
+
+
+
+LoadGridAction::LoadGridAction(ApplicationManager *pApp) : Action(pApp)
+{
+}
 void LoadGridAction::ReadActionParameters()
 {
     Grid *pGrid = pManager->GetGrid();
@@ -30,7 +36,11 @@ l_inFile.open(_fileName+".txt",ios::in);
   l_inFile.close();
 
   Output *pOut = pGrid->GetOutput();
-  pOut->PrintMessage("Grid saved successfully");
+  pOut->PrintMessage("Grid Loaded successfully");
 
 
+}
+
+LoadGridAction::~LoadGridAction()
+{
 }
