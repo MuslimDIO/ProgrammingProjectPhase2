@@ -1,5 +1,4 @@
 #include "Cell.h"
-
 #include "Grid.h"
 #include "GameObject.h"
 #include "Belt.h"
