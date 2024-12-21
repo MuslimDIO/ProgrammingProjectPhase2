@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-RotatingGear::RotatingGear(const CellPosition & gearposition,bool clockwise) : GameObject(gearposition, ROTATING_GEAR)
+RotatingGear::RotatingGear(const CellPosition & gearposition,bool clockwise = true) : GameObject(gearposition, ROTATING_GEAR)
 {
 	isClockWise = clockwise;
 }
@@ -28,7 +28,10 @@ bool RotatingGear::GetisClockWise() const
 {
 	return isClockWise;
 }
-
+void RotatingGear::setIsClockWise(bool a_isClockWise)
+{
+	isClockWise = a_isClockWise;
+}
 void RotatingGear::Save(ofstream & OutFile, GameObject_Type type)
 {
 	if (type == ROTATING_GEAR)

@@ -15,6 +15,17 @@ void Antenna::Save(ofstream & OutFile, GameObject_Type type)
 	  OutFile << cellPos.GetCellNum() << endl;
 	}
 }
+
+void Antenna::Load(ifstream & Infile, GameObject_Type type)
+{
+	if (type == ANTENNA)
+	{
+		int cellNum;
+		Infile >> cellNum;
+		CellPosition cellPos = CellPosition::GetCellPositionFromNum(cellNum);
+		position = cellPos;
+	}
+}
 Antenna::Antenna(const CellPosition & antennaPosition):GameObject(antennaPosition, ANTENNA)
 {
 }

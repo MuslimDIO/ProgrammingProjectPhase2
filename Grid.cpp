@@ -4,6 +4,12 @@
 #include "GameObject.h"
 #include "Belt.h"
 #include "Player.h"
+#include"Flag.h"
+#include"WaterPit.h"
+#include"DangerZone.h"
+#include"Workshop.h"
+#include"Antenna.h"
+#include"RotatingGear.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -225,6 +231,43 @@ void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
 				ptr2_GObj->Save(a_OutFile, a_type);	// Saves the GameObject parameters to the file
 			}
 		}
+	}
+}
+
+
+void Grid::LoadAll(ifstream &a_InFile, GameObject_Type a_type)
+{
+	uint8_t l_objCount = 0;
+	a_InFile >> l_objCount;
+	for (int i = 0; i < l_objCount; i++)
+	{
+		GameObject *ptr2_GObj = NULL;
+		switch (a_type)
+		{
+		case FLAG:
+			ptr2_GObj = new Flag(CellPosition(0, 0));
+			break;
+		case WATERPIT:
+			ptr2_GObj = new WaterPit(CellPosition(0, 0));
+			break;
+		case DANGERZONE:
+			ptr2_GObj = new DangerZone(CellPosition(0, 0));
+			break;
+		case BELT:
+			ptr2_GObj = new Belt(CellPosition(0, 0), CellPosition(0, 0));
+			break;
+		case WORKSHOP:
+			ptr2_GObj = new Workshop(CellPosition(0, 0));
+			break;
+		case ANTENNA:
+			ptr2_GObj = new Antenna(CellPosition(0, 0));
+			break;
+		case ROTATING_GEAR:
+			ptr2_GObj = new RotatingGear(CellPosition(0, 0));
+			break;
+		}
+		ptr2_GObj->Load(a_InFile, a_type);
+		AddObjectToCell(ptr2_GObj);
 	}
 }
 Grid::~Grid()
