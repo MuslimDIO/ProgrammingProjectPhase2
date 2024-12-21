@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "Grid.h"
+#include "Output.h"
 
 #include "GameObject.h"
 
@@ -93,4 +95,11 @@ void Player::AppendPlayerInfo(string & playersInfo) const
 	playersInfo += to_string(currDirection) + ", ";
 	playersInfo += to_string(health) + ")";
 
+}
+
+
+void Player::RebootAndRepair() {
+    // Restore 2 health points, but do not exceed the maximum of 10
+    SetHealth(health + 2);
+	
 }
