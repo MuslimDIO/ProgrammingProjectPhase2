@@ -3,6 +3,10 @@
 #include "Grid.h"
 #include "Cell.h"
 
+
+const int MAX_CONSUMABLES = 5;	// Maximum number of consumables that a player can carry at a time
+
+
 class Player
 {
 	Cell * pCell;		   // pointer to the current Cell of the player
@@ -15,7 +19,9 @@ class Player
 	int health;				// Player's current health points
 
 					// owned equipments
-	 				// carried consumables
+
+	string ownedConsumables[MAX_CONSUMABLES];		// carried consumables
+	int consumableCount;				// carried consumables
 	string lasertype;			// carried laser type (default, double laser)
 	bool isHacked; // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
 	
@@ -32,6 +38,20 @@ public:
 	void SetHealth(int h);			// A setter for the health points
 	int GetHealth();				// A getter for the health points
 
+	void setLaserType(string l);	// A setter for the laser type
+	string getLaserType();			// A getter for the laser type
+
+
+	void setHacked(bool h);			// A setter for the isHacked
+	bool getHacked();				// A getter for the isHacked
+
+	string GetConsumables() const;	// A getter for the consumables
+	bool AddConsumable(string consumable);	// A function to add a consumable to the player's inventory
+
+	int GetConsumableCount() const;	// A getter for the consumable count
+	bool UseConsumable(const string consumable, Output* pOut);	// A function to use a consumable from the player's inventory
+	
+	// ====== Game Functions ======
 	void RebootAndRepair();			// A function to reboot and repair the player's health points
 
 	///TODO: You can add setters and getters for data members here (if needed)
