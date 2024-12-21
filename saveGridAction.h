@@ -7,8 +7,8 @@ class SaveGrid : public Action
 public:
     SaveGrid(ApplicationManager *pApp);
     ~SaveGrid();
-    virtual void ReadActionParameters();
-    virtual void Execute();
+    virtual void ReadActionParameters() ;
+    virtual void Execute() ;
  
 };
 

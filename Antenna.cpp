@@ -1,9 +1,20 @@
 #include "Antenna.h"
+#include <iostream> 
+#include <fstream>
+using namespace std;
 
 
 
+void Antenna::Save(ofstream & OutFile, GameObject_Type type)
+{
+	if (type == ANTENNA)
+	{
+      CellPosition cellPos = GetPosition();
+	  
 
-
+	  OutFile << cellPos.GetCellNum() << endl;
+	}
+}
 Antenna::Antenna(const CellPosition & antennaPosition):GameObject(antennaPosition)
 {
 }

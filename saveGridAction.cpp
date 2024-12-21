@@ -1,11 +1,11 @@
 #include"saveGridAction.h"
-void SaveGrid::ReadActionParameters()
+ void  SaveGrid::ReadActionParameters() 
 {
     
 }
- void SaveGrid::Execute()
+  void  SaveGrid::Execute() 
 {
-    
+
 }
 SaveGrid::SaveGrid(ApplicationManager *pApp) :Action(pApp)
 {

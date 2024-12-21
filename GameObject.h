@@ -31,9 +31,12 @@ public:
 
 	/// TODO::Decide the parameters that you should pass to each function	
 	//Uncomment those functions and implement them in all the derived classes 
-	//virtual void Save(ofstream &OutFile) = 0;	// Saves the GameObject parameters to the file
+	virtual void Save(ofstream &OutFile) = 0;	// Saves the GameObject parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	// Loads and Reads the GameObject parameters from the file
 
 	virtual ~GameObject(); // Virtual destructor
 };
 
+enum GameObject_Type {
+	ANTENNA
+}; // An enumeration for all the types of GameObjects
