@@ -6,7 +6,10 @@
 #include "Input.h"
 #include "Output.h"
 #include "CellPosition.h"
-
+#include <fstream>
+#include <iostream>
+using namespace std;
+enum GameObject_Type;
 // forward declarations (the includes are in the cpp)
 class Cell;
 class GameObject;

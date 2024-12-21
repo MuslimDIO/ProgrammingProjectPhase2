@@ -3,6 +3,7 @@
 #include "Action.h"
 class SaveGrid : public Action
 {
+string _fileName;
 
 public:
     SaveGrid(ApplicationManager *pApp);

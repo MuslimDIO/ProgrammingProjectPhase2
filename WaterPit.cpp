@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-WaterPit::WaterPit(const CellPosition &waterPitPosition) : GameObject(waterPitPosition)
+WaterPit::WaterPit(const CellPosition &waterPitPosition) : GameObject(waterPitPosition, WATERPIT)
 {
 }
 

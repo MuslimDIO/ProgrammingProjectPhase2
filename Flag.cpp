@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 
-Flag::Flag(const CellPosition & flagposition) : GameObject(flagposition)
+Flag::Flag(const CellPosition & flagposition) : GameObject(flagposition,FLAG)
 {
 
 }

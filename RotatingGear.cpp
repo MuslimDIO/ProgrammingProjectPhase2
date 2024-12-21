@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-RotatingGear::RotatingGear(const CellPosition & gearposition,bool clockwise) : GameObject(gearposition)
+RotatingGear::RotatingGear(const CellPosition & gearposition,bool clockwise) : GameObject(gearposition, ROTATING_GEAR)
 {
 	isClockWise = clockwise;
 }

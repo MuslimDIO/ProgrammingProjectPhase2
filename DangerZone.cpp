@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-DangerZone::DangerZone(const CellPosition &dangerZonePosition) : GameObject(dangerZonePosition)
+DangerZone::DangerZone(const CellPosition &dangerZonePosition) : GameObject(dangerZonePosition, DANGERZONE)
 {
 }
 

@@ -3,23 +3,24 @@
 #include "Grid.h"
 enum GameObject_Type
 {
-	ANTENNA,
-	BELT,
-	DANGERZONE,
 	FLAG,
-	ROTATING_GEAR,
 	WATERPIT,
-	WORKSHOP
+	DANGERZONE,
+	BELT,
+	WORKSHOP,
+	ANTENNA,
+	ROTATING_GEAR
 }; // An enumeration for all the types of GameObjects
 // Base Class for All Game Objects ( Belts, danger zones, .. )
 class GameObject
 {
+	const GameObject_Type _type;
 
 protected:
 	CellPosition position; // The current cell position of the GameObject
 
 public:
-	GameObject(const CellPosition &pos); // Constructor for initializing data members
+	GameObject(const CellPosition &pos, GameObject_Type a_type); // Constructor for initializing data members
 
 	CellPosition GetPosition() const; // A Getter for position
 
@@ -35,7 +36,7 @@ public:
 
 	// The following functions are examples of what should be supported by the GameObject class
 	// They should be overridden by each inherited class
-
+	GameObject_Type getObjType() const;
 	/// TODO::Decide the parameters that you should pass to each function
 	// Uncomment those functions and implement them in all the derived classes
 	virtual void Save(ofstream &OutFile, GameObject_Type) = 0; // Saves the GameObject parameters to the file

@@ -4,7 +4,9 @@
 #include "GameObject.h"
 #include "Belt.h"
 #include "Player.h"
-
+#include <fstream>
+#include <iostream>
+using namespace std;
 Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
@@ -198,16 +200,29 @@ void Grid::PrintErrorMessage(string msg)
 
 void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
 {
+	uint8_t l_objCount = 0;
 	// Save the GameObject parameters to the file
 	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
 	{
 		for (int j = 0; j < NumHorizontalCells; j++) // left to right
 		{
 			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
-			if (ptr2_GObj != NULL)
+			if (ptr2_GObj && ptr2_GObj->getObjType() == a_type)
 			{
+				l_objCount++; // increment the count of the objects of the same type
+			}
+		}
+	}
+	a_OutFile << l_objCount << endl;
 
-				ptr2_GObj->Save(a_OutFile, a_type);
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
+			if (ptr2_GObj && ptr2_GObj->getObjType() == a_type)
+			{
+				ptr2_GObj->Save(a_OutFile, a_type);	// Saves the GameObject parameters to the file
 			}
 		}
 	}

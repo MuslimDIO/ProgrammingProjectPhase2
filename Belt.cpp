@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;	
 
-Belt::Belt(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
+Belt::Belt(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos, BELT)
 {
 	this->endCellPos = endCellPos;
 

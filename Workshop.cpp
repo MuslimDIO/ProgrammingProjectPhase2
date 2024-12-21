@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-Workshop::Workshop(const CellPosition & workshopPosition):GameObject( workshopPosition)
+Workshop::Workshop(const CellPosition & workshopPosition):GameObject( workshopPosition,WORKSHOP)
 {
 
 }
