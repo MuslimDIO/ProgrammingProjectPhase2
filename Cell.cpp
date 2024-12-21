@@ -6,6 +6,7 @@
 #include "WaterPit.h"
 #include "Player.h"
 #include "DangerZone.h"
+#include "Flag.h"
 #include "Output.h"
 Cell::Cell(const CellPosition & pos) : position(pos)
 {

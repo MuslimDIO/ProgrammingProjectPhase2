@@ -46,7 +46,7 @@ void Player::Draw(Output* pOut) const
 	color playerColor = UI.PlayerColors[playerNum];
 
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor, currDirection);
-	(
+	
 		///TODO: use the appropriate output function to draw the player with "playerColor"
 
 }

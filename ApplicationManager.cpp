@@ -5,6 +5,7 @@
 #include "AddRotatingGearAction.h"
 #include "AddFlagAction.h"
 #include "SaveGridAction.h"
+#include "LoadGridAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -77,7 +78,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
     case SAVE_GRID:
 		pAct = new SaveGrid(this);
-	
+	case LOAD_GRID:
+		pAct = new LoadGridAction(this);
+		break;
 
 	case TO_DESIGN_MODE:				//TODO:
 		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
