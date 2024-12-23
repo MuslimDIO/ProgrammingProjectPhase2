@@ -21,7 +21,7 @@ void AddRotatingGearAction::ReadActionParameters()
 	gearPos = pIn->GetCellClicked();
 
 	// 3- Read whether the direction will be clockwise or not
-	pOut->PrintMessage("Is the gear direction clockwise? (1 for Yes / 0 for No)");
+	pOut->PrintMessage("Is the gear direction anticlockwise? ( 0 for Yes ) otherwise write any number");
 	clockwise = pIn->GetInteger(pOut);
 
 	// 4- Make the needed validations on the read parameters
@@ -31,12 +31,15 @@ void AddRotatingGearAction::ReadActionParameters()
 		pIn->GetPointClicked(x, y);
 		return;
 	}
-	if (clockwise != 0 && clockwise != 1) {
-		pOut->PrintMessage("Error: Invalid direction! Click to continue...");
+	if (gearPos.GetCellNum() == 1)
+	{
+		pOut->PrintMessage("Error: Cell #1 is reserved for the player! Click to continue...");
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		return;
 	}
+
+	
 
 	// 5- Clear status bar
     pOut->ClearStatusBar();
@@ -63,6 +66,7 @@ void AddRotatingGearAction::Execute()
 
 	// 3-Add the rotating object to the GameObject of its Cell:
 	 bool added = pGrid->AddObjectToCell(pGear);
+
 	
 	// 4-Check if the rotating gear was added and print an errror message if flag couldn't be added
 	 if (added == false) {

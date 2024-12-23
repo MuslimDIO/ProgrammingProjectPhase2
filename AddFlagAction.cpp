@@ -1,10 +1,12 @@
 #include "AddFlagAction.h"
 
 
-
+static int flagAdded = 0;
 AddFlagAction::AddFlagAction(ApplicationManager *pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
+	
+
 }
 
 
@@ -32,6 +34,21 @@ void AddFlagAction::ReadActionParameters()
 		pIn->GetPointClicked(x, y);
 		return;
 	}
+	if (flagPos.GetCellNum() == 1)
+	{
+		pOut->PrintMessage("Error: Cell #1 is reserved for the player! Click to continue...");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		return;
+	}
+	if (flagAdded != 0)
+	{
+		pOut->PrintMessage("Error: there is already a Flag! Click to continue...");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		return;
+	}
+
 
 
 	// 5- Clear status bar
@@ -56,9 +73,21 @@ void AddFlagAction::Execute()
 	Input* pIn = pGrid->GetInput();
 
 	// 3-Add the flag object to the GameObject of its Cell:
+	
+	if (flagAdded != 0)
+	{
+		pOut->PrintMessage("Error: there is already a Flag! Click to continue...");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		return;
+	}
 	bool added = pGrid->AddObjectToCell(pFlag);
-	
-	
+	if (added == true)
+	{
+		pOut->PrintMessage("Flag added successfully");
+		(flagAdded)++;
+	}
+
 	// 4-Check if the flag was added and print an errror message if flag couldn't be added
 	if (added == false)
 	{
@@ -66,6 +95,7 @@ void AddFlagAction::Execute()
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		delete pFlag;
+
 
 	}
 }

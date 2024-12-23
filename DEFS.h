@@ -15,7 +15,6 @@ enum ActionType
 	ADD_DANGER_ZONE, // Add a danger zone to the grid
 	ADD_WORKSHOP,	 // Add a workshop to the grid
 	ADD_ROTATINGGEAR,
-	ADD_FLAG,
 	COPY,			 // Copy a game object
 	CUT,			 // Cut a game object
 	PASTE,			 // Paste a game object
