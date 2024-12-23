@@ -39,6 +39,7 @@ void Player::SetHealth(int h)
 	}
 }
 
+
 int Player::GetHealth()
 {
 	return this->health;
@@ -182,6 +183,9 @@ void Player::Move(Grid * pGrid, Command moveCommands[])
 	// - Don't forget to apply game objects at the final destination cell and check for game ending
 
 }
+
+
+
 
 
 

@@ -66,6 +66,9 @@ public:
 	void ClearDrawing(Output* pOut) const;	// Clears the Player's Triangle from its current cell
 
 	
+	
+
+	
 
 
 	// ====== Game Functions ======
