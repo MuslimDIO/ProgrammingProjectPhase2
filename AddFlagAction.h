@@ -9,6 +9,7 @@ class AddFlagAction :public Action
 
 	// [Action Parameters]
 	CellPosition flagPos; // 1- The position of the flag
+	 // 2- A static boolean indicating whether the flag is added or not
 public:
 	
 	AddFlagAction(ApplicationManager *pApp);
