@@ -35,20 +35,14 @@ void AddBeltAction::ReadActionParameters()
 		return;
 	}
 
-	if  (startPos.VCell() == endPos.VCell() || startPos.HCell() == endPos.HCell()) {
+	if  (startPos.VCell() != endPos.VCell() && startPos.HCell() != endPos.HCell()) {
 		pOut->PrintMessage("Error: End cell must be in the same row or column as the start cell. Click to continue...");
 		endPos = CellPosition(-1, -1);
+		startPos = CellPosition(-1, -1);
 		return;
 	}
 
-	/*if (pGrid->GetGameObject(startPos) != nullptr || pGrid->GetGameObject(endPos) != nullptr) {
-		pOut->PrintMessage("Error: Start or end cell already contains a game object. Click to continue...");
-		startPos = CellPosition(-1, -1);
-		endPos = CellPosition(-1, -1);
-		return;
-	}*/
 
-	
 
 	// Clear messages
 	pOut->ClearStatusBar();
@@ -56,15 +50,37 @@ void AddBeltAction::ReadActionParameters()
 
 void AddBeltAction::Execute()
 {
+
+
 	// The first line of any Action Execution is to read its parameter first 
 	// and hence initializes its data members
 	ReadActionParameters();
 
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+	if (startPos.IsValidCell() == false || startPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid start cell position! Cannot be cell #1. Click to continue...");
+		startPos = CellPosition(-1, -1);
+		return;
+	}
+	if (endPos.IsValidCell() == false || endPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid end cell position! Cannot be cell #1. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		return;
+	}
+
+	if (startPos.VCell() != endPos.VCell() && startPos.HCell() != endPos.HCell()) {
+		pOut->PrintMessage("Error: End cell must be in the same row or column as the start cell. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		startPos = CellPosition(-1, -1);
+		return;
+	}
 	// Create a belt object with the parameters read from the user
 	Belt * pBelt = new Belt(startPos, endPos);
 
-	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-
+	
 										
 	bool added = pGrid->AddObjectToCell(pBelt);
 
