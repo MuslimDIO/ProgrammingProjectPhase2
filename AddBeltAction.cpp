@@ -25,7 +25,15 @@ void AddBeltAction::ReadActionParameters()
 
 	///TODO: Make the needed validations on the read parameters
 
+	// abdallah saas :)
 
+	if (!startPos.IsValidCell() || !endPos.IsValidCell()) // check the vallidation of the start and end position
+	{
+		pOut->PrintMessage("Error: Invalid cell positions! Click to continue..."); // print error massage and ask to chose and cells 
+		int x, y; //// Declare variables to store the click coordinates
+		pIn->GetPointClicked(x, y); // choos another cells 
+		return;
+	}
 
 	// Clear messages
 	pOut->ClearStatusBar();
@@ -54,6 +62,7 @@ void AddBeltAction::Execute()
 	// Here, the belt is created and added to the GameObject of its Cell, so we finished executing the AddBeltAction
 
 }
+
 
 AddBeltAction::~AddBeltAction()
 {

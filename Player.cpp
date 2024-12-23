@@ -43,6 +43,7 @@ void Player::Draw(Output* pOut) const
 
 }
 
+
 void Player::ClearDrawing(Output* pOut) const
 {
 	///TODO: Modify the cellColor to draw the correct cellColor (hint: if cell contains non-default cellColor)
@@ -70,6 +71,8 @@ void Player::Move(Grid * pGrid, Command moveCommands[])
 	// - Don't forget to apply game objects at the final destination cell and check for game ending
 
 }
+
+
 
 void Player::AppendPlayerInfo(string & playersInfo) const
 {

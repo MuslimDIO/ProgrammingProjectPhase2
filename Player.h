@@ -41,6 +41,10 @@ public:
 
 	void ClearDrawing(Output* pOut) const;	// Clears the Player's Triangle from its current cell
 
+	// ====== Rotation Methods ======
+	void RotateClockwise();
+	void RotateCounterClockwise();
+
 	// ====== Game Functions ======
 
 	void Move(Grid * pGrid, Command moveCommands[]);	// Moves the Player with the passed move command
