@@ -45,7 +45,7 @@ void Belt::Save(ofstream & OutFile, GameObject_Type type)
       CellPosition l_startPos = GetPosition();
 	  
 
-	  OutFile << l_startPos.GetCellNum() <<"---"<< endCellPos.GetCellNum() << endl;
+	  OutFile << l_startPos.GetCellNum() <<"  "<< endCellPos.GetCellNum() << endl;
 	}
 
 }
