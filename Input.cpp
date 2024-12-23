@@ -216,7 +216,7 @@ ActionType Input::GetUserAction() const
 CellPosition Input::GetCellClicked() const
 {
 	CellPosition cellPos;
-	if (UI.InterfaceMode == MODE_PLAY) {
+	//if (UI.InterfaceMode == MODE_PLAY) {
 		int x, y;
 		pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
 
@@ -233,7 +233,7 @@ CellPosition Input::GetCellClicked() const
 				cellPos.SetVCell(vCell);
 			}
 		}
-	}
+	//}
 	return cellPos; // If the click is outside the grid, returns invalid (-1, -1)
 }
 

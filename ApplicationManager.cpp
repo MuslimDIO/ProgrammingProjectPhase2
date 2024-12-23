@@ -80,6 +80,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
     case SAVE_GRID:
 		pAct = new SaveGrid(this);
+		break;
 	case LOAD_GRID:
 		pAct = new LoadGridAction(this);
 		break;

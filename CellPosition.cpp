@@ -145,7 +145,7 @@ bool CellPosition::operator == (const CellPosition& a_cellpos) const
 }
 void CellPosition::operator = (const CellPosition& a_cellpos)	
 {
-	vCell = a_cellpos.VCell();
-	hCell = a_cellpos.HCell();
+	SetVCell(  a_cellpos.VCell());
+	SetHCell(a_cellpos.HCell());
 }
 
