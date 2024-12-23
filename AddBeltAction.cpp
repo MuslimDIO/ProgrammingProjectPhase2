@@ -35,9 +35,10 @@ void AddBeltAction::ReadActionParameters()
 		return;
 	}
 
-	if  (startPos.VCell() == endPos.VCell() || startPos.HCell() == endPos.HCell()) {
+	if  (startPos.VCell() != endPos.VCell() || startPos.HCell() != endPos.HCell()) {
 		pOut->PrintMessage("Error: End cell must be in the same row or column as the start cell. Click to continue...");
 		endPos = CellPosition(-1, -1);
+		startPos = CellPosition(-1, -1);
 		return;
 	}
 
