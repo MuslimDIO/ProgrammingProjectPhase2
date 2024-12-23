@@ -39,6 +39,7 @@ void Player::SetHealth(int h)
 	}
 }
 
+
 int Player::GetHealth()
 {
 	return this->health;
