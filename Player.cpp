@@ -241,6 +241,17 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	}
 }
 
+void Player::Restart()
+{
+	SetHealth(10);
+	setCanMove(true);
+	setHacked(false);
+	consumableCount = 0;
+	lasertype = "default";
+	currDirection = RIGHT;
+}
+
+
 void Player::AppendPlayerInfo(string &playersInfo) const
 {
 	// TODO: Modify the Info as needed

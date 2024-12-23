@@ -2,6 +2,7 @@
 #include "Action.h"
 #include "Input.h"
 #include "Output.h"
+#include"Grid.h"
 class UseConsumable : public Action
 {
 public:

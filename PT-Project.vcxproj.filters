@@ -205,7 +205,16 @@
     <ClCompile Include="loadGridAction.cpp">
       <Filter>Grid</Filter>
     </ClCompile>
+    <ClCompile Include="AddWaterpitAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
     <ClCompile Include="UseConsumable.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDangerZoneAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddWorkshopAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -343,7 +352,16 @@
     <ClInclude Include="saveGridAction.h">
       <Filter>Grid</Filter>
     </ClInclude>
+    <ClInclude Include="AddWaterpitAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
     <ClInclude Include="UseConsumable.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDangerZoneAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddWorkshopAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

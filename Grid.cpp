@@ -72,6 +72,30 @@ void Grid::RemoveObjectFromCell(const CellPosition &pos)
 	}
 }
 
+void Grid::RemoveAllObjects()
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) {
+		for (int j = 0; j < NumHorizontalCells; j++) {
+			CellPosition pos(i, j);
+			RemoveObjectFromCell(pos);
+		}
+	}
+}
+
+void Grid::RestartAllPlayers()
+{
+	for (int i = 0; i < MaxPlayerCount; i++) {
+		CellPosition start(0, 0);
+		PlayerList[i]->Restart();
+		UpdatePlayerCell(PlayerList[i], start);
+	}
+	ResetCurrentPlayerNum();
+}
+
+void Grid::ResetCurrentPlayerNum() {
+	currPlayerNumber = 0;
+}
+
 void Grid::UpdatePlayerCell(Player *player, const CellPosition &newPosition)
 {
 	// Clear the player's triangle from the old cell position

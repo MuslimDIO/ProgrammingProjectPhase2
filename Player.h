@@ -54,6 +54,7 @@ public:
 	int GetConsumableCount() const;	// A getter for the consumable count
 	bool UseConsumable(const string consumable, Output* pOut);	// A function to use a consumable from the player's inventory
 	
+	void Restart();	// Restart player's data members to their initial values at the start of the game
 
 
 

@@ -7,6 +7,12 @@
 #include "SaveGridAction.h"
 #include "LoadGridAction.h"
 #include "switchToPlayModeAction.h"
+#include"NewGameAction.h"
+
+#include "AddWaterPitAction.h"
+#include "AddDangerZoneAction.h"
+#include "AddWorkshopAction.h"
+#include "AddAntennaAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -70,6 +76,32 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SET_FLAG_CELL:
 		// create an object of AddFlagAction here
 		pAct = new AddFlagAction(this);
+		break;
+
+	case ADD_ANTENNA:
+		// create an object of AddAntennaAction here
+		pAct = new AddAntennaAction(this);
+		break;
+
+	
+	case NEW_GAME:
+		pAct = new NewGameAction(this);
+		break;
+
+
+	case ADD_WATER_PIT:
+		// create an object of AddWaterPitAction here
+		pAct = new AddWaterpitAction(this);
+		break;
+
+	case ADD_DANGER_ZONE:
+		// create an object of AddDangerZoneAction here
+		 pAct = new AddDangerZoneAction(this);
+		break;
+
+	case ADD_WORKSHOP:
+		// create an object of AddWorkshopAction here
+		 pAct = new AddWorkshopAction(this);
 		break;
 
 	case EXIT:

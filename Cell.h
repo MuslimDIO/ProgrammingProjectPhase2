@@ -13,6 +13,8 @@ class Flag;
 class Player;
 class DangerZone;
 class RotatingGear;
+class Workshop;
+class Antenna;
 class Cell
 {
 	const CellPosition position;	// the cell position (vCell and hCell) --> will not change after the Cell is constructed
@@ -47,5 +49,7 @@ public:
 	// or drawing cell's background over existing game objects
 	void DrawGameObject(Output* pOut) const;	
 	 RotatingGear * Cell:: HasGear() const;
+	 Workshop * Cell::HasWorkshop() const;
+	 Antenna* Cell::HasAntenna() const;
 };
 
