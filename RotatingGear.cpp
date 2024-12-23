@@ -99,10 +99,10 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
     Output* pOut = pGrid->GetOutput(); // Access the Output
     Input* pIn = pGrid->GetInput();   // Access the Input (maybe not important)
 
-    CellPosition pos;
-    bool validCell = false;
+   
+  
 
-    
+    #if 0
     while (!validCell) // making infint loop untill the user click valied cell
     {
         // Print a message based on the rotation 
@@ -129,15 +129,10 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
             pOut->PrintMessage("Invalid cell position! Please try again.");
         }
     }
-
+#endif 
     //  Apply the rotation effect to the player
 
-    pPlayer->ClearDrawing(pOut);
-
-    
-
-    // Clear the status bar
-    pOut->ClearStatusBar();
+    pPlayer->Rotate(isClockWise, pOut); // Rotate the player in the specified direction
 }
 
 bool RotatingGear::GetisClockWise() const

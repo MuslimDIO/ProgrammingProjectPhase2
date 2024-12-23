@@ -281,7 +281,7 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_DELETE] = "images\\Menu_Delete.jpg";
 	MenuItemImages[ITM_SAVE_GRID] = "images\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD_GRID] = "images\\Menu_Load.jpg";
-
+	MenuItemImages[ITM_ADD_ROTATINGGEAR] = "images\\Gear_Clockwise.jpg";
 	// Draw menu items one image at a time
 	for (int i = 0; i < DESIGN_ITM_COUNT; i++)
 	{

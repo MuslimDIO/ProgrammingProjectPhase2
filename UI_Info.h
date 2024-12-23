@@ -30,6 +30,7 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 	ITM_ADD_WATER_PIT,
 	ITM_ADD_DANGER_ZONE,
 	ITM_ADD_WORKSHOP,
+	ITM_ADD_ROTATINGGEAR,
 	ITM_COPY,
 	ITM_CUT,
 	ITM_PASTE,

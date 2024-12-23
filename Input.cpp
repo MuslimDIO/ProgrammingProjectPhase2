@@ -49,15 +49,16 @@ int Input::GetInteger(Output *pO) const
 	//       using function GetString() defined above and function stoi()
 
 	string l_string = GetSrting(pO);
-	if (l_string.empty()) {
-		
-		return 0; 
+	if (l_string.empty())
+	{
+
+		return 0;
 	}
 	return stoi(l_string);
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	 // this line should be changed with your implementation
+	// this line should be changed with your implementation
 }
 
 //======================================================================================//
@@ -161,6 +162,8 @@ ActionType Input::GetUserAction() const
 				return TO_PLAY_MODE;
 			case ITM_EXIT:
 				return EXIT;
+			case ITM_ADD_ROTATINGGEAR:
+				return ADD_ROTATINGGEAR;
 			default:
 				return EMPTY;
 			}
@@ -216,23 +219,23 @@ ActionType Input::GetUserAction() const
 CellPosition Input::GetCellClicked() const
 {
 	CellPosition cellPos;
-	//if (UI.InterfaceMode == MODE_PLAY) {
-		int x, y;
-		pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
+	// if (UI.InterfaceMode == MODE_PLAY) {
+	int x, y;
+	pWind->WaitMouseClick(x, y); // Get the coordinates of the user click
 
-		// Default CellPosition with invalid values (-1, -1)
+	// Default CellPosition with invalid values (-1, -1)
 
-		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
+	if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
+	{
+		int hCell = x / UI.CellWidth;
+		int vCell = (y - UI.ToolBarHeight) / UI.CellHeight;
+
+		if (hCell >= 0 && hCell < NumHorizontalCells && vCell >= 0 && vCell < NumVerticalCells)
 		{
-			int hCell = x / UI.CellWidth;
-			int vCell = (y - UI.ToolBarHeight) / UI.CellHeight;
-
-			if (hCell >= 0 && hCell < NumHorizontalCells && vCell >= 0 && vCell < NumVerticalCells)
-			{
-				cellPos.SetHCell(hCell);
-				cellPos.SetVCell(vCell);
-			}
+			cellPos.SetHCell(hCell);
+			cellPos.SetVCell(vCell);
 		}
+	}
 	//}
 	return cellPos; // If the click is outside the grid, returns invalid (-1, -1)
 }
