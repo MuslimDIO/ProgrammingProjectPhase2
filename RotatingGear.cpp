@@ -71,7 +71,7 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
 
     pPlayer->ClearDrawing(pOut);
 
-    switch (pPlayer->direction)
+    /*switch (pPlayer->direction)
     {
     case UP:
         pPlayer->direction = isClockWise ? RIGHT : LEFT;
@@ -86,7 +86,7 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
     case LEFT:
         pPlayer->direction = isClockWise ? UP : DOWN;
         break;
-    }
+    }*/
 
     // Clear the status bar
     pOut->ClearStatusBar();
