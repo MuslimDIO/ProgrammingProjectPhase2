@@ -57,7 +57,7 @@ void LoadGridAction ::Execute()
     l_inFile.open(_fileName + ".txt", ios::in);
 
     // l_outFile<<"start file"<<endl;
-    for (uint8_t i = 0; i <= ROTATING_GEAR; i++)
+    for (int i = 0; i <= ROTATING_GEAR; i++)
     {
         pGrid->LoadAll(l_inFile, (GameObject_Type)i);
     }
