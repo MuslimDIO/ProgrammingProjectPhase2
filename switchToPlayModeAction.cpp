@@ -40,12 +40,12 @@ void switchToPlayModeAction::ReadActionParameters()
  */
 void switchToPlayModeAction::Execute()
 {
+
     Grid *pGrid = pManager->GetGrid();
     Output *pOut = pGrid->GetOutput();
     Input *pIn = pGrid->GetInput();
     pOut->CreatePlayModeToolBar();
     pOut->ClearGridArea();
-    pOut->CreatePlayModeToolBar();
     pOut->PrintMessage("Switched to Play Mode");
     pGrid->UpdateInterface();
 }
