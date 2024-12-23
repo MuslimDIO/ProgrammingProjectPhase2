@@ -13,6 +13,9 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
+
+
+
 Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList

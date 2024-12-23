@@ -35,7 +35,7 @@ void Antenna::Draw(Output * pOut) const
 	pOut->DrawAntenna(position);
 }
 
-void Antenna::Apply(Grid * pGrid, Player * pPlayer)
+void Antenna::Apply(Grid* pGrid, Player* pPlayer)
 {
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
@@ -52,7 +52,22 @@ void Antenna::Apply(Grid * pGrid, Player * pPlayer)
 	//If there is a tie, player number will break it, for example if player 1 & 2 are in the same cell and they have the same distance from the antenna, player 1 will play first in that round.
 	// 3- After deciding the turn of player Print a message indicating which player will play first example: "Player 1 will play first"
 
+	// abdallah saad :)
+
+
+	// Step 1: Display a message notifying the players
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+	pOut->PrintMessage("The antenna will decide the turn of players. Click to continue...");
+	int x, y;
+	pIn->GetPointClicked(x, y); // Wait for user interaction
+	pOut->ClearStatusBar();
+
+	// Step 2: Calculate the closest player manually
+	
 }
+
 
 
 Antenna::~Antenna()
