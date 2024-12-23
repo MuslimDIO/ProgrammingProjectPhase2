@@ -24,16 +24,31 @@ void AddBeltAction::ReadActionParameters()
 
 
 	///TODO: Make the needed validations on the read parameters
-
-	// abdallah saas :)
-
-	if (!startPos.IsValidCell() || !endPos.IsValidCell()) // check the vallidation of the start and end position
-	{
-		pOut->PrintMessage("Error: Invalid cell positions! Click to continue..."); // print error massage and ask to chose and cells 
-		int x, y; //// Declare variables to store the click coordinates
-		pIn->GetPointClicked(x, y); // choos another cells 
+	if (startPos.IsValidCell() == false || startPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid start cell position! Cannot be cell #1. Click to continue...");
+		startPos = CellPosition(-1, -1);
 		return;
 	}
+	if (endPos.IsValidCell() == false || endPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid end cell position! Cannot be cell #1. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		return;
+	}
+
+	if  (startPos.VCell() == endPos.VCell() || startPos.HCell() == endPos.HCell()) {
+		pOut->PrintMessage("Error: End cell must be in the same row or column as the start cell. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		return;
+	}
+
+	/*if (pGrid->GetGameObject(startPos) != nullptr || pGrid->GetGameObject(endPos) != nullptr) {
+		pOut->PrintMessage("Error: Start or end cell already contains a game object. Click to continue...");
+		startPos = CellPosition(-1, -1);
+		endPos = CellPosition(-1, -1);
+		return;
+	}*/
+
+	
 
 	// Clear messages
 	pOut->ClearStatusBar();

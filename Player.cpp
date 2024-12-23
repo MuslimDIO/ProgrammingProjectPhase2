@@ -39,7 +39,6 @@ void Player::SetHealth(int h)
 	}
 }
 
-
 int Player::GetHealth()
 {
 	return this->health;
@@ -169,7 +168,7 @@ void Player::ClearDrawing(Output* pOut) const
 
 // ====== Game Functions ======
 
-void Player::Move(Grid * pGrid, Command moveCommands[])
+void Player::Move(Grid* pGrid, Command moveCommands[])
 {
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
@@ -190,9 +189,9 @@ void Player::Move(Grid * pGrid, Command moveCommands[])
 		case NO_COMMAND:
 			break;
 		case MOVE_FORWARD_ONE_STEP:
-			destination.AddCellNum(1,currDirection);
+			destination.AddCellNum(1, currDirection);
 			break;
-		
+
 		case MOVE_FORWARD_TWO_STEPS:
 			destination.AddCellNum(2, currDirection);
 			break;
@@ -207,28 +206,25 @@ void Player::Move(Grid * pGrid, Command moveCommands[])
 			break;
 
 
+		}
+
+
+
+
+
+		///TODO: Implement this function using the guidelines mentioned below
+
+		// - If a player has 5 (could have less) saved moveCommands, the robot will execute the first saved command,
+		//		then wait for a mouse click (display a message "Click anywhere to execute the next command").
+		//		After executing all the 5 saved commands, the game object effect at the final destination cell will
+		//		be applied.
+		// 
+		// - Use the CellPosition class to help you calculate the destination cell using the current cell
+		// - Use the Grid class to update pCell
+		// - Don't forget to apply game objects at the final destination cell and check for game ending
+
 	}
-		
-
-
-
-
-	///TODO: Implement this function using the guidelines mentioned below
-
-	// - If a player has 5 (could have less) saved moveCommands, the robot will execute the first saved command,
-	//		then wait for a mouse click (display a message "Click anywhere to execute the next command").
-	//		After executing all the 5 saved commands, the game object effect at the final destination cell will
-	//		be applied.
-	// 
-	// - Use the CellPosition class to help you calculate the destination cell using the current cell
-	// - Use the Grid class to update pCell
-	// - Don't forget to apply game objects at the final destination cell and check for game ending
-
 }
-
-
-
-
 
 
 void Player::AppendPlayerInfo(string & playersInfo) const
