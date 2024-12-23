@@ -8,6 +8,7 @@
 #include "LoadGridAction.h"
 #include "switchToPlayModeAction.h"
 #include "AddWaterPitAction.h"
+#include "AddDangerZoneAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -76,6 +77,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ADD_WATER_PIT:
 		// create an object of AddWaterPitAction here
 		pAct = new AddWaterpitAction(this);
+		break;
+
+	case ADD_DANGER_ZONE:
+		// create an object of AddDangerZoneAction here
+		 pAct = new AddDangerZoneAction(this);
 		break;
 
 	case EXIT:
