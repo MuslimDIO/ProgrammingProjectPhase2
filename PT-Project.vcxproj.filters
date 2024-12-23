@@ -208,6 +208,12 @@
     <ClCompile Include="AddWaterpitAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="UseConsumable.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDangerZoneAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -342,6 +348,15 @@
     </ClInclude>
     <ClInclude Include="saveGridAction.h">
       <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="AddWaterpitAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="UseConsumable.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDangerZoneAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

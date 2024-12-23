@@ -1,11 +1,10 @@
-
 #pragma once
 #include "Action.h"
 #include "Input.h"
 #include "Output.h"
 #include "WaterPit.h"
 
-class AddWaterpitAction
+class AddWaterpitAction :public Action
 {
 	CellPosition WaterpitPos; //The position of the Waterpit
 public:

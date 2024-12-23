@@ -31,6 +31,14 @@ void AddRotatingGearAction::ReadActionParameters()
 		pIn->GetPointClicked(x, y);
 		return;
 	}
+	if (gearPos.GetCellNum() == 1)
+	{
+		pOut->PrintMessage("Error: Cell #1 is reserved for the player! Click to continue...");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		return;
+	}
+
 	
 
 	// 5- Clear status bar
