@@ -104,7 +104,7 @@ int Player::GetConsumableCount() const
 {
 	return consumableCount;
 }
-#if 1
+#if 0
 bool Player::UseConsumable(const string consumable, Output* pOut)
 {
 	for (int i = 0; i < consumableCount; i++)
