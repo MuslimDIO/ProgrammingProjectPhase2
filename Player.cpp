@@ -4,9 +4,12 @@
 
 #include "GameObject.h"
 
-Player::Player(Cell * pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT)
+Player::Player(Cell* pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT), canMove(true)
 {
 	this->pCell = pCell;
+	lasertype = "default";
+	consumableCount = 0;
+	isHacked = false;
 
 	// Make all the needed initialization or validations
 }
@@ -41,6 +44,97 @@ int Player::GetHealth()
 	return this->health;
 }
 
+void Player::setLaserType(string l)
+{
+	lasertype = l;
+}
+
+string Player::getLaserType()
+{
+	return lasertype;
+}
+
+void Player::setCanMove(bool c)
+{
+	canMove = c;
+}
+
+bool Player::getCanMove()
+{
+	return canMove;
+}
+
+
+
+void Player::setHacked(bool h)
+{
+	isHacked = h;
+}
+
+bool Player::getHacked()
+{
+	return isHacked;
+}
+
+
+string Player::GetConsumables() const
+{
+	string consumables = "";
+	for (int i = 0; i < consumableCount; i++)
+	{
+		consumables += ownedConsumables[i] + " ";
+	}
+	return consumables;
+}
+
+
+bool Player::AddConsumable(string consumable)
+{
+	if (consumableCount < MAX_CONSUMABLES)
+	{
+		ownedConsumables[consumableCount++] = consumable;
+
+		return true;
+	}
+	return false;
+}
+
+int Player::GetConsumableCount() const
+{
+	return consumableCount;
+}
+#if 1
+bool Player::UseConsumable(const string consumable, Output* pOut)
+{
+	for (int i = 0; i < consumableCount; i++)
+	{
+		if (ownedConsumables[i] == consumable)
+		{
+			if (ownedConsumables[i] == consumable) {
+				// Apply consumable effects
+				if (consumable == "Toolkit") {
+					SetHealth(health + 2); // Restore health
+					pOut->PrintMessage("Used Toolkit: Restored 2 health points.");
+				}
+				else if (consumable == "HackDevice") {
+					// logic for the hack device ely ana mesh 3aref eh howa aslan
+					setHacked(true); //5alas 3rfto bas 
+					pOut->PrintMessage("Used Hack Device: Opponent is blocked this round.");
+				}
+
+				// Remove the consumable from the array
+				for (int j = i; j < consumableCount - 1; ++j) {
+					ownedConsumables[j] = ownedConsumables[j + 1];
+				}
+				ownedConsumables[--consumableCount] = ""; // Clear the last slot
+				return true;
+			}
+		}
+		pOut->PrintMessage("Consumable not available.");
+		return false; // Consumable not found
+	}
+}
+#endif
 // ====== Drawing Functions ======
 
 void Player::Draw(Output* pOut) const
@@ -98,8 +192,5 @@ void Player::AppendPlayerInfo(string & playersInfo) const
 }
 
 
-void Player::RebootAndRepair() {
-    // Restore 2 health points, but do not exceed the maximum of 10
-    SetHealth(health + 2);
-	
-}
+
+

@@ -31,7 +31,6 @@ public:
 	// ========== Action-Related Functions ==========
 
 	ActionType GetUserAction() const; // Reads the input command from the user and returns the corresponding action type
-
 	void ExecuteAction(ActionType) ;  // Creates an action of the passed actionType and executes it
 
 };

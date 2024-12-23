@@ -48,6 +48,7 @@ ActionType ApplicationManager::GetUserAction() const
 	return pIn->GetUserAction();
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 // Creates an action and executes it
