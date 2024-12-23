@@ -2,7 +2,7 @@
 
 #include "Grid.h"
 #include "Cell.h"
-
+ enum Direction ;
 
 const int MAX_CONSUMABLES = 5;	// Maximum number of consumables that a player can carry at a time
 
@@ -42,7 +42,7 @@ public:
 	string getLaserType();			// A getter for the laser type
 
 	void setCanMove(bool c);		// A setter for the canMove
-	bool getCanMove();				// A getter for the canMove
+	bool getCanMove() const;				// A getter for the canMove
 
 
 	void setHacked(bool h);			// A setter for the isHacked
@@ -79,6 +79,8 @@ public:
 	
 	void AppendPlayerInfo(string & playersInfo) const; // Appends player's info to the input string, 
 	                                                   // for example: P0(Direction, health)
+
+//void Rotate(DIRECTION);
 
 };
 

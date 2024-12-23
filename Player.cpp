@@ -60,7 +60,7 @@ void Player::setCanMove(bool c)
 	canMove = c;
 }
 
-bool Player::getCanMove()
+bool Player::getCanMove() const
 {
 	return canMove;
 }
@@ -70,6 +70,7 @@ bool Player::getCanMove()
 void Player::setHacked(bool h)
 {
 	isHacked = h;
+	setCanMove(isHacked);
 }
 
 bool Player::getHacked()
@@ -104,7 +105,7 @@ int Player::GetConsumableCount() const
 {
 	return consumableCount;
 }
-#if 1
+#if 0
 bool Player::UseConsumable(const string consumable, Output* pOut)
 {
 	for (int i = 0; i < consumableCount; i++)
@@ -170,6 +171,47 @@ void Player::ClearDrawing(Output* pOut) const
 
 void Player::Move(Grid * pGrid, Command moveCommands[])
 {
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+
+	if (!getCanMove()) {
+		pOut->PrintMessage("You can't move this turn.");
+		return;
+	}
+
+	CellPosition currentPosition = pCell->GetCellPosition();
+	CellPosition destination = currentPosition;
+
+	for (int i = 0; i < COMMANDS_COUNT; i++)
+	{
+		switch (moveCommands[i])
+		{
+		case NO_COMMAND:
+			break;
+		case MOVE_FORWARD_ONE_STEP:
+			destination.AddCellNum(1,currDirection);
+			break;
+		
+		case MOVE_FORWARD_TWO_STEPS:
+			destination.AddCellNum(2, currDirection);
+			break;
+		case MOVE_FORWARD_THREE_STEPS:
+			destination.AddCellNum(3, currDirection);
+			break;
+		case MOVE_BACKWARD_ONE_STEP:
+			destination.AddCellNum(-1, currDirection);
+			break;
+		case MOVE_BACKWARD_THREE_STEPS:
+			destination.AddCellNum(-3, currDirection);
+			break;
+
+
+	}
+		
+
+
+
 
 	///TODO: Implement this function using the guidelines mentioned below
 

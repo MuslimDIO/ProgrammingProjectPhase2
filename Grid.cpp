@@ -206,14 +206,14 @@ void Grid::PrintErrorMessage(string msg)
 
 void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
 {
-	uint8_t l_objCount = 0;
+	int  l_objCount = 0;
 	// Save the GameObject parameters to the file
 	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
 	{
 		for (int j = 0; j < NumHorizontalCells; j++) // left to right
 		{
 			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
-			if (ptr2_GObj && ptr2_GObj->getObjType() == a_type)
+			if (ptr2_GObj!=NULL && ptr2_GObj->getObjType() == a_type)
 			{
 				l_objCount++; // increment the count of the objects of the same type
 			}
@@ -237,7 +237,7 @@ void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
 
 void Grid::LoadAll(ifstream &a_InFile, GameObject_Type a_type)
 {
-	uint8_t l_objCount = 0;
+	int l_objCount = 0;
 	a_InFile >> l_objCount;
 	for (int i = 0; i < l_objCount; i++)
 	{
