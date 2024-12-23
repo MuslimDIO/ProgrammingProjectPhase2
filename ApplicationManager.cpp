@@ -11,6 +11,7 @@
 
 #include "AddWaterPitAction.h"
 #include "AddDangerZoneAction.h"
+#include "AddWorkshopAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -94,6 +95,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ADD_DANGER_ZONE:
 		// create an object of AddDangerZoneAction here
 		 pAct = new AddDangerZoneAction(this);
+		break;
+
+	case ADD_WORKSHOP:
+		// create an object of AddWorkshopAction here
+		 pAct = new AddWorkshopAction(this);
 		break;
 
 	case EXIT:

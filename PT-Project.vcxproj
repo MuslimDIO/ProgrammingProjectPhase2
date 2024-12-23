@@ -138,6 +138,7 @@
     <ClCompile Include="AddFlagAction.cpp" />
     <ClCompile Include="AddRotatingGearAction.cpp" />
     <ClCompile Include="AddWaterpitAction.cpp" />
+    <ClCompile Include="AddWorkshopAction.cpp" />
     <ClCompile Include="Antenna.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Belt.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="AddFlagAction.h" />
     <ClInclude Include="AddRotatingGearAction.h" />
     <ClInclude Include="AddWaterpitAction.h" />
+    <ClInclude Include="AddWorkshopAction.h" />
     <ClInclude Include="Antenna.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Belt.h" />
