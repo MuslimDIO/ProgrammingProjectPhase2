@@ -1,6 +1,7 @@
 #include "RotatingGear.h"
 #include <fstream>
 #include <iostream>
+#include "Player.h"
 using namespace std;
 
 
@@ -30,32 +31,67 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
 
 	// abdallah saad :) 
 
-    // Step 1: Print a message and wait for user input
+    
+    // Step 1: Access the Output and Input interfaces
+    Output* pOut = pGrid->GetOutput(); // Access the Output
+    Input* pIn = pGrid->GetInput();   // Access the Input (maybe not important)
 
-    Output* pOut = pGrid->GetOutput(); // acces the output 
-    Input* pIn = pGrid->GetInput();   // acces the input (maybe in don't it) ? 
+    CellPosition pos;
+    bool validCell = false;
 
-    if (isClockWise)
-        pOut->PrintMessage("You have reached a rotating gear. You will rotate clockwise. Click to continue...");
-    else
-        pOut->PrintMessage("You have reached a rotating gear. You will rotate counterclockwise. Click to continue...");
+    
+    while (!validCell) // making infint loop untill the user click valied cell
+    {
+        // Print a message based on the rotation 
+        if (isClockWise)
+        {
+            pOut->PrintMessage("You have reached a rotating gear. You will rotate clockwise. Click on a valid cell to continue...");
+        }
+        else
+        {
+            pOut->PrintMessage("You have reached a rotating gear. You will rotate counterclockwise. Click on a valid cell to continue...");
+        }
 
-    int x;
-    int y;
+        
+        pos = pIn->GetCellClicked(); // Wait for the player to click and get the CellPosition
 
-    pIn->GetPointClicked(x,y); // Wait for the player to click
+        // Check if the cell is valid
+
+        if (pos.IsValidCell())
+        {
+            validCell = true; // Exit the loop if the cell is valid
+        }
+        else
+        {
+            pOut->PrintMessage("Invalid cell position! Please try again.");
+        }
+    }
+
+    //  Apply the rotation effect to the player
+
+    pPlayer->ClearDrawing(pOut);
+
+    switch (pPlayer->direction)
+    {
+    case UP:
+        pPlayer->direction = isClockWise ? RIGHT : LEFT;
+       
+        break;
+    case RIGHT:
+        pPlayer->direction = isClockWise ? DOWN : UP;
+        break;
+    case DOWN:
+        pPlayer->direction = isClockWise ? LEFT : RIGHT;
+        break;
+    case LEFT:
+        pPlayer->direction = isClockWise ? UP : DOWN;
+        break;
+    }
+
+    // Clear the status bar
     pOut->ClearStatusBar();
-
-    // Step 2: Apply the rotation effect on the player
-    if (isClockWise)
-    {
-        /*pGrid->GetCurrentPlayer()->RotateClockwiseAction(); */// Rotate the player clockwise
-    }
-    else
-    {
-		/*/pGrid->GetCurrentPlayer()->RotateClockwiseAction();*/ // Rotate the player counterclockwise
-    }
 }
+
 bool RotatingGear::GetisClockWise() const
 {
 	return isClockWise;

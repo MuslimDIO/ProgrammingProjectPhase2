@@ -19,6 +19,10 @@ void AddRotatingGearAction::ReadActionParameters()
 	// 4- Make the needed validations on the read parameters
 
 	// 5- Clear status bar
+
+	//abdallah saad :)
+
+
 }
 
 void AddRotatingGearAction::Execute()
