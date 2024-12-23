@@ -7,6 +7,8 @@
 #include "SaveGridAction.h"
 #include "LoadGridAction.h"
 #include "switchToPlayModeAction.h"
+#include"NewGameAction.h"
+
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -70,6 +72,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SET_FLAG_CELL:
 		// create an object of AddFlagAction here
 		pAct = new AddFlagAction(this);
+		break;
+	
+
+
+
+	
+	
+	case NEW_GAME:
+		pAct = new NewGameAction(this);
 		break;
 
 	case EXIT:
