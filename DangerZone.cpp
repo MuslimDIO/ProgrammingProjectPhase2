@@ -51,7 +51,7 @@ void DangerZone::Apply(Grid *pGrid, Player *pPlayer)
         return; // Exit the function to prevent further actions
     }
 
-    // Step 4: Update the grid display with the player's new health
+    // Update the grid display with the player's new health
     pGrid->UpdateInterface();
 
     // Notify the player of their new health

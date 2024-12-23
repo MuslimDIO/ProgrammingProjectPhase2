@@ -1,6 +1,7 @@
 #include "WaterPit.h"
 #include <iostream>
 #include <fstream>
+#include "Player.h"
 using namespace std;
 WaterPit::WaterPit(const CellPosition &waterPitPosition) : GameObject(waterPitPosition, WATERPIT)
 {
@@ -22,7 +23,31 @@ void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 
 	// 2- Apply the water pit's effect by setting the player's health which drowned to zero and ending the game
 	// 3- Update the players info which is displayed (check Grid class and decide which function to use)
+
+	// abdallah saad :) 
+
+	
+	Output* pOut = pGrid->GetOutput(); // access the output 
+	Input* pIn = pGrid->GetInput();   // acess the input
+
+	pOut->PrintMessage("You have fallen into a water pit! Your health will drop to zero and the game will end. Click to continue...");
+	int x, y;
+	pIn->GetPointClicked(x, y); // Wait for user input
+	pOut->ClearStatusBar();
+
+ 
+	pPlayer->SetHealth(0); // Set the player's health to zero
+
+	
+	pOut->PrintMessage("You felt in water pit .... game over "); // print game over 
+	pIn->GetPointClicked(x, y);
+	pOut->ClearStatusBar();
+
+	
+	pGrid->SetEndGame(true); // End the game
 }
+
+
 
  void WaterPit::Save(ofstream &OutFile, GameObject_Type type)
 {
