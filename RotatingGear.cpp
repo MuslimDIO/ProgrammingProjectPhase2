@@ -1,6 +1,70 @@
+
+/**
+ * @file RotatingGear.cpp
+ * @brief Implementation of the RotatingGear class.
+ * 
+ * This file contains the implementation of the RotatingGear class, which represents a rotating gear
+ * @author Abdullah Saad
+ */
+
+ /**
+    * @class RotatingGear
+    * @brief Represents a rotating gear object in the game.
+    * 
+    * The RotatingGear class is a type of GameObject that rotates the player when they land on it.
+    */
+
+/**
+ * @brief Constructs a RotatingGear object with a specified position and default clockwise rotation.
+ * @param gearposition The position of the rotating gear on the grid.
+ */
+ 
+ /**
+    * @brief Constructs a RotatingGear object with a specified position and rotation direction.
+    * @param gearposition The position of the rotating gear on the grid.
+    * @param a_clockWise The direction of rotation (true for clockwise, false for counterclockwise).
+    */
+
+/**
+ * @brief Draws the rotating gear on the grid.
+ * @param pOut Pointer to the Output interface.
+ */
+
+/**
+ * @brief Applies the effect of the rotating gear to the player.
+ * @param pGrid Pointer to the Grid.
+ * @param pPlayer Pointer to the Player.
+ */
+
+/**
+ * @brief Gets the rotation direction of the rotating gear.
+ * @return True if the rotation is clockwise, false otherwise.
+ */
+
+/**
+ * @brief Sets the rotation direction of the rotating gear.
+ * @param a_isClockWise The new rotation direction (true for clockwise, false for counterclockwise).
+ */
+
+/**
+ * @brief Saves the state of the rotating gear to a file.
+ * @param OutFile Reference to the output file stream.
+ * @param type The type of the game object.
+ */
+
+/**
+ * @brief Loads the state of the rotating gear from a file.
+ * @param Infile Reference to the input file stream.
+ * @param type The type of the game object.
+ */
+
+/**
+ * @brief Destructor for the RotatingGear class.
+ */
 #include "RotatingGear.h"
-#include <fstream>
+#include <fstream>  
 #include <iostream>
+#include "Player.h"
 using namespace std;
 
 
@@ -30,32 +94,47 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
 
 	// abdallah saad :) 
 
-    // Step 1: Print a message and wait for user input
+    
+    // Step 1: Access the Output and Input interfaces
+    Output* pOut = pGrid->GetOutput(); // Access the Output
+    Input* pIn = pGrid->GetInput();   // Access the Input (maybe not important)
 
-    Output* pOut = pGrid->GetOutput(); // acces the output 
-    Input* pIn = pGrid->GetInput();   // acces the input (maybe in don't it) ? 
+   
+  
 
-    if (isClockWise)
-        pOut->PrintMessage("You have reached a rotating gear. You will rotate clockwise. Click to continue...");
-    else
-        pOut->PrintMessage("You have reached a rotating gear. You will rotate counterclockwise. Click to continue...");
-
-    int x;
-    int y;
-
-    pIn->GetPointClicked(x,y); // Wait for the player to click
-    pOut->ClearStatusBar();
-
-    // Step 2: Apply the rotation effect on the player
-    if (isClockWise)
+    #if 0
+    while (!validCell) // making infint loop untill the user click valied cell
     {
-        /*pGrid->GetCurrentPlayer()->RotateClockwiseAction(); */// Rotate the player clockwise
+        // Print a message based on the rotation 
+        if (isClockWise)
+        {
+            pOut->PrintMessage("You have reached a rotating gear. You will rotate clockwise. Click on a valid cell to continue...");
+        }
+        else
+        {
+            pOut->PrintMessage("You have reached a rotating gear. You will rotate counterclockwise. Click on a valid cell to continue...");
+        }
+
+        
+        pos = pIn->GetCellClicked(); // Wait for the player to click and get the CellPosition
+
+        // Check if the cell is valid
+
+        if (pos.IsValidCell())
+        {
+            validCell = true; // Exit the loop if the cell is valid
+        }
+        else
+        {
+            pOut->PrintMessage("Invalid cell position! Please try again.");
+        }
     }
-    else
-    {
-		/*/pGrid->GetCurrentPlayer()->RotateClockwiseAction();*/ // Rotate the player counterclockwise
-    }
+#endif 
+    //  Apply the rotation effect to the player
+
+    pPlayer->Rotate(isClockWise, pOut); // Rotate the player in the specified direction
 }
+
 bool RotatingGear::GetisClockWise() const
 {
 	return isClockWise;

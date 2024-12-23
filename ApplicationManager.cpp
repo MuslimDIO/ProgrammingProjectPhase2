@@ -67,7 +67,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// create an object of AddRotatingGearAction here
 		pAct = new AddRotatingGearAction(this);
 		break;
-	case ADD_FLAG:
+	case SET_FLAG_CELL:
 		// create an object of AddFlagAction here
 		pAct = new AddFlagAction(this);
 		break;

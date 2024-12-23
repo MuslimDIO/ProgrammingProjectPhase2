@@ -12,6 +12,7 @@ class WaterPit;
 class Flag;
 class Player;
 class DangerZone;
+class RotatingGear;
 class Cell
 {
 	const CellPosition position;	// the cell position (vCell and hCell) --> will not change after the Cell is constructed
@@ -45,6 +46,6 @@ public:
 	// then draw all other game objects, in order to avoid overlapping 
 	// or drawing cell's background over existing game objects
 	void DrawGameObject(Output* pOut) const;	
-	
+	 RotatingGear * Cell:: HasGear() const;
 };
 

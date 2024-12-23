@@ -8,9 +8,6 @@ Belt::Belt(const CellPosition &startCellPos, const CellPosition &endCellPos) : G
 
 	/// TODO: Do the needed validation
 
-	// abdallah saas :)
-	// (check the validation of the start and end posittion and check the start is not the end position)
-	// (  had ebka e7l el error )
 
 	this->endCellPos = endCellPos;
 }

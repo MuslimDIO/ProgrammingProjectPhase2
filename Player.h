@@ -5,7 +5,7 @@
  enum Direction ;
 
 const int MAX_CONSUMABLES = 5;	// Maximum number of consumables that a player can carry at a time
-
+class Output;
 
 class Player
 {
@@ -66,6 +66,9 @@ public:
 	void ClearDrawing(Output* pOut) const;	// Clears the Player's Triangle from its current cell
 
 	
+	
+
+	
 
 
 	// ====== Game Functions ======
@@ -77,7 +80,7 @@ public:
 	void AppendPlayerInfo(string & playersInfo) const; // Appends player's info to the input string, 
 	                                                   // for example: P0(Direction, health)
 
-//void Rotate(DIRECTION);
+   void Rotate(bool isClockWise,Output * ptr2_out); // Rotate the player in a specific direction);
 
 };
 

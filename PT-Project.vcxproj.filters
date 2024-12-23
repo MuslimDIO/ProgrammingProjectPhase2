@@ -205,6 +205,9 @@
     <ClCompile Include="loadGridAction.cpp">
       <Filter>Grid</Filter>
     </ClCompile>
+    <ClCompile Include="UseConsumable.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -339,6 +342,9 @@
     </ClInclude>
     <ClInclude Include="saveGridAction.h">
       <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="UseConsumable.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

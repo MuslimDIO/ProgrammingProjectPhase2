@@ -7,6 +7,7 @@
 #include "DangerZone.h"
 #include "Flag.h"
 #include "Output.h"
+#include"RotatingGear.h"
 Cell::Cell(const CellPosition & pos) : position(pos)
 {
 	// initializes the data members (position & pGameObject)
@@ -46,7 +47,10 @@ Belt * Cell::HasBelt() const
 {
 	return dynamic_cast<Belt *>(pGameObject);
 }
-
+RotatingGear * Cell:: HasGear() const
+{
+	return dynamic_cast<RotatingGear *>(pGameObject);
+}
 
 Flag * Cell::HasFlag() const
 {
@@ -90,7 +94,7 @@ void Cell::DrawCellOrWaterPitOrDangerZone(Output* pOut) const
 void Cell::DrawGameObject(Output* pOut) const
 {
 	//TODO: edit this incomplete implemntation to check for other game objects (excluding waterpits and dangerzones)
-	if (HasFlag()|| HasBelt())
+	if (HasFlag()|| HasBelt()||HasGear())
 		pGameObject->Draw(pOut); // draw game object
 
 }

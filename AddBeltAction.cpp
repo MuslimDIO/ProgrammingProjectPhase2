@@ -24,16 +24,25 @@ void AddBeltAction::ReadActionParameters()
 
 
 	///TODO: Make the needed validations on the read parameters
-
-	// abdallah saas :)
-
-	if (!startPos.IsValidCell() || !endPos.IsValidCell()) // check the vallidation of the start and end position
-	{
-		pOut->PrintMessage("Error: Invalid cell positions! Click to continue..."); // print error massage and ask to chose and cells 
-		int x, y; //// Declare variables to store the click coordinates
-		pIn->GetPointClicked(x, y); // choos another cells 
+	if (startPos.IsValidCell() == false || startPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid start cell position! Cannot be cell #1. Click to continue...");
+		startPos = CellPosition(-1, -1);
 		return;
 	}
+	if (endPos.IsValidCell() == false || endPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid end cell position! Cannot be cell #1. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		return;
+	}
+
+	if  (startPos.VCell() != endPos.VCell() && startPos.HCell() != endPos.HCell()) {
+		pOut->PrintMessage("Error: End cell must be in the same row or column as the start cell. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		startPos = CellPosition(-1, -1);
+		return;
+	}
+
+
 
 	// Clear messages
 	pOut->ClearStatusBar();
@@ -41,15 +50,40 @@ void AddBeltAction::ReadActionParameters()
 
 void AddBeltAction::Execute()
 {
+
+
 	// The first line of any Action Execution is to read its parameter first 
 	// and hence initializes its data members
 	ReadActionParameters();
 
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+	if (startPos.IsValidCell() == false || startPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid start cell position! Cannot be cell #1. Click to continue...");
+		startPos = CellPosition(-1, -1);
+		return;
+	}
+	if (endPos.IsValidCell() == false || endPos.GetCellNum() == 1) {
+		pOut->PrintMessage("Error: Invalid end cell position! Cannot be cell #1. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		return;
+	}
+
+	if (startPos.VCell() != endPos.VCell() && startPos.HCell() != endPos.HCell()) {
+		pOut->PrintMessage("Error: End cell must be in the same row or column as the start cell. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		startPos = CellPosition(-1, -1);
+		return;
+	}
+
 	// Create a belt object with the parameters read from the user
+	
+	
 	Belt * pBelt = new Belt(startPos, endPos);
 
-	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-
+	
 										
 	bool added = pGrid->AddObjectToCell(pBelt);
 
