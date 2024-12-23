@@ -9,6 +9,7 @@
 #include "Output.h"
 #include"RotatingGear.h"
 #include "Workshop.h"
+#include "Antenna.h"
 Cell::Cell(const CellPosition & pos) : position(pos)
 {
 	// initializes the data members (position & pGameObject)
@@ -83,6 +84,12 @@ Workshop * Cell::HasWorkshop() const
 
 	return dynamic_cast<Workshop*>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 }
+
+Antenna* Cell::HasAntenna() const
+{
+	return dynamic_cast<Antenna*>(pGameObject);
+
+}
 // ======= Drawing Functions ======= 
 
 void Cell::DrawCellOrWaterPitOrDangerZone(Output* pOut) const
@@ -94,13 +101,15 @@ void Cell::DrawCellOrWaterPitOrDangerZone(Output* pOut) const
 		pOut->DrawCell(position,UI.CellColor); // draw empty cell 
 }
 
+				
 // separate from the above function 
 //because other game objects should be drawn AFTER All Cells are drawn
 //because other game objects don't change color of the cell
 void Cell::DrawGameObject(Output* pOut) const
 {
 	//TODO: edit this incomplete implemntation to check for other game objects (excluding waterpits and dangerzones)
-	if (HasFlag()|| HasBelt()||HasGear()||HasWorkshop())
+	if (HasFlag()|| HasBelt()||HasGear()
+		||HasWorkshop()||HasAntenna())
 		pGameObject->Draw(pOut); // draw game object
 
 }

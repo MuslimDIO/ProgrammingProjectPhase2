@@ -12,6 +12,7 @@
 #include "AddWaterPitAction.h"
 #include "AddDangerZoneAction.h"
 #include "AddWorkshopAction.h"
+#include "AddAntennaAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -76,11 +77,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// create an object of AddFlagAction here
 		pAct = new AddFlagAction(this);
 		break;
-	
 
+	case ADD_ANTENNA:
+		// create an object of AddAntennaAction here
+		pAct = new AddAntennaAction(this);
+		break;
 
-
-	
 	
 	case NEW_GAME:
 		pAct = new NewGameAction(this);
