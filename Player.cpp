@@ -203,7 +203,30 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		case MOVE_BACKWARD_THREE_STEPS:
 			destination.AddCellNum(-3, currDirection);
 			break;
+
+
+		default:
+			pOut->PrintMessage("Invalid move command.");
+			continue;
 		}
+
+		if (!destination.IsValidCell())
+		{
+			pOut->PrintMessage("Invalid move, you can't move outside the grid.");
+			return;
+		}
+
+		pGrid->UpdatePlayerCell(this, destination);
+
+		GameObject* pObj = pCell->GetGameObject();
+
+
+
+
+		if (pObj != NULL) {
+			pObj->Apply(pGrid, this);
+		}
+
 
 		/// TODO: Implement this function using the guidelines mentioned below
 
