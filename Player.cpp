@@ -182,7 +182,32 @@ void Player::Move(Grid * pGrid, Command moveCommands[])
 	CellPosition currentPosition = pCell->GetCellPosition();
 	CellPosition destination = currentPosition;
 
+	for (int i = 0; i < COMMANDS_COUNT; i++)
+	{
+		switch (moveCommands[i])
+		{
+		case NO_COMMAND:
+			break;
+		case MOVE_FORWARD_ONE_STEP:
+			destination.AddCellNum(1,currDirection);
+			break;
+		
+		case MOVE_FORWARD_TWO_STEPS:
+			destination.AddCellNum(2, currDirection);
+			break;
+		case MOVE_FORWARD_THREE_STEPS:
+			destination.AddCellNum(3, currDirection);
+			break;
+		case MOVE_BACKWARD_ONE_STEP:
+			destination.AddCellNum(-1, currDirection);
+			break;
+		case MOVE_BACKWARD_THREE_STEPS:
+			destination.AddCellNum(-3, currDirection);
+			break;
 
+
+	}
+		
 
 
 
