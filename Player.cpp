@@ -59,7 +59,7 @@ void Player::setCanMove(bool c)
 	canMove = c;
 }
 
-bool Player::getCanMove()
+bool Player::getCanMove() const
 {
 	return canMove;
 }
@@ -69,6 +69,7 @@ bool Player::getCanMove()
 void Player::setHacked(bool h)
 {
 	isHacked = h;
+	setCanMove(isHacked);
 }
 
 bool Player::getHacked()
@@ -169,6 +170,22 @@ void Player::ClearDrawing(Output* pOut) const
 
 void Player::Move(Grid * pGrid, Command moveCommands[])
 {
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+
+	if (!getCanMove()) {
+		pOut->PrintMessage("You can't move this turn.");
+		return;
+	}
+
+	CellPosition currentPosition = pCell->GetCellPosition();
+	CellPosition destination = currentPosition;
+
+
+
+
+
 
 	///TODO: Implement this function using the guidelines mentioned below
 

@@ -42,7 +42,7 @@ public:
 	string getLaserType();			// A getter for the laser type
 
 	void setCanMove(bool c);		// A setter for the canMove
-	bool getCanMove();				// A getter for the canMove
+	bool getCanMove() const;				// A getter for the canMove
 
 
 	void setHacked(bool h);			// A setter for the isHacked
