@@ -49,11 +49,11 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
     // Step 2: Apply the rotation effect on the player
     if (isClockWise)
     {
-        pPlayer->RotateClockwise(); // Rotate the player clockwise
+        /*pGrid->GetCurrentPlayer()->RotateClockwiseAction(); */// Rotate the player clockwise
     }
     else
     {
-        pPlayer->RotateCounterClockwise(); // Rotate the player counterclockwise
+		/*/pGrid->GetCurrentPlayer()->RotateClockwiseAction();*/ // Rotate the player counterclockwise
     }
 }
 bool RotatingGear::GetisClockWise() const

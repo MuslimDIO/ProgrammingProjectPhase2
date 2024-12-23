@@ -5,19 +5,20 @@ using namespace std;
 
 Belt::Belt(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos, BELT)
 {
-	this->endCellPos = endCellPos;
+	
 
 	///TODO: Do the needed validation
 
 	// abdallah saas :)
-// (check the validation of the start and end posittion and check the start is not the end position)
-	// (  had ebka e7l el error )
+   // (check the validation of the start and end posittion and check the start is not the end position)
+  // (  had ebka e7l el error )
 
 		if (!startCellPos.IsValidCell() || !endCellPos.IsValidCell() || startCellPos == endCellPos)
 		{
 			throw " Invalid Belt positions ";
+
 		}
-		endCellPos = endCellPos;
+		this->endCellPos = endCellPos;
 	
 }
 void Belt::Draw(Output* pOut) const
@@ -62,6 +63,8 @@ void Belt::Apply(Grid* pGrid, Player* pPlayer)
 
 	// Move the player to the end position
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
+
+	
 
 }
 CellPosition Belt::GetEndPosition() const

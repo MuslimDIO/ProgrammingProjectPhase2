@@ -66,7 +66,7 @@ int Input::GetInteger(Output *pO) const
 #if 0 /* Disable this function temporarly*/
 ActionType Input::GetUserAction() const
 {
-	int x = -1, y = -1;
+	int x = -1, y = -1;	
 	GetPointClicked(x, y);
 
 	//  ============ GUI in the Design mode ============

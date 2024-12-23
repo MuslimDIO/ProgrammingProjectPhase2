@@ -65,9 +65,8 @@ public:
 
 	void ClearDrawing(Output* pOut) const;	// Clears the Player's Triangle from its current cell
 
-	// ====== Rotation Methods ======
-	void RotateClockwise();
-	void RotateCounterClockwise();
+	
+
 
 	// ====== Game Functions ======
 
