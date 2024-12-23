@@ -86,6 +86,7 @@ public:
 	static CellPosition GetCellPositionFromNum(int cellNum);		//DONE
 
     void AddCellNum(int addedNum, Direction direction);		//DONE
-
+    bool operator == (const CellPosition& a_cellpos) const;		//DONE
+	void operator = (const CellPosition& a_cellpos);		//DONE
 };
 

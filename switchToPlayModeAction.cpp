@@ -49,6 +49,8 @@ void switchToPlayModeAction::Execute()
     pOut->PrintMessage("Switched to Play Mode");
     pGrid->UpdateInterface();
 }
+
+
 /**
  * @brief Destructor for the switchToPlayModeAction class.
  *
