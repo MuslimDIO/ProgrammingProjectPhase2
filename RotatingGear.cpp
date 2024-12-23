@@ -1,5 +1,68 @@
+
+/**
+ * @file RotatingGear.cpp
+ * @brief Implementation of the RotatingGear class.
+ * 
+ * This file contains the implementation of the RotatingGear class, which represents a rotating gear
+ * @author Abdullah Saad
+ */
+
+ /**
+    * @class RotatingGear
+    * @brief Represents a rotating gear object in the game.
+    * 
+    * The RotatingGear class is a type of GameObject that rotates the player when they land on it.
+    */
+
+/**
+ * @brief Constructs a RotatingGear object with a specified position and default clockwise rotation.
+ * @param gearposition The position of the rotating gear on the grid.
+ */
+ 
+ /**
+    * @brief Constructs a RotatingGear object with a specified position and rotation direction.
+    * @param gearposition The position of the rotating gear on the grid.
+    * @param a_clockWise The direction of rotation (true for clockwise, false for counterclockwise).
+    */
+
+/**
+ * @brief Draws the rotating gear on the grid.
+ * @param pOut Pointer to the Output interface.
+ */
+
+/**
+ * @brief Applies the effect of the rotating gear to the player.
+ * @param pGrid Pointer to the Grid.
+ * @param pPlayer Pointer to the Player.
+ */
+
+/**
+ * @brief Gets the rotation direction of the rotating gear.
+ * @return True if the rotation is clockwise, false otherwise.
+ */
+
+/**
+ * @brief Sets the rotation direction of the rotating gear.
+ * @param a_isClockWise The new rotation direction (true for clockwise, false for counterclockwise).
+ */
+
+/**
+ * @brief Saves the state of the rotating gear to a file.
+ * @param OutFile Reference to the output file stream.
+ * @param type The type of the game object.
+ */
+
+/**
+ * @brief Loads the state of the rotating gear from a file.
+ * @param Infile Reference to the input file stream.
+ * @param type The type of the game object.
+ */
+
+/**
+ * @brief Destructor for the RotatingGear class.
+ */
 #include "RotatingGear.h"
-#include <fstream>
+#include <fstream>  
 #include <iostream>
 #include "Player.h"
 using namespace std;
@@ -71,23 +134,7 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
 
     pPlayer->ClearDrawing(pOut);
 
-    switch (pPlayer->direction)
-    {
-    case UP:
-        pPlayer->direction = isClockWise ? RIGHT : LEFT;
-       
-        break;
-    case RIGHT:
-        pPlayer->direction = isClockWise ? DOWN : UP;
-        break;
-    case DOWN:
-        pPlayer->direction = isClockWise ? LEFT : RIGHT;
-        break;
-    case LEFT:
-        pPlayer->direction = isClockWise ? UP : DOWN;
-        break;
-    }
-
+    
     // Clear the status bar
     pOut->ClearStatusBar();
 }
