@@ -77,7 +77,10 @@ void AddBeltAction::Execute()
 		startPos = CellPosition(-1, -1);
 		return;
 	}
+
 	// Create a belt object with the parameters read from the user
+	
+	
 	Belt * pBelt = new Belt(startPos, endPos);
 
 	

@@ -12,15 +12,23 @@ void AddRotatingGearAction::ReadActionParameters()
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
 	// 1- Get a Pointer to the Input / Output Interfaces
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
 	// 2- Read the gearPos
+	pOut->PrintMessage("New Gear: Click on its Cell ...");
+	gearPos = pIn->GetCellClicked();
+
 	// 3- Read whether the direction will be clockwise or not
+	pOut->PrintMessage("Is the gear direction clockwise? (1 for Yes / 0 for No)");
+	clockwise = pIn->GetInteger(pOut);
 
 	// 4- Make the needed validations on the read parameters
 
 	// 5- Clear status bar
 
-	//abdallah saad :)
+	
 
 
 }
