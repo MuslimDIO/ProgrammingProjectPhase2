@@ -193,6 +193,18 @@
     <ClCompile Include="AddRotatingGearAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="switchToPlayModeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="RebootAndRepair.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="saveGridAction.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="loadGridAction.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -315,6 +327,18 @@
     </ClInclude>
     <ClInclude Include="AddRotatingGearAction.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="switchToPlayModeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="RebootAndRepair.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="loadGridAction.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="saveGridAction.h">
+      <Filter>Grid</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,9 @@
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
 #include "AddFlagAction.h"
-
+#include "SaveGridAction.h"
+#include "LoadGridAction.h"
+#include "switchToPlayModeAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -46,6 +48,7 @@ ActionType ApplicationManager::GetUserAction() const
 	return pIn->GetUserAction();
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 // Creates an action and executes it
@@ -73,10 +76,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_PLAY_MODE:					//TODO:
-		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new switchToPlayModeAction(this); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;
-
-	
+    case SAVE_GRID:
+		pAct = new SaveGrid(this);
+	case LOAD_GRID:
+		pAct = new LoadGridAction(this);
+		break;
 
 	case TO_DESIGN_MODE:				//TODO:
 		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)

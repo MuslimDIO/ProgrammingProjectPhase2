@@ -1,11 +1,17 @@
 #include "RotatingGear.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
 
 
 
-
-RotatingGear::RotatingGear(const CellPosition & gearposition,bool clockwise) : GameObject(gearposition)
+RotatingGear::RotatingGear(const CellPosition & gearposition) : GameObject(gearposition, ROTATING_GEAR)
 {
-	isClockWise = clockwise;
+	isClockWise = true;
+}
+RotatingGear::RotatingGear(const CellPosition & gearposition,bool a_clockWise) : GameObject(gearposition, ROTATING_GEAR)
+{
+	isClockWise = a_clockWise;
 }
 
 void RotatingGear::Draw(Output* pOut) const
@@ -54,7 +60,30 @@ bool RotatingGear::GetisClockWise() const
 {
 	return isClockWise;
 }
-
+void RotatingGear::setIsClockWise(bool a_isClockWise)
+{
+	isClockWise = a_isClockWise;
+}
+void RotatingGear::Save(ofstream & OutFile, GameObject_Type type)
+{
+	if (type == ROTATING_GEAR)
+	{
+		CellPosition cellPos = GetPosition();
+		OutFile << cellPos.GetCellNum() << " " << isClockWise << endl;
+	}
+}
+void RotatingGear::Load(ifstream &Infile, GameObject_Type type)
+{
+	if (type == ROTATING_GEAR)
+	{
+		int l_cellNum;
+		bool l_clockwise;
+		Infile >> l_cellNum >> l_clockwise; // Read the cell number
+		CellPosition cellPos = GetPosition().GetCellPositionFromNum(l_cellNum);
+		position = cellPos;
+		isClockWise = l_clockwise;
+	}
+}	
 RotatingGear::~RotatingGear()
 {
 }

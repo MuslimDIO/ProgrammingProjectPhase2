@@ -4,11 +4,19 @@
 #include "GameObject.h"
 #include "Belt.h"
 #include "Player.h"
-
-Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
+#include"Flag.h"
+#include"WaterPit.h"
+#include"DangerZone.h"
+#include"Workshop.h"
+#include"Antenna.h"
+#include"RotatingGear.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
+Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
-	for (int i = NumVerticalCells-1; i >= 0 ; i--) // to allocate cells from bottom up
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // to allocate cells from bottom up
 	{
 		for (int j = 0; j < NumHorizontalCells; j++) // to allocate cells from left to right
 		{
@@ -17,10 +25,10 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	}
 
 	// Allocate thePlayer Objects of the PlayerList
-	for (int i = 0; i < MaxPlayerCount; i++) 
+	for (int i = 0; i < MaxPlayerCount; i++)
 	{
-		PlayerList[i] = new Player(CellList[NumVerticalCells-1][0], i); // first cell
-		PlayerList[i]->Draw(pOut); // initially draw players in the first cell
+		PlayerList[i] = new Player(CellList[NumVerticalCells - 1][0], i); // first cell
+		PlayerList[i]->Draw(pOut);										  // initially draw players in the first cell
 	}
 
 	// Initialize currPlayerNumber with 0 (first player)
@@ -33,19 +41,17 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	endGame = false;
 }
 
-
 // ========= Adding or Removing GameObjects to Cells =========
 
-
-bool Grid::AddObjectToCell(GameObject * pNewObject)  // think if any validation is needed
+bool Grid::AddObjectToCell(GameObject *pNewObject) // think if any validation is needed
 {
 	// Get the cell position of pNewObject
 	CellPosition pos = pNewObject->GetPosition();
 	if (pos.IsValidCell()) // Check if valid position
 	{
 		// Get the previous GameObject of the Cell
-		GameObject * pPrevObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
-		if( pPrevObject)  // the cell already contains a game object
+		GameObject *pPrevObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
+		if (pPrevObject)  // the cell already contains a game object
 			return false; // do NOT add and return false
 
 		// Set the game object of the Cell with the new game object
@@ -55,9 +61,8 @@ bool Grid::AddObjectToCell(GameObject * pNewObject)  // think if any validation 
 	return false; // if not a valid position
 }
 
-
 // Note: You may need to change the return type of this function (Think)
-void Grid::RemoveObjectFromCell(const CellPosition & pos)
+void Grid::RemoveObjectFromCell(const CellPosition &pos)
 {
 	if (pos.IsValidCell()) // Check if valid position
 	{
@@ -67,40 +72,38 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	}
 }
 
-void Grid::UpdatePlayerCell(Player * player, const CellPosition & newPosition)
+void Grid::UpdatePlayerCell(Player *player, const CellPosition &newPosition)
 {
 	// Clear the player's triangle from the old cell position
 	player->ClearDrawing(pOut);
 
 	// Set the player's CELL with the new position
-	Cell * newCell = CellList[newPosition.VCell()][newPosition.HCell()];
-	player->SetCell(newCell);	
+	Cell *newCell = CellList[newPosition.VCell()][newPosition.HCell()];
+	player->SetCell(newCell);
 
 	// Draw the player's triangle on the new cell position
 	player->Draw(pOut);
 }
 
-
 // ========= Setters and Getters Functions =========
 
-
-Input * Grid::GetInput() const
+Input *Grid::GetInput() const
 {
 	return pIn;
 }
 
-Output * Grid::GetOutput() const
+Output *Grid::GetOutput() const
 {
 	return pOut;
 }
 
-void Grid::SetClipboard(GameObject * gameObject) // to be used in copy/cut
+void Grid::SetClipboard(GameObject *gameObject) // to be used in copy/cut
 {
 	// you may update slightly in implementation if you want (but without breaking responsibilities)
 	Clipboard = gameObject;
 }
 
-GameObject * Grid::GetClipboard() const // to be used in paste
+GameObject *Grid::GetClipboard() const // to be used in paste
 {
 	return Clipboard;
 }
@@ -122,41 +125,35 @@ void Grid::AdvanceCurrentPlayer()
 
 // ========= Other Getters =========
 
-
-Player * Grid::GetCurrentPlayer() const
+Player *Grid::GetCurrentPlayer() const
 {
 	return PlayerList[currPlayerNumber];
 }
 
-Belt * Grid::GetNextBelt(const CellPosition & position)
+Belt *Grid::GetNextBelt(const CellPosition &position)
 {
-	
-	int startH = position.HCell(); // represents the start hCell in the current row to search for the belt in
+
+	int startH = position.HCell();				// represents the start hCell in the current row to search for the belt in
 	for (int i = position.VCell(); i >= 0; i--) // searching from position.vCell and ABOVE
 	{
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
 
-
-			///TODO: Check if CellList[i][j] has a belt, if yes return it
-			
-
+			/// TODO: Check if CellList[i][j] has a belt, if yes return it
 		}
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
 	}
 	return NULL; // not found
 }
 
-
 // ========= User Interface Functions =========
-
 
 void Grid::UpdateInterface() const
 {
 	if (UI.InterfaceMode == MODE_DESIGN)
 	{
-		// 1- Draw cells with or without waterpits or dangerzone 
-		for (int i = NumVerticalCells-1; i >= 0 ; i--) // bottom up
+		// 1- Draw cells with or without waterpits or dangerzone
+		for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
 		{
 			for (int j = 0; j < NumHorizontalCells; j++) // left to right
 			{
@@ -165,7 +162,7 @@ void Grid::UpdateInterface() const
 		}
 
 		// 2- Draw other game objects(excluding waterpit and dangerzone)
-		for (int i = NumVerticalCells-1; i >= 0 ; i--) // bottom up
+		for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
 		{
 			for (int j = 0; j < NumHorizontalCells; j++) // left to right
 			{
@@ -186,7 +183,7 @@ void Grid::UpdateInterface() const
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			PlayerList[i]->AppendPlayerInfo(playersInfo); // passed by reference
-			if (i < MaxPlayerCount-1) // except the last player
+			if (i < MaxPlayerCount - 1)					  // except the last player
 				playersInfo += ", ";
 		}
 		playersInfo += " | Curr = " + to_string(currPlayerNumber);
@@ -207,23 +204,88 @@ void Grid::PrintErrorMessage(string msg)
 	pOut->ClearStatusBar();
 }
 
+void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
+{
+	uint8_t l_objCount = 0;
+	// Save the GameObject parameters to the file
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
+			if (ptr2_GObj && ptr2_GObj->getObjType() == a_type)
+			{
+				l_objCount++; // increment the count of the objects of the same type
+			}
+		}
+	}
+	a_OutFile << l_objCount << endl;
 
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
+			if (ptr2_GObj && ptr2_GObj->getObjType() == a_type)
+			{
+				ptr2_GObj->Save(a_OutFile, a_type);	// Saves the GameObject parameters to the file
+			}
+		}
+	}
+}
+
+
+void Grid::LoadAll(ifstream &a_InFile, GameObject_Type a_type)
+{
+	uint8_t l_objCount = 0;
+	a_InFile >> l_objCount;
+	for (int i = 0; i < l_objCount; i++)
+	{
+		GameObject *ptr2_GObj = NULL;
+		switch (a_type)
+		{
+		case FLAG:
+			ptr2_GObj = new Flag(CellPosition(0, 0));
+			break;
+		case WATERPIT:
+			ptr2_GObj = new WaterPit(CellPosition(0, 0));
+			break;
+		case DANGERZONE:
+			ptr2_GObj = new DangerZone(CellPosition(0, 0));
+			break;
+		case BELT:
+			ptr2_GObj = new Belt(CellPosition(0, 0), CellPosition(0, 0));
+			break;
+		case WORKSHOP:
+			ptr2_GObj = new Workshop(CellPosition(0, 0));
+			break;
+		case ANTENNA:
+			ptr2_GObj = new Antenna(CellPosition(0, 0));
+			break;
+		case ROTATING_GEAR:
+			ptr2_GObj = new RotatingGear(CellPosition(0, 0));
+			break;
+		}
+		ptr2_GObj->Load(a_InFile, a_type);
+		AddObjectToCell(ptr2_GObj);
+	}
+}
 Grid::~Grid()
 {
 	delete pIn;
 	delete pOut;
 
 	// Deallocate the Cell Objects of the CellList
-	for (int i = NumVerticalCells-1; i >= 0 ; i--) 
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
 	{
-		for (int j = 0; j < NumHorizontalCells; j++) 
+		for (int j = 0; j < NumHorizontalCells; j++)
 		{
 			delete CellList[i][j];
 		}
 	}
 
 	// Deallocate the Player Objects of the PlayerList
-	for (int i = 0; i < MaxPlayerCount; i++) 
+	for (int i = 0; i < MaxPlayerCount; i++)
 	{
 		delete PlayerList[i];
 	}

@@ -136,3 +136,16 @@ void CellPosition::AddCellNum(int addedNum, Direction direction)	//DONE
 
 
 }
+bool CellPosition::operator == (const CellPosition& a_cellpos) const	
+{
+	if (vCell == a_cellpos.VCell() && hCell == a_cellpos.HCell()) {
+		return true;
+	}
+	return false;
+}
+void CellPosition::operator = (const CellPosition& a_cellpos)	
+{
+	vCell = a_cellpos.VCell();
+	hCell = a_cellpos.HCell();
+}
+

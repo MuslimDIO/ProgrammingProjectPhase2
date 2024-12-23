@@ -1,11 +1,11 @@
 #include "Cell.h"
-
 #include "Grid.h"
 #include "GameObject.h"
 #include "Belt.h"
 #include "WaterPit.h"
 #include "Player.h"
 #include "DangerZone.h"
+#include "Flag.h"
 #include "Output.h"
 Cell::Cell(const CellPosition & pos) : position(pos)
 {
@@ -53,23 +53,23 @@ Flag * Cell::HasFlag() const
 
 	///TODO: Implement the following function like HasBelt() function
 
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
+	return dynamic_cast<Flag *>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 }
+
 WaterPit * Cell::HasWaterPit() const
 {
 
 	///TODO: Implement the following function like HasBelt() function
 
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	return dynamic_cast<WaterPit*>(pGameObject);; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 
 }
 
 DangerZone * Cell::HasDangerZone() const
 {
 	///TODO: Implement the following function like HasBelt() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+		
+	return dynamic_cast<DangerZone*>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 }
 
 

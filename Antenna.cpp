@@ -1,10 +1,32 @@
 #include "Antenna.h"
+#include <iostream> 
+#include <fstream>
+using namespace std;
 
 
 
+void Antenna::Save(ofstream & OutFile, GameObject_Type type)
+{
+	if (type == ANTENNA)
+	{
+      CellPosition cellPos = GetPosition();
+	  
 
+	  OutFile << cellPos.GetCellNum() << endl;
+	}
+}
 
-Antenna::Antenna(const CellPosition & antennaPosition):GameObject(antennaPosition)
+void Antenna::Load(ifstream & Infile, GameObject_Type type)
+{
+	if (type == ANTENNA)
+	{
+		int cellNum;
+		Infile >> cellNum;
+		CellPosition cellPos = CellPosition::GetCellPositionFromNum(cellNum);
+		position = cellPos;
+	}
+}
+Antenna::Antenna(const CellPosition & antennaPosition):GameObject(antennaPosition, ANTENNA)
 {
 }
 

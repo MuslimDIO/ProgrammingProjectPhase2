@@ -1,4 +1,4 @@
-#pragma once
+#pragma once//compiler Gaurding 
 
 #include "UI_Info.h"
 #include "DEFS.h"
@@ -6,7 +6,10 @@
 #include "Input.h"
 #include "Output.h"
 #include "CellPosition.h"
-
+#include <fstream>
+#include <iostream>
+using namespace std;
+enum GameObject_Type;
 // forward declarations (the includes are in the cpp)
 class Cell;
 class GameObject;
@@ -60,6 +63,7 @@ public:
 
 	void AdvanceCurrentPlayer();     // Increments the currPlayerNum and if reaches MaxPlayerCount reset to 0 (using %)
 
+
 	///TODO: add any needed setter/getter "EXCEPT" ANY setters or getters of "CellList" or "PlayerList" (Forbidden for class Responsibilities)
 
 	// ========= Other Getters =========
@@ -77,7 +81,8 @@ public:
 
 	void PrintErrorMessage(string msg); // Prints an error message on statusbar, Waits for mouse click then clears statusbar
 									    // We added this function once here because it is used many times by other classes
-
+   void SaveAll(ofstream& OutFile, GameObject_Type Type); // Saves all the GameObjects of the passed Type (Belt, Player, Flag, ...etc) in the passed file
+   void LoadAll(ifstream& InFile, GameObject_Type Type); // Loads and Reads the GameObjects of the passed Type (Belt, Player, Flag, ...etc) from the passed file
 	~Grid(); // A destructor for any needed deallcations
 };
 
