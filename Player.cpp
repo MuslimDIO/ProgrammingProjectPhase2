@@ -282,7 +282,7 @@ Command *Player ::GenerateAvailableCommands(int &a_size)
 
 	random_device rd;
 	mt19937 gen(rd());
-	uniform_int_distribution<> distrib(0, ((int)COMMANDS_COUNT - 1));
+	uniform_int_distribution<> distrib(1, ((int)COMMANDS_COUNT - 1));
 
 	int l_loopMax = GetHealth() >= 5 ? GetHealth() : 5;
 	a_size = l_loopMax;
