@@ -77,7 +77,12 @@ void AddBeltAction::Execute()
 		startPos = CellPosition(-1, -1);
 		return;
 	}
-
+    if (startPos == endPos) {
+		pOut->PrintMessage("Error:Belt cant start and end in The Same Cell. Click to continue...");
+		endPos = CellPosition(-1, -1);
+		startPos = CellPosition(-1, -1);
+		return;
+	}
 	// Create a belt object with the parameters read from the user
 	
 	

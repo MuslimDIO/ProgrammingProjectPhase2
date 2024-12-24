@@ -1,8 +1,9 @@
 #include "Player.h"
 #include "Grid.h"
 #include "Output.h"
-
+#include <stdlib.h>
 #include "GameObject.h"
+#include <random>
 
 Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT), canMove(true)
 {
@@ -41,7 +42,6 @@ void Player::SetHealth(int h)
 		this->health = h;
 	}
 }
-
 
 int Player::GetHealth()
 {
@@ -204,7 +204,6 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 			destination.AddCellNum(-3, currDirection);
 			break;
 
-
 		default:
 			pOut->PrintMessage("Invalid move command.");
 			continue;
@@ -218,15 +217,12 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 
 		pGrid->UpdatePlayerCell(this, destination);
 
-		GameObject* pObj = pCell->GetGameObject();
+		GameObject *pObj = pCell->GetGameObject();
 
-
-
-
-		if (pObj != NULL) {
+		if (pObj != NULL)
+		{
 			pObj->Apply(pGrid, this);
 		}
-
 
 		/// TODO: Implement this function using the guidelines mentioned below
 
@@ -251,7 +247,6 @@ void Player::Restart()
 	currDirection = RIGHT;
 }
 
-
 void Player::AppendPlayerInfo(string &playersInfo) const
 {
 	// TODO: Modify the Info as needed
@@ -260,7 +255,7 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 	playersInfo += to_string(health) + ")";
 }
 
-void Player::Rotate( bool isClockWise, Output *ptr2_Out)
+void Player::Rotate(bool isClockWise, Output *ptr2_Out)
 {
 	switch (currDirection)
 	{
@@ -280,4 +275,28 @@ void Player::Rotate( bool isClockWise, Output *ptr2_Out)
 	}
 
 	Draw(ptr2_Out);
+}
+
+Command *Player ::GenerateAvailableCommands(int &a_size)
+{
+
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> distrib(0, ((int)COMMANDS_COUNT - 1));
+
+	int l_loopMax = GetHealth() >= 5 ? GetHealth() : 5;
+	a_size = l_loopMax;
+	for (int i = 0; i < l_loopMax; i++)
+	{
+		int randomValue = distrib(gen);
+		_AvailableCommands[i] = (Command)randomValue;
+
+	}
+	for (int i = l_loopMax; i < COMMANDS_COUNT; i++)
+	{
+		
+		_AvailableCommands[i] = NO_COMMAND;
+
+	}
+	return _AvailableCommands;
 }

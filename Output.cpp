@@ -382,7 +382,12 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
 	CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
 	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\MoveForwardCard.jpg";
 	CommandItemImages[MOVE_FORWARD_TWO_STEPS] = "images\\MoveForwardTwice.jpg";
+	CommandItemImages[MOVE_FORWARD_THREE_STEPS] = "images\\3-Steps-Forward.jpg";
 	CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\MoveBackwardCard.jpg";
+
+    CommandItemImages[MOVE_BACKWARD_TWO_STEPS] = "images\\2-Steps-Back.jpg";
+	CommandItemImages[MOVE_BACKWARD_THREE_STEPS] = "images\\3stepsBack.jpg";
+
 	CommandItemImages[ROTATE_LEFT] = "images\\RotateLeftCard.jpg";
 	CommandItemImages[ROTATE_RIGHT] = "images\\RotateRightCard.jpg";
 	CommandItemImages[USE_TOOLKIT] = "images\\ToolkitCard.jpg";

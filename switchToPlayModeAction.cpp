@@ -11,6 +11,8 @@
 #include "Grid.h"
 #include "Output.h"
 #include "Input.h"
+#include"Player.h"
+enum Commad;
 /**
  * @brief Constructor for the switchToPlayModeAction class.
  *
@@ -44,8 +46,15 @@ void switchToPlayModeAction::Execute()
     Grid *pGrid = pManager->GetGrid();
     Output *pOut = pGrid->GetOutput();
     Input *pIn = pGrid->GetInput();
+    Player * ptr2_currPlayer = pGrid->GetCurrentPlayer();  
+
     pOut->CreatePlayModeToolBar();
+    
     pOut->ClearGridArea();
+    int size ;
+    
+    Command * l_avComm = ptr2_currPlayer->GenerateAvailableCommands(size);
+    pOut->CreateCommandsBar(l_avComm,5,l_avComm,size);
     pOut->PrintMessage("Switched to Play Mode");
     pGrid->UpdateInterface();
 }

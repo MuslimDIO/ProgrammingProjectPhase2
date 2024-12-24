@@ -2,6 +2,8 @@
 #ifndef _SWITCH_TO_PLAY_MODE_ACTION_H
 #define _SWITCH_TO_PLAY_MODE_ACTION_H
 #include "Action.h"
+
+enum Command;
 /**
  * @class switchToPlayModeAction
  * @brief This class handles the action of switching the application to play mode.

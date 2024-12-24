@@ -3,7 +3,7 @@
 #include "Grid.h"
 #include "Cell.h"
  enum Direction ;
-
+enum Command;
 const int MAX_CONSUMABLES = 5;	// Maximum number of consumables that a player can carry at a time
 class Output;
 
@@ -24,7 +24,8 @@ class Player
 	int consumableCount;				// carried consumables
 	string lasertype;			// carried laser type (default, double laser)
 	bool isHacked; // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
-	
+	Command _AvailableCommands[COMMANDS_COUNT] = {NO_COMMAND};
+	Command _SavedCommands [6]={NO_COMMAND};
 	
 public:
 
@@ -82,6 +83,8 @@ public:
 	                                                   // for example: P0(Direction, health)
 
    void Rotate(bool isClockWise,Output * ptr2_out); // Rotate the player in a specific direction);
+   Command * GenerateAvailableCommands(int & a_size );
+   Command * GetAvailableCommands(int & a_size );
 
 };
 
