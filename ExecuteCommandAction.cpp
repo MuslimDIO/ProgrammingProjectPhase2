@@ -36,12 +36,22 @@ void ExecuteCommandAction::Execute()
 
 
     int l_svSize;
+	int l_avSize;
     Command* l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
+
    
         Ptr2_currPlayer->Move(pGrid, l_SavedComm);
+        for (int i = 0; i < l_svSize; i++)
+        {
+            l_SavedComm[i] = NO_COMMAND;
+        }
+      
+        Command* l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
 
-        pOut->ClearCommandsBar();
-
+        pOut->CreateCommandsBar(l_SavedComm,l_svSize,l_avComm,l_avSize);
+        pGrid->UpdateInterface();
+		pGrid->AdvanceCurrentPlayer();
+        
 
 
 
