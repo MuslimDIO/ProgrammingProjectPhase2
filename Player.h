@@ -85,6 +85,7 @@ public:
    void Rotate(bool isClockWise,Output * ptr2_out); // Rotate the player in a specific direction);
    Command * GenerateAvailableCommands(int & a_size );
    Command * GetAvailableCommands(int & a_size );
+   Command * GetSavedCommands (int & a_size);
 
 };
 
