@@ -39,9 +39,10 @@ void CopyAction::Execute()
 {
     // Ensure valid cell position was read
     ReadActionParameters();
-    if (cellPosition.IsValidCell() == false)
-        return;
 
+    if (cellPosition.IsValidCell() == false) {
+        return;
+    }
     // Get the Grid and Output pointers
     Grid *pGrid = pManager->GetGrid();
     Output *pOut = pGrid->GetOutput();
@@ -93,7 +94,6 @@ void CopyAction::Execute()
         pOut->PrintMessage("Copy failed. Click to continue.");
     }
 
-    // Wait for the user to acknowledge the message
 
    
 }
