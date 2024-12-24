@@ -16,6 +16,7 @@
 #include "SelectCommandAction.h"
 #include "RebootAndRepair.h"
 #include "ExecuteCommandAction.h"
+#include "CopyAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -86,7 +87,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new AddAntennaAction(this);
 		break;
 
-	
+	case COPY:
+		// create an object of CopyAction here
+		pAct = new CopyAction(this);
+		break;
+
 	case NEW_GAME:
 		pAct = new NewGameAction(this);
 		break;
