@@ -34,6 +34,7 @@ void CopyAction::ReadActionParameters() {
 
 void CopyAction::Execute() {
     // Ensure valid cell position was read
+    ReadActionParameters();
     if (cellPosition.IsValidCell() == false) return;
 
     // Get the Grid and Output pointers
