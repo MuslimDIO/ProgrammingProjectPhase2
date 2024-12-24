@@ -24,7 +24,7 @@ void NewGameAction::Execute()
 	
 
 	
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < MaxPlayerCount; i++) {
 
 		Player* pPlayer = pGrid->GetCurrentPlayer();
 		pGrid->UpdatePlayerCell(pPlayer, start);
