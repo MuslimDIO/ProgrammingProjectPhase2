@@ -34,11 +34,15 @@ void CopyAction::ReadActionParameters() {
 
 void CopyAction::Execute() {
     // Ensure valid cell position was read
-    if (cellPosition.IsValidCell() == false) return;
+    if (cellPosition.IsValidCell() == false) {
+        
+        return;
+    }
 
     // Get the Grid and Output pointers
     Grid* pGrid = pManager->GetGrid();
     Output* pOut = pGrid->GetOutput();
+    Input* pIn = pGrid->GetInput();
 
     // Use Grid's GetClipboard and SetClipboard functions to manage the object
     if (pGrid->SetClipboard(&cellPosition)) {
