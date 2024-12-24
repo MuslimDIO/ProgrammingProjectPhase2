@@ -1,7 +1,7 @@
 #include "NewGameAction.h"
 #include "Grid.h"
 #include "Player.h"
-#include"switchToPlayModeAction.h"
+#include "switchToPlayModeAction.h"
 NewGameAction::NewGameAction(ApplicationManager *pApp) : Action(pApp)
 {
 }
@@ -14,7 +14,7 @@ void NewGameAction::Execute()
 {
 	Grid *pGrid = pManager->GetGrid();
 	Output *pOut = pGrid->GetOutput();
-
+   Player *Ptr2_currPlayer = pGrid->GetCurrentPlayer();
 	pGrid->SetEndGame(0);
 
 	CellPosition start(1);
@@ -29,10 +29,13 @@ void NewGameAction::Execute()
 	}
 
 	pGrid->ResetCurrentPlayerNum();
+	int l_avSize;
+	int l_svSize;
 
-	Action *ptr2_action=new switchToPlayModeAction(pManager);
-	ptr2_action->Execute();
-	delete ptr2_action;
+	Command *l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+	Command *l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
+
+	pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
 }
 
 NewGameAction::~NewGameAction()
