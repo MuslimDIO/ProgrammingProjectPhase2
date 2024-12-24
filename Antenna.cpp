@@ -1,6 +1,12 @@
 #include "Antenna.h"
 #include <iostream> 
 #include <fstream>
+#include "Grid.h"
+#include "Player.h"
+#include "Output.h"
+#include "Input.h"
+#include <cmath> // For abs function
+
 using namespace std;
 
 
@@ -53,23 +59,42 @@ void Antenna::Apply(Grid* pGrid, Player* pPlayer)
 	// 3- After deciding the turn of player Print a message indicating which player will play first example: "Player 1 will play first"
 
 	// abdallah saad :)
+    // Print message and wait for mouse click
+
+    Output* pOut = pGrid->GetOutput();
+    Input* pIn = pGrid->GetInput();
+
+    pOut->PrintMessage("The antenna will decide the turn of players. Click to continue");
+	int x;
+	int y;
+    pIn->GetPointClicked(x,y);
+    pOut->ClearStatusBar(); // delete massege
+
+    CellPosition antennaPos = position; // position of antena 
+    CellPosition Firstplayer = pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition(); // Get player 1 position
+    CellPosition Secondplayer = pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition(); // Get player 2 position
 
 
-	// Step 1: Display a message notifying the players
-	Output* pOut = pGrid->GetOutput();
-	Input* pIn = pGrid->GetInput();
-
-	pOut->PrintMessage("The antenna will decide the turn of players. Click to continue...");
-	int x, y;
-	pIn->GetPointClicked(x, y); // Wait for user interaction
-	pOut->ClearStatusBar();
-
-	// Step 2: Calculate the closest player manually
+		int distanceFirstPlayer = abs(antennaPos.VCell() - Firstplayer.VCell()) + abs(antennaPos.HCell() - Firstplayer.HCell()); // calculate distand of p 1
+	    int distanceSecondPlayer = abs(antennaPos.VCell() - Secondplayer.VCell()) + abs(antennaPos.HCell() - Secondplayer.HCell());// calculate distand of p 2
 	
+		int currentPlayer; // Variable to store the current player
+		if (distanceFirstPlayer < distanceSecondPlayer) {
+			currentPlayer = 0; // Player 1 is closer
+		}
+		else if (distanceFirstPlayer > distanceSecondPlayer) {
+			currentPlayer = 1; // Player 2 is closer
+		}
+		else {
+			currentPlayer = 0; // Player 1 plays first by default ( equal condition ) 
+		}
+
+		// Update the turn order in the grid
+		pGrid->SetCurrentPlayer(currentPlayer);
 }
-
-
 
 Antenna::~Antenna()
 {
 }
+
+

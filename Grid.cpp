@@ -114,6 +114,12 @@ void Grid::UpdatePlayerCell(Player *player, const CellPosition &newPosition)
 
 // ========= Setters and Getters Functions =========
 
+void Grid::SetCurrentPlayer(int playerNumber) {
+	if (playerNumber >= 0 && playerNumber < MaxPlayerCount) {
+		currPlayerNumber = playerNumber;
+	}
+}
+
 Input *Grid::GetInput() const
 {
 	return pIn;

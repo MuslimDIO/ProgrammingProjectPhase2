@@ -51,6 +51,10 @@ public:
 
 	// ========= Setters and Getters Functions =========
 
+
+	void SetCurrentPlayer(int playerNumber); // for anteena abdallah saad :)
+
+
 	Input *GetInput() const;   // Gets a Pointer to the Input
 	Output *GetOutput() const; // Gets a Pointer to the Output
 
