@@ -51,10 +51,12 @@ void switchToPlayModeAction::Execute()
     pOut->CreatePlayModeToolBar();
     
     pOut->ClearGridArea();
-    int size ;
+    int l_avSize ;
+    int l_svSize;
     
-    Command * l_avComm = ptr2_currPlayer->GenerateAvailableCommands(size);
-    pOut->CreateCommandsBar(l_avComm,5,l_avComm,size);
+    Command * l_avComm = ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+    Command * l_SavedComm = ptr2_currPlayer->GetSavedCommands(l_svSize);
+    pOut->CreateCommandsBar(l_SavedComm,l_svSize,l_avComm,l_avSize);
     pOut->PrintMessage("Switched to Play Mode");
     pGrid->UpdateInterface();
 }

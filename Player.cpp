@@ -300,3 +300,8 @@ Command *Player ::GenerateAvailableCommands(int &a_size)
 	}
 	return _AvailableCommands;
 }
+Command * Player::GetSavedCommands(int & a_size) 
+{  
+	  a_size = 5;
+	return _SavedCommands;
+}
