@@ -95,7 +95,7 @@ void CopyAction::Execute()
 
     // Wait for the user to acknowledge the message
 
-    pOut->ClearStatusBar();
+   
 }
 
 CopyAction::~CopyAction()
