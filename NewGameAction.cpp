@@ -5,7 +5,6 @@
 NewGameAction::NewGameAction(ApplicationManager *pApp) : Action(pApp)
 {
 }
-
 void NewGameAction::ReadActionParameters()
 {
 }
@@ -14,7 +13,7 @@ void NewGameAction::Execute()
 {
 	Grid *pGrid = pManager->GetGrid();
 	Output *pOut = pGrid->GetOutput();
-   Player *Ptr2_currPlayer = pGrid->GetCurrentPlayer();
+	Player *Ptr2_currPlayer = pGrid->GetCurrentPlayer();
 	pGrid->SetEndGame(0);
 
 	CellPosition start(1);

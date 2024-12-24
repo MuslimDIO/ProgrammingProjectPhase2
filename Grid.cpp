@@ -1,5 +1,4 @@
 #include "Grid.h"
-
 #include "Cell.h"
 #include "GameObject.h"
 #include "Belt.h"
@@ -138,7 +137,6 @@ Output *Grid::GetOutput() const
  **/
 bool Grid:: SetClipboard(CellPosition *a_pos) // to be used in copy/cut
 {
-
 	// you may update slightly in implementation if you want (but without breaking responsibilities)
 	Clipboard = CellList[a_pos->VCell()][a_pos->HCell()]->GetGameObject();
 
