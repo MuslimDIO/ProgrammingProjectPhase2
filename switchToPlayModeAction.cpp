@@ -12,6 +12,7 @@
 #include "Output.h"
 #include "Input.h"
 #include"Player.h"
+#include"NewGameAction.h"
 enum Command;
 /**
  * @brief Constructor for the switchToPlayModeAction class.
@@ -50,7 +51,7 @@ void switchToPlayModeAction::Execute()
 
     pOut->CreatePlayModeToolBar();
     
-    pOut->ClearGridArea();
+    // pOut->ClearGridArea();
     int l_avSize ;
     int l_svSize;
     
@@ -59,8 +60,12 @@ void switchToPlayModeAction::Execute()
 
    
     pOut->CreateCommandsBar(l_SavedComm,l_svSize,l_avComm,l_avSize);
-    pOut->PrintMessage("Switched to Play Mode");
+
     pGrid->UpdateInterface();
+     NewGameAction * pAct = new NewGameAction  (pManager);
+    pAct->Execute();
+    pOut->PrintMessage("Switched to Play Mode");
+  
 }
 
 

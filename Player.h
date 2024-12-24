@@ -20,7 +20,7 @@ class Player
 	int health;				 // Player's current health points
 
 	// owned equipments
-	bool canMove;
+	bool canMove = true;
 	string ownedConsumables[MAX_CONSUMABLES]; // carried consumables
 	int consumableCount;					  // carried consumables
 	string lasertype;						  // carried laser type (default, double laser)
@@ -45,7 +45,7 @@ public:
 	string getLaserType();		 // A getter for the laser type
 
 	void setCanMove(bool c); // A setter for the canMove
-	bool getCanMove() const; // A getter for the canMove
+	bool getCanMove() ; // A getter for the canMove
 
 	void setHacked(bool h); // A setter for the isHacked
 	bool getHacked();		// A getter for the isHacked

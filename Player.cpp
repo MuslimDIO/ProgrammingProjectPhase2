@@ -12,6 +12,7 @@ Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum
 	lasertype = "default";
 	consumableCount = 0;
 	isHacked = false;
+	canMove = true;
 
 	// Make all the needed initialization or validations
 }
@@ -64,7 +65,7 @@ void Player::setCanMove(bool c)
 	canMove = c;
 }
 
-bool Player::getCanMove() const
+bool Player::getCanMove() 
 {
 	return canMove;
 }
@@ -72,7 +73,7 @@ bool Player::getCanMove() const
 void Player::setHacked(bool h)
 {
 	isHacked = h;
-	setCanMove(isHacked);
+	setCanMove(!isHacked);
 }
 
 bool Player::getHacked()
