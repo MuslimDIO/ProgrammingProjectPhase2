@@ -1,17 +1,23 @@
 #include "RebootAndRepair.h"
 #include "Player.h"
 #include "Output.h"
-
-RebootAndRepair:: RebootAndRepair(ApplicationManager* pApp) :Action(pApp)
+#include "Input.h"
+#include "Grid.h"
+RebootAndRepair::RebootAndRepair(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
 void RebootAndRepair::ReadActionParameters()
 {
+    Grid* pGrid = pManager->GetGrid();
+    Output* pOut = pGrid->GetOutput();
+    Input* pIn = pGrid->GetInput();
 }
 
 void RebootAndRepair::Execute()
 {
+	ReadActionParameters();
+
     Grid* pGrid = pManager->GetGrid();
     Output* pOut = pGrid->GetOutput();
     Input* pIn = pGrid->GetInput();

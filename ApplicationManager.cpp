@@ -14,6 +14,8 @@
 #include "AddWorkshopAction.h"
 #include "AddAntennaAction.h"
 #include "SelectCommandAction.h"
+#include "RebootAndRepair.h"
+#include "ExecuteCommandAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -89,6 +91,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new NewGameAction(this);
 		break;
 
+	case REBOOT_REPAIR:
+		pAct = new RebootAndRepair(this);
+		break;
+
 
 	case ADD_WATER_PIT:
 		// create an object of AddWaterPitAction here
@@ -124,6 +130,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
    case SELECT_COMMAND :
     pAct = new SelectCommandAction(this);
 	break;
+   case EXECUTE_COMMANDS:
+	   pAct = new ExecuteCommandAction(this);
+	   break;
 		
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode

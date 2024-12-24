@@ -1,3 +1,4 @@
+
 #include "Player.h"
 #include "Grid.h"
 #include "Output.h"
@@ -180,7 +181,11 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	CellPosition currentPosition = pCell->GetCellPosition();
 	CellPosition destination = currentPosition;
 
-	for (int i = 0; i < COMMANDS_COUNT; i++) {
+
+
+	for (int i = 0; i < 6; i++) {
+		pOut->DrawCell(currentPosition, UI.CellColor);
+
 		switch (moveCommands[i]) {
 		case NO_COMMAND:
 			continue; // Skip if no command
@@ -297,13 +302,23 @@ void Player::Rotate(bool isClockWise, Output *ptr2_Out)
 
 	Draw(ptr2_Out);
 }
-
+/**
+ * @brief Generates a list of available commands for the player based on their current health.
+ * 
+ * This function generates a random set of commands that the player can execute. The number of commands
+ * generated is based on the player's current health, with a minimum of 5 commands. The commands are stored
+ * in the _AvailableCommands array.
+ * 
+ * @param a_size Reference to an integer that will be set to the number of available commands generated.
+ * @return Command* Pointer to the array of available commands.
+ * @author Ibrahim Mohsen
+ */
 Command *Player ::GenerateAvailableCommands(int &a_size)
 {
 
 	random_device rd;
 	mt19937 gen(rd());
-	uniform_int_distribution<> distrib(1, ((int)COMMANDS_COUNT - 1));
+	uniform_int_distribution<> distrib(1, ((int)COMMANDS_COUNT - 3));
 
 	int l_loopMax = GetHealth() >= 5 ? GetHealth() : 5;
 	a_size = l_loopMax;
@@ -322,12 +337,34 @@ Command *Player ::GenerateAvailableCommands(int &a_size)
 	}
 	return _AvailableCommands;
 }
+/**
+ * @brief Retrieves the saved commands for the player.
+ * 
+ * This function returns a pointer to the array of saved commands for the player.
+ * It also sets the size of the array to the provided reference parameter.
+ * 
+ * @param a_size Reference to an integer where the size of the saved commands array will be stored.
+ * @return Command* Pointer to the array of saved commands.
+ */
 Command * Player::GetSavedCommands(int & a_size) 
 {  
 	  a_size = 5;
 	return _SavedCommands;
 }
 
+
+/**
+ * @brief Saves a command to the player's saved commands list.
+ * 
+ * This function attempts to save a command, identified by its index, 
+ * to the player's list of saved commands. It searches for the first 
+ * available slot (indicated by NO_COMMAND) and saves the command there.
+ * 
+ * @param a_commandIndex The index of the command to be saved from the available commands list.
+ * @return true if the command was successfully saved to an available slot.
+ * @return false if there are no available slots to save the command.
+ * @author Ibrahim Mohsen
+ */
 bool  Player::SaveCommand(int  a_commandIndex)
 {
 	for (int i = 0; i < 5; i++)
@@ -340,6 +377,16 @@ bool  Player::SaveCommand(int  a_commandIndex)
 	}
 	return false;
 }
+/**
+ * @brief Retrieves the available commands for the player.
+ * 
+ * This function returns a pointer to an array of Command objects that are available to the player.
+ * It also sets the size of the available commands array through the reference parameter.
+ * 
+ * @param a_size Reference to an integer where the size of the available commands array will be stored.
+ * @return Command* Pointer to the array of available Command objects.
+ * @author Ibrahim Mohsen
+ */
 Command * Player::GetAvailableCommands(int & a_size)
 {
 	a_size = _availableCommandsSize;

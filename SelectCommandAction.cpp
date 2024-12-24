@@ -20,7 +20,6 @@ void SelectCommandAction::ReadActionParameters()
     Input *pIn = pGrid->GetInput();
     Output *pOut = pGrid->GetOutput();
     pOut->PrintMessage("Select a command from the available commands bar");
-
 }
 
 void SelectCommandAction::Execute()
@@ -37,10 +36,10 @@ void SelectCommandAction::Execute()
         selected = pIn->GetSelectedCommandIndex();
     }
 
-    bool l_saved=Ptr2_currPlayer->SaveCommand(selected);
+    bool l_saved = Ptr2_currPlayer->SaveCommand(selected);
     if (!l_saved)
     {
-        pOut->PrintMessage("Command  Cannot saved Due to Maximum Capacity");
+        pOut->PrintMessage("Command Cannot be saved Due to Maximum Capacity");
         return;
     }
     int l_avSize;
