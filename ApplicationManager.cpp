@@ -13,6 +13,7 @@
 #include "AddDangerZoneAction.h"
 #include "AddWorkshopAction.h"
 #include "AddAntennaAction.h"
+#include "SelectCommandAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -120,7 +121,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case TO_DESIGN_MODE:
 		pAct = new SwitchToDesignModeAction(this);
 		break;
-
+   case SELECT_COMMAND :
+    pAct = new SelectCommandAction(this);
+	break;
 		
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode

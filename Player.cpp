@@ -242,9 +242,18 @@ void Player::Restart()
 	SetHealth(10);
 	setCanMove(true);
 	setHacked(false);
+	
 	consumableCount = 0;
 	lasertype = "default";
 	currDirection = RIGHT;
+	for(int i =0; i<6;i++)
+	{
+		_SavedCommands[i] = NO_COMMAND;
+	}
+	for (int i = 0; i < COMMANDS_COUNT; i++)
+	{
+		_AvailableCommands[i] = NO_COMMAND;
+	}
 }
 
 void Player::AppendPlayerInfo(string &playersInfo) const
@@ -286,6 +295,7 @@ Command *Player ::GenerateAvailableCommands(int &a_size)
 
 	int l_loopMax = GetHealth() >= 5 ? GetHealth() : 5;
 	a_size = l_loopMax;
+	_availableCommandsSize= l_loopMax;
 	for (int i = 0; i < l_loopMax; i++)
 	{
 		int randomValue = distrib(gen);
@@ -305,3 +315,22 @@ Command * Player::GetSavedCommands(int & a_size)
 	  a_size = 5;
 	return _SavedCommands;
 }
+
+bool  Player::SaveCommand(int  a_commandIndex)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if (_SavedCommands[i] == NO_COMMAND)
+		{
+			_SavedCommands[i] = _AvailableCommands[a_commandIndex];
+			return true ;
+		}
+	}
+	return false;
+}
+Command * Player::GetAvailableCommands(int & a_size)
+{
+	a_size = _availableCommandsSize;
+	return _AvailableCommands;
+}
+
