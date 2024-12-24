@@ -181,7 +181,11 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	CellPosition currentPosition = pCell->GetCellPosition();
 	CellPosition destination = currentPosition;
 
-	for (int i = 0; i < COMMANDS_COUNT; i++) {
+
+
+	for (int i = 0; i < 6; i++) {
+		//pOut->DrawCell(currentPosition, UI.CellColor);
+
 		switch (moveCommands[i]) {
 		case NO_COMMAND:
 			continue; // Skip if no command

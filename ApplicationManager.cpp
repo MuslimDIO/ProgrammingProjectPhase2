@@ -15,7 +15,7 @@
 #include "AddAntennaAction.h"
 #include "SelectCommandAction.h"
 #include "RebootAndRepair.h"
-
+#include "ExecuteCommandAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -130,6 +130,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
    case SELECT_COMMAND :
     pAct = new SelectCommandAction(this);
 	break;
+   case EXECUTE_COMMANDS:
+	   pAct = new ExecuteCommandAction(this);
+	   break;
 		
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
