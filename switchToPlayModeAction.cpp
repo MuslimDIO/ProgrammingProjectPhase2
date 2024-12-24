@@ -56,10 +56,9 @@ void switchToPlayModeAction::Execute()
     
     Command * l_avComm = ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
     Command * l_SavedComm = ptr2_currPlayer->GetSavedCommands(l_svSize);
-    Command test [COMMANDS_COUNT];
-    for (int i=0 ; i<COMMANDS_COUNT;i++)
-      test[i]=(Command)i;
-    pOut->CreateCommandsBar(l_SavedComm,l_svSize,test,COMMANDS_COUNT);
+
+   
+    pOut->CreateCommandsBar(l_SavedComm,l_svSize,l_avComm,l_avSize);
     pOut->PrintMessage("Switched to Play Mode");
     pGrid->UpdateInterface();
 }
