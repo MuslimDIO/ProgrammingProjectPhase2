@@ -58,7 +58,7 @@ public:
 	Input *GetInput() const;   // Gets a Pointer to the Input
 	Output *GetOutput() const; // Gets a Pointer to the Output
 
-	void SetClipboard(GameObject *gameObject); // A setter to be used in copy/cut (in order NOT to break class responsibilities)
+	bool SetClipboard(CellPosition *a_pos); // A setter to be used in copy/cut (in order NOT to break class responsibilities)
 	GameObject *GetClipboard() const;		   // A getter to be used in paste (in order NOT to break class responsibilities)
 
 	void SetEndGame(bool endGame); // A setter for endGame data member

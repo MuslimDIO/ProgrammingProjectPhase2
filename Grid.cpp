@@ -4,18 +4,16 @@
 #include "GameObject.h"
 #include "Belt.h"
 #include "Player.h"
-#include"Flag.h"
-#include"WaterPit.h"
-#include"DangerZone.h"
-#include"Workshop.h"
-#include"Antenna.h"
-#include"RotatingGear.h"
+#include "Flag.h"
+#include "WaterPit.h"
+#include "DangerZone.h"
+#include "Workshop.h"
+#include "Antenna.h"
+#include "RotatingGear.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
-
-
-
+class CellPosition;
 Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
@@ -77,8 +75,10 @@ void Grid::RemoveObjectFromCell(const CellPosition &pos)
 
 void Grid::RemoveAllObjects()
 {
-	for (int i = NumVerticalCells - 1; i >= 0; i--) {
-		for (int j = 0; j < NumHorizontalCells; j++) {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
 			CellPosition pos(i, j);
 			RemoveObjectFromCell(pos);
 		}
@@ -87,7 +87,8 @@ void Grid::RemoveAllObjects()
 
 void Grid::RestartAllPlayers()
 {
-	for (int i = 0; i < MaxPlayerCount; i++) {
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
 		CellPosition start(0, 0);
 		PlayerList[i]->Restart();
 		UpdatePlayerCell(PlayerList[i], start);
@@ -95,7 +96,8 @@ void Grid::RestartAllPlayers()
 	ResetCurrentPlayerNum();
 }
 
-void Grid::ResetCurrentPlayerNum() {
+void Grid::ResetCurrentPlayerNum()
+{
 	currPlayerNumber = 0;
 }
 
@@ -114,8 +116,10 @@ void Grid::UpdatePlayerCell(Player *player, const CellPosition &newPosition)
 
 // ========= Setters and Getters Functions =========
 
-void Grid::SetCurrentPlayer(int playerNumber) {
-	if (playerNumber >= 0 && playerNumber < MaxPlayerCount) {
+void Grid::SetCurrentPlayer(int playerNumber)
+{
+	if (playerNumber >= 0 && playerNumber < MaxPlayerCount)
+	{
 		currPlayerNumber = playerNumber;
 	}
 }
@@ -129,11 +133,16 @@ Output *Grid::GetOutput() const
 {
 	return pOut;
 }
-
-void Grid::SetClipboard(GameObject *gameObject) // to be used in copy/cut
+/**
+ * @author Ibrahim Mohsen
+ **/
+bool Grid:: SetClipboard(CellPosition *a_pos) // to be used in copy/cut
 {
+
 	// you may update slightly in implementation if you want (but without breaking responsibilities)
-	Clipboard = gameObject;
+	Clipboard = CellList[a_pos->VCell()][a_pos->HCell()]->GetGameObject();
+
+	return Clipboard ? true : false;
 }
 
 GameObject *Grid::GetClipboard() const // to be used in paste
@@ -171,7 +180,8 @@ Belt *Grid::GetNextBelt(const CellPosition &position)
 	{
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
-			if (CellList[i][j]->HasBelt()) {
+			if (CellList[i][j]->HasBelt())
+			{
 				return CellList[i][j]->HasBelt();
 			}
 			/// TODO: Check if CellList[i][j] has a belt, if yes return it
@@ -241,14 +251,14 @@ void Grid::PrintErrorMessage(string msg)
 
 void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
 {
-	int  l_objCount = 0;
+	int l_objCount = 0;
 	// Save the GameObject parameters to the file
 	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
 	{
 		for (int j = 0; j < NumHorizontalCells; j++) // left to right
 		{
 			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
-			if (ptr2_GObj!=NULL && ptr2_GObj->getObjType() == a_type)
+			if (ptr2_GObj != NULL && ptr2_GObj->getObjType() == a_type)
 			{
 				l_objCount++; // increment the count of the objects of the same type
 			}
@@ -263,12 +273,11 @@ void Grid::SaveAll(ofstream &a_OutFile, GameObject_Type a_type)
 			GameObject *ptr2_GObj = CellList[i][j]->GetGameObject();
 			if (ptr2_GObj && ptr2_GObj->getObjType() == a_type)
 			{
-				ptr2_GObj->Save(a_OutFile, a_type);	// Saves the GameObject parameters to the file
+				ptr2_GObj->Save(a_OutFile, a_type); // Saves the GameObject parameters to the file
 			}
 		}
 	}
 }
-
 
 void Grid::LoadAll(ifstream &a_InFile, GameObject_Type a_type)
 {
