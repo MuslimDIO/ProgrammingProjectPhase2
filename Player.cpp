@@ -10,7 +10,8 @@ Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum
 {
 	this->pCell = pCell;
 	lasertype = "default";
-	consumableCount = 0;
+	toolKit = false;
+	hackDevice = false;
 	isHacked = false;
 	canMove = true;
 
@@ -81,31 +82,27 @@ bool Player::getHacked()
 	return isHacked;
 }
 
-string Player::GetConsumables() const
+void Player::hasToolKit(bool t)
 {
-	string consumables = "";
-	for (int i = 0; i < consumableCount; i++)
-	{
-		consumables += ownedConsumables[i] + " ";
-	}
-	return consumables;
+	toolKit = t;
 }
 
-bool Player::AddConsumable(string consumable)
+void Player::hasHackDevice(bool h)
 {
-	if (consumableCount < MAX_CONSUMABLES)
-	{
-		ownedConsumables[consumableCount++] = consumable;
-
-		return true;
-	}
-	return false;
+	hackDevice = h;
 }
 
-int Player::GetConsumableCount() const
+bool Player::getToolKit() const
 {
-	return consumableCount;
+	return toolKit;
 }
+
+bool Player::getHackDevice() const
+{
+	return hackDevice;
+}
+
+
 #if 0
 bool Player::UseConsumable(const string consumable, Output* pOut)
 {
@@ -260,8 +257,8 @@ void Player::Restart()
 	SetHealth(10);
 	setCanMove(true);
 	setHacked(false);
-	
-	consumableCount = 0;
+	toolKit = false;
+	hackDevice = false;
 	lasertype = "default";
 	currDirection = RIGHT;
 	for(int i =0; i<6;i++)

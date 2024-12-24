@@ -20,9 +20,9 @@ class Player
 	int health;				 // Player's current health points
 
 	// owned equipments
-	bool canMove = true;
-	string ownedConsumables[MAX_CONSUMABLES]; // carried consumables
-	int consumableCount;					  // carried consumables
+	bool canMove;
+	bool toolKit; // a boolean to indicate whether the player has a toolkit or not
+	bool hackDevice; // a boolean to indicate whether the player has a hacking device or not
 	string lasertype;						  // carried laser type (default, double laser)
 	bool isHacked;		
 						  // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
@@ -50,11 +50,11 @@ public:
 	void setHacked(bool h); // A setter for the isHacked
 	bool getHacked();		// A getter for the isHacked
 
-	string GetConsumables() const;		   // A getter for the consumables
-	bool AddConsumable(string consumable); // A function to add a consumable to the player's inventory
+	void hasToolKit(bool t);		   // A getter for the consumables
+	void hasHackDevice(bool h);			// A function to add a consumable to the player's inventory
 
-	int GetConsumableCount() const;							   // A getter for the consumable count
-	bool UseConsumable(const string consumable, Output *pOut); // A function to use a consumable from the player's inventory
+	bool getToolKit() const; // A getter for the toolkit
+	bool getHackDevice() const; // A getter for the hackDevice
 
 	void Restart(); // Restart player's data members to their initial values at the start of the game
 
