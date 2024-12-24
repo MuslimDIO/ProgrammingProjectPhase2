@@ -14,6 +14,8 @@
 #include "AddWorkshopAction.h"
 #include "AddAntennaAction.h"
 #include "SelectCommandAction.h"
+#include "RebootAndRepair.h"
+
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -87,6 +89,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	
 	case NEW_GAME:
 		pAct = new NewGameAction(this);
+		break;
+
+	case REBOOT_REPAIR:
+		pAct = new RebootAndRepair(this);
 		break;
 
 
