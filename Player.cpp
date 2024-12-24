@@ -172,8 +172,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	Output *pOut = pGrid->GetOutput();
 	Input *pIn = pGrid->GetInput();
 
-	if (!getCanMove())
-	{
+	if (!getCanMove()) {
 		pOut->PrintMessage("You can't move this turn.");
 		return;
 	}
@@ -181,16 +180,13 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	CellPosition currentPosition = pCell->GetCellPosition();
 	CellPosition destination = currentPosition;
 
-	for (int i = 0; i < COMMANDS_COUNT; i++)
-	{
-		switch (moveCommands[i])
-		{
+	for (int i = 0; i < COMMANDS_COUNT; i++) {
+		switch (moveCommands[i]) {
 		case NO_COMMAND:
-			break;
+			continue; // Skip if no command
 		case MOVE_FORWARD_ONE_STEP:
 			destination.AddCellNum(1, currDirection);
 			break;
-
 		case MOVE_FORWARD_TWO_STEPS:
 			destination.AddCellNum(2, currDirection);
 			break;
@@ -200,29 +196,46 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		case MOVE_BACKWARD_ONE_STEP:
 			destination.AddCellNum(-1, currDirection);
 			break;
+		case MOVE_BACKWARD_TWO_STEPS:
+			destination.AddCellNum(-2, currDirection);
+			break;
 		case MOVE_BACKWARD_THREE_STEPS:
 			destination.AddCellNum(-3, currDirection);
 			break;
-
+		case ROTATE_RIGHT:
+			currDirection = static_cast<Direction>((currDirection + 1) % 4);
+			break;
+		case ROTATE_LEFT:
+			currDirection = static_cast<Direction>((currDirection + 3) % 4);
+			break;
 		default:
 			pOut->PrintMessage("Invalid move command.");
 			continue;
 		}
 
-		if (!destination.IsValidCell())
-		{
-			pOut->PrintMessage("Invalid move, you can't move outside the grid.");
+		if (!destination.IsValidCell()) {
+			pOut->PrintMessage("Invalid move. Cannot move outside the grid.");
 			return;
 		}
 
 		pGrid->UpdatePlayerCell(this, destination);
 
-		GameObject *pObj = pCell->GetGameObject();
+		pOut->PrintMessage("Click anywhere to execute the next command...");
+		int x, y;
+		pIn->GetPointClicked(x,y);
 
-		if (pObj != NULL)
-		{
-			pObj->Apply(pGrid, this);
-		}
+		pOut->ClearStatusBar();
+	}
+
+	GameObject* pObj = pCell->GetGameObject();
+	if (pObj != nullptr) {
+		pObj->Apply(pGrid, this);
+	}
+
+	/*if (pGrid->IsFlagCell(pCell->GetCellPosition())) {
+		pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
+	}*/
+}
 
 		/// TODO: Implement this function using the guidelines mentioned below
 
@@ -234,8 +247,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		// - Use the CellPosition class to help you calculate the destination cell using the current cell
 		// - Use the Grid class to update pCell
 		// - Don't forget to apply game objects at the final destination cell and check for game ending
-	}
-}
+
 
 void Player::Restart()
 {
