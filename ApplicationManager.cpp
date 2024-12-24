@@ -8,7 +8,7 @@
 #include "LoadGridAction.h"
 #include "switchToPlayModeAction.h"
 #include"NewGameAction.h"
-
+#include "SwitchToDesignModeAction.h"
 #include "AddWaterPitAction.h"
 #include "AddDangerZoneAction.h"
 #include "AddWorkshopAction.h"
@@ -117,8 +117,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new LoadGridAction(this);
 		break;
 
-	case TO_DESIGN_MODE:				//TODO:
-		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+	case TO_DESIGN_MODE:
+		pAct = new SwitchToDesignModeAction(this);
 		break;
 
 		

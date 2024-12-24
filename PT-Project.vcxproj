@@ -194,6 +194,7 @@
     <ClCompile Include="RebootAndRepair.cpp" />
     <ClCompile Include="RotatingGear.cpp" />
     <ClCompile Include="saveGridAction.cpp" />
+    <ClCompile Include="switchToDesignModeAction.cpp" />
     <ClCompile Include="switchToPlayModeAction.cpp" />
     <ClCompile Include="UseConsumable.cpp" />
     <ClCompile Include="WaterPit.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="RebootAndRepair.h" />
     <ClInclude Include="RotatingGear.h" />
     <ClInclude Include="saveGridAction.h" />
+    <ClInclude Include="switchToDesignModeAction.h" />
     <ClInclude Include="switchToPlayModeAction.h" />
     <ClInclude Include="UseConsumable.h" />
     <ClInclude Include="UI_Info.h" />
