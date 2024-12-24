@@ -1,17 +1,20 @@
 
+/**
+ * @file switchToPlayModeAction.h
+ * @brief Header file for the switchToPlayModeAction class.
+ *
+ * This file contains the declaration of the switchToPlayModeAction class, which is
+ * responsible for handling the action of switching the application to play mode.
+ * The class inherits from the Action base class and provides implementations for
+ * reading action parameters and executing the action.
+ * @author Ibrahim Mohsen
+ */
 #ifndef _SWITCH_TO_PLAY_MODE_ACTION_H
 #define _SWITCH_TO_PLAY_MODE_ACTION_H
 #include "Action.h"
 
 enum Command;
-/**
- * @class switchToPlayModeAction
- * @brief This class handles the action of switching the application to play mode.
- *
- * This class is responsible for reading the necessary parameters and executing
- * the action to switch the application from its current mode to play mode.
- * @author Ibrahim Mohsen
- */
+
 class switchToPlayModeAction : public Action
 {
 public:
