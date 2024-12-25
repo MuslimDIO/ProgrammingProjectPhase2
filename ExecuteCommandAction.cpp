@@ -21,35 +21,54 @@ void ExecuteCommandAction::ReadActionParameters()
     Output *pOut = pGrid->GetOutput();
 }
 
+
+
 void ExecuteCommandAction::Execute()
 {
 
     ReadActionParameters();
-    Grid *pGrid = pManager->GetGrid();
-    Input *pIn = pGrid->GetInput();
-    Output *pOut = pGrid->GetOutput();
-    Player *pPlayer = pGrid->GetCurrentPlayer();
+    Grid* pGrid = pManager->GetGrid();
+    Input* pIn = pGrid->GetInput();
+    Output* pOut = pGrid->GetOutput();
+    Player* Ptr2_currPlayer = pGrid->GetCurrentPlayer();
     pOut->PrintMessage("Executing Saved Command");
     int x, y;
     pIn->GetPointClicked(x, y);
 
-    int savedCommSize;
-    int availCommSize;
-    Command *savedCommands = pPlayer->GetSavedCommands(savedCommSize);
+    int l_svSize;
+    int l_avSize;
+    Command* l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
 
-    pPlayer->Move(pGrid, savedCommands);
-    for (int i = 0; i < availCommSize; i++)
+    Ptr2_currPlayer->Move(pGrid, l_SavedComm);
+
+    for (int i = 0; i < l_svSize; i++)
     {
-        savedCommands[i] = NO_COMMAND;
+        l_SavedComm[i] = NO_COMMAND;
     }
-    pPlayer->GenerateAvailableCommands(availCommSize);
+    Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
 
-    Command *availableCommands = pPlayer->GenerateAvailableCommands(availCommSize);
-
-    pOut->CreateCommandsBar(savedCommands, savedCommSize, availableCommands, availCommSize);
     pGrid->UpdateInterface();
     pGrid->AdvanceCurrentPlayer();
-     pPlayer = pGrid->GetCurrentPlayer();
-   pPlayer->GenerateAvailableCommands(availCommSize);
-    
+
+    Ptr2_currPlayer = pGrid->GetCurrentPlayer();
+    Command* l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+    pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
+    // int selected = -1;
+    // while (selected == -1)
+    //{ // loop until a valid command is selected
+    //     selected = pIn->GetSelectedCommandIndex();
+    // }
+
+    // bool l_saved = Ptr2_currPlayer->SaveCommand(selected);
+    // if (!l_saved)
+    //{
+    //     pOut->PrintMessage("Command Cannot be saved Due to Maximum Capacity");
+    //     return;
+    // }
+    // int l_avSize;
+
+    // Command* l_avComm = Ptr2_currPlayer->GetAvailableCommands(l_avSize);
+
+    // pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
+    // pOut->PrintMessage("Command saved successfully");
 }

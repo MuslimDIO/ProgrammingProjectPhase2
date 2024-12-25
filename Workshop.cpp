@@ -65,7 +65,7 @@ void Workshop::Apply(Grid* pGrid, Player* pPlayer)
             break;
 
         case 2: // Equip Double Laser
-            pPlayer->setLaserType("Double Laser");
+            pPlayer->setDoubleLaser(true);
             pOut->PrintMessage("Double Laser equipped successfully!");
             break;
 

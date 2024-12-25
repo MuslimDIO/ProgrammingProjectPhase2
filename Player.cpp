@@ -321,6 +321,11 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(currDirection) + ", ";
 	playersInfo += to_string(health) + ")";
+	playersInfo += (isHacked ? " [Hacked]" : "");
+	playersInfo += (toolKit ? " [Toolkit]" : "");
+	playersInfo += (hackDevice ? " [HackDevice]" : "");
+	playersInfo += (hasDoubleLaser ? " [DoubleLaser]" : "");
+	playersInfo += "\t";
 }
 
 void Player::Rotate(bool isClockWise, Output *ptr2_Out)
