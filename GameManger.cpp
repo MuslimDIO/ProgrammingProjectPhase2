@@ -1,3 +1,5 @@
+// Scrapped idea 
+
 #include "GameManger.h"
 #include "UI_Info.h"
 #include "Grid.h"
@@ -31,5 +33,5 @@ void GameManger ::GameMangerMain()
     else if (ptr2_Curr->GetCell()->HasFlag()) {
         _state =WIN;    
     }
-    
+
 }
