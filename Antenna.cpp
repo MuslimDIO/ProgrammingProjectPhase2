@@ -72,10 +72,12 @@ void Antenna::Apply(Grid* pGrid, Player* pPlayer)
 
     CellPosition antennaPos = position; // position of antena 
     CellPosition Firstplayer = pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition(); // Get player 1 position
+	pGrid->AdvanceCurrentPlayer();
     CellPosition Secondplayer = pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition(); // Get player 2 position
-
+	pGrid->AdvanceCurrentPlayer();
 
 		int distanceFirstPlayer = abs(antennaPos.VCell() - Firstplayer.VCell()) + abs(antennaPos.HCell() - Firstplayer.HCell()); // calculate distand of p 1
+
 	    int distanceSecondPlayer = abs(antennaPos.VCell() - Secondplayer.VCell()) + abs(antennaPos.HCell() - Secondplayer.HCell());// calculate distand of p 2
 	
 		int currentPlayer; // Variable to store the current player
