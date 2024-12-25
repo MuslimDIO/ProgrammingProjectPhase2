@@ -6,32 +6,30 @@
 class Input;
 class Output;
 class Grid;
-
+class GameManger;
 // Main class that manages everything in the application.
 class ApplicationManager
 {
 	// Pointer to the Grid
-	Grid* pGrid;
+	Grid *pGrid;
 
-	// Pointers to the Input and Output 
+	// Pointers to the Input and Output
 	Input *pIn;
 	Output *pOut;
+	GameManger *Ptr2_GMng;
 
 public:
-
 	ApplicationManager();  // Constructor: where the Input, Ouput and Grid are allocated
 	~ApplicationManager(); // Destructor for needed deallocations
 
 	// ========== Interface Management Functions ==========
 
-	Grid * GetGrid() const;    // Returns pointer to the Grid
+	Grid *GetGrid() const; // Returns pointer to the Grid
 
 	void UpdateInterface() const;
 
 	// ========== Action-Related Functions ==========
 
 	ActionType GetUserAction() const; // Reads the input command from the user and returns the corresponding action type
-	void ExecuteAction(ActionType) ;  // Creates an action of the passed actionType and executes it
-
+	void ExecuteAction(ActionType);	  // Creates an action of the passed actionType and executes it
 };
-
