@@ -103,10 +103,7 @@ void Workshop::Apply(Grid* pGrid, Player* pPlayer)
             break;
         }
 
-        // Break out of the loop after processing a valid choice
-       // break;
-
-    //} while (true); // Keep looping only for invalid inputs
+        
 }
 #if 0 
 void Workshop::Apply(Grid * pGrid, Player * pPlayer)
