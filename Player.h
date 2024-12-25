@@ -30,7 +30,7 @@ class Player
 
 	Command _AvailableCommands[COMMANDS_COUNT] = {NO_COMMAND};
 	Command _SavedCommands[6] = {NO_COMMAND};
-	int _availableCommandsSize;
+	int _availableCommandsSize= COMMANDS_COUNT;
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations
@@ -61,7 +61,9 @@ public:
 	bool getHackDevice() const; // A getter for the hackDevice
 
 	void incrementConsumableCount(); // A function to increment the consumable count
+
 	void decrementConsumableCount(); // A function to decrement the consumable count
+
 	int getConsumableCount() const; // A getter for the consumable count
 
 

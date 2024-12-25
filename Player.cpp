@@ -106,7 +106,7 @@ bool Player::getHackDevice() const
 	return hackDevice;
 }
 
-void incrementConsumableCount(int& consumableCount)
+void Player::incrementConsumableCount()
 {
 	if (consumableCount < MAX_CONSUMABLES)
 	{
@@ -114,7 +114,7 @@ void incrementConsumableCount(int& consumableCount)
 	}
 }
 
-void decrementConsumableCount(int& consumableCount)
+void Player::decrementConsumableCount()
 {
 	if (consumableCount > 0)
 	{
@@ -122,12 +122,15 @@ void decrementConsumableCount(int& consumableCount)
 	}
 }
 
-int getConsumableCount(int& consumableCount)
+int Player::getConsumableCount() const
 {
 	return consumableCount;
 }
 
-
+void setCurrDirection(Direction d)
+{
+	Direction currDirection = d;
+}
 
 #if 0
 bool Player::UseConsumable(const string consumable, Output* pOut)
@@ -208,7 +211,6 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 
 
 	for (int i = 0; i < 6; i++) {
-		pOut->DrawCell(currentPosition, UI.CellColor);
 
 		switch (moveCommands[i]) {
 		case NO_COMMAND:
@@ -246,6 +248,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 			pOut->PrintMessage("Invalid move. Cannot move outside the grid.");
 			return;
 		}
+		
 
 		pGrid->UpdatePlayerCell(this, destination);
 
