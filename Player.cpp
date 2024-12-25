@@ -127,9 +127,10 @@ int Player::getConsumableCount() const
 	return consumableCount;
 }
 
-void setCurrDirection(Direction d)
+
+void Player::setReachedFlag(bool flag)
 {
-	Direction currDirection = d;
+	hasWon = flag;
 }
 
 #if 0
@@ -259,11 +260,7 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 
 		pOut->ClearStatusBar();
 
-		pGrid->playerFinishedTurn();
-
-		if (pGrid->AreAllPlayersReady()) {
-			pGrid->ShootingPhase(); // Trigger the shooting phase
-			pGrid->ResetTurnTracker(); // Reset for the next round
+		
 		}
 
 		GameObject* pObj = pCell->GetGameObject();
@@ -271,10 +268,16 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			pObj->Apply(pGrid, this);
 		}
 
+		pGrid->playerFinishedTurn();
+
+		if (pGrid->AreAllPlayersReady()) {
+			pGrid->ShootingPhase(); // Trigger the shooting phase
+			pGrid->ResetTurnTracker(); // Reset for the next round
+	    }
+
 		/*if (pGrid->IsFlagCell(pCell->GetCellPosition())) {
 			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
 		}*/
-	}
 
 }
 		/// TODO: Implement this function using the guidelines mentioned below

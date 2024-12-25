@@ -25,7 +25,7 @@ class Player
 	bool hackDevice; // a boolean to indicate whether the player has a hacking device or not
 	string lasertype;						  // carried laser type (default, double laser)
 	bool isHacked;		  // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
-
+	bool hasWon;		  // hasWon (to indicate whether the player has won the game)
 	
 
 	Command _AvailableCommands[COMMANDS_COUNT] = {NO_COMMAND};
@@ -66,6 +66,7 @@ public:
 
 	int getConsumableCount() const; // A getter for the consumable count
 
+	void setReachedFlag(bool flag);
 
 	void Restart(); // Restart player's data members to their initial values at the start of the game
 
