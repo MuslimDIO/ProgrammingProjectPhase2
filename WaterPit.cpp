@@ -36,7 +36,7 @@ void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 	pOut->ClearStatusBar();
 
  
-	pPlayer->SetHealth(0); // Set the player's health to zero
+	pPlayer->setHealth(0); // Set the player's health to zero
 
 	
 	pOut->PrintMessage("You felt in water pit .... game over "); // print game over 

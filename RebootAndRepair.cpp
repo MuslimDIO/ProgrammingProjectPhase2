@@ -24,7 +24,7 @@ void RebootAndRepair::Execute()
 
 	Player* currentPlayer = pGrid->GetCurrentPlayer(); // Get the current player
 
-    currentPlayer->SetHealth(currentPlayer->GetHealth() + 2); // increase player's health by my chosen number of 2 
+    currentPlayer->setHealth(currentPlayer->getHealth() + 2); // increase player's health by my chosen number of 2 
 
 	currentPlayer->setCanMove(false);  // disable movement for this turn
 
