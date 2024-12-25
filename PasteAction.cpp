@@ -61,12 +61,19 @@ void PasteAction::Execute() {
         return;
     }
 
+    // Exclude pasting flags
+    if (pClipboardObject->getObjType() == FLAG) {
+        pOut->PrintMessage("Cannot paste a Flag. This type is excluded. Click to continue.");
+        int x, y;
+        pGrid->GetInput()->GetPointClicked(x, y);
+        pOut->ClearStatusBar();
+        return;
+    }
+
     // Create a new object based on the type of the clipboard object with the correct position
     GameObject* pNewObject = nullptr;
     switch (pClipboardObject->getObjType()) {
-    case FLAG:
-        pNewObject = new Flag(cellPosition); // New Flag with updated position
-        break;
+   
     case WATERPIT:
         pNewObject = new WaterPit(cellPosition); // New WaterPit with updated position
         break;
