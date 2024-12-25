@@ -42,8 +42,8 @@ public:
 	void SetCell(Cell *cell); // A setter for the pCell
 	Cell *GetCell() const;	  // A getter for the pCell
 
-	void SetHealth(int h); // A setter for the health points
-	int GetHealth();	   // A getter for the health points
+	void setHealth(int h); // A setter for the health points
+	int getHealth();	   // A getter for the health points
 
 	void setLaserType(string l); // A setter for the laser type
 	string getLaserType();		 // A getter for the laser type

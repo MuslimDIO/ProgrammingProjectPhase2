@@ -39,9 +39,9 @@ void Workshop::Apply(Grid * pGrid, Player * pPlayer)
         switch (choice)
         {
         case 1: // Repair Robot
-            if (pPlayer->GetHealth() < 10) // Assuming max health is 10
+            if (pPlayer->getHealth() < 10) // Assuming max health is 10
             {
-                pPlayer->SetHealth(10);
+                pPlayer->setHealth(10);
                 pOut->PrintMessage("Robot repaired successfully!");
             }
             else

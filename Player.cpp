@@ -34,7 +34,7 @@ Cell *Player::GetCell() const
 	return pCell;
 }
 
-void Player::SetHealth(int h)
+void Player::setHealth(int h)
 {
 	if (h < 0)
 	{
@@ -50,7 +50,7 @@ void Player::SetHealth(int h)
 	}
 }
 
-int Player::GetHealth()
+int Player::getHealth()
 {
 	return this->health;
 }
@@ -143,7 +143,7 @@ bool Player::UseConsumable(const string consumable, Output* pOut)
 			if (ownedConsumables[i] == consumable) {
 				// Apply consumable effects
 				if (consumable == "Toolkit") {
-					SetHealth(health + 2); // Restore health
+					setHealth(health + 2); // Restore health
 					pOut->PrintMessage("Used Toolkit: Restored 2 health points.");
 				}
 				else if (consumable == "HackDevice") {
@@ -204,6 +204,11 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 
 	if (!getCanMove()) {
 		pOut->PrintMessage("You can't move this turn.");
+		return;
+	}
+
+	if (pGrid->GetEndGame()) {
+		pOut->PrintMessage("Game has ended. Click anywhere to continue.");
 		return;
 	}
 
@@ -268,6 +273,11 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			pObj->Apply(pGrid, this);
 		}
 
+		if (hasWon == true) {
+			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
+			EXIT;
+		}
+
 		pGrid->playerFinishedTurn();
 
 		if (pGrid->AreAllPlayersReady()) {
@@ -275,9 +285,7 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			pGrid->ResetTurnTracker(); // Reset for the next round
 	    }
 
-		/*if (pGrid->IsFlagCell(pCell->GetCellPosition())) {
-			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
-		}*/
+		
 
 }
 		/// TODO: Implement this function using the guidelines mentioned below
@@ -314,7 +322,7 @@ void Player::ShootingPhase(Grid* pGrid, Player* opponent) {
 
 	if (canShoot) {
 		int damage =  1; 
-		opponent->SetHealth(opponent->GetHealth() - damage); 
+		opponent->setHealth(opponent->getHealth() - damage); 
 
 		pOut->PrintMessage("Player " + std::to_string(playerNum) + " hit Player " + std::to_string(opponent->playerNum) + "! Click to continue.");
 		int x, y;
@@ -328,7 +336,7 @@ void Player::ShootingPhase(Grid* pGrid, Player* opponent) {
 
 void Player::Restart()
 {
-	SetHealth(10);
+	setHealth(10);
 	setCanMove(true);
 	setHacked(false);
 	toolKit = false;
@@ -392,7 +400,7 @@ Command *Player ::GenerateAvailableCommands(int &a_size)
 	mt19937 gen(rd());
 	uniform_int_distribution<> distrib(1, ((int)COMMANDS_COUNT - 3));
 
-	int l_loopMax = GetHealth() >= 5 ? GetHealth() : 5;
+	int l_loopMax = getHealth() >= 5 ? getHealth() : 5;
 	a_size = l_loopMax;
 	_availableCommandsSize= l_loopMax;
 	for (int i = 0; i < l_loopMax; i++)

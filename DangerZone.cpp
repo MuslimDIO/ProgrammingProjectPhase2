@@ -37,10 +37,10 @@ void DangerZone::Apply(Grid *pGrid, Player *pPlayer)
    // Apply the effect
 
      
-    int currentHealth = pPlayer->GetHealth();
+    int currentHealth = pPlayer->getHealth();
     int newHealth = currentHealth - 1; // Reduce health by 1
     
-    pPlayer->SetHealth(newHealth);
+    pPlayer->setHealth(newHealth);
 
     // Step 3: Check if the player's health is zero
     if (newHealth == 0) {

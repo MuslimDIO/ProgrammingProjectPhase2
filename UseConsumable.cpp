@@ -15,24 +15,50 @@ void UseConsumable::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Would you like to use the 1. ToolKit or 2. Hacking Device");
-	int choice = pIn->GetInteger(pOut);
-	if (choice != 1 || choice != 2)
-	{
-		pOut->PrintMessage("Invalid choice");
+	Player* pPlayer = pGrid->GetCurrentPlayer();
 
-		return;
-	}
-	pOut->ClearStatusBar();
+	pOut->PrintMessage("Would you like to use the 1. ToolKit or 2. Hacking Device");
+	pOut->PrintMessage("Enter the type of consumable: tool kit (0) or hack device (1) ");
 }
 
 
 
 void UseConsumable::Execute()
 {
-	
-}
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+	Player* pPlayer = pGrid->GetCurrentPlayer();
+	ReadActionParameters();
 
+	int input = pIn->GetInteger(pOut);
+
+	bool toolK = pPlayer->getToolKit();
+
+	bool hackD = pPlayer->getHackDevice();
+	
+
+	bool condition = false; 
+
+	if (input == 0 && toolK) {
+		pPlayer->setHealth(pPlayer->getHealth() + 2); //repairs the robot
+		pPlayer->hasToolKit(false); //removes the tool kit
+		pOut->PrintMessage("You have used the Tool Kit");
+		condition = true;
+	}
+	if (toolK == 1 && hackD) {
+		pGrid->AdvanceCurrentPlayer(); //switches to opponent
+
+		pPlayer = pGrid->GetCurrentPlayer(); //sets the player pointer to the new player
+		pPlayer->setHacked(true); //hacks the player
+		pPlayer->hasHackDevice(false); //removes the hack device
+		pOut->PrintMessage("You have used the Hack Device");
+		condition = true;
+	}
+	if (condition == false) {
+		pOut->PrintMessage("Consumable not found.");
+	}
+}
 UseConsumable::~UseConsumable() {
 
 }
