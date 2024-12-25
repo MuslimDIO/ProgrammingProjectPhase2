@@ -39,6 +39,8 @@ Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn,
 
 	// Initialize endGame with false
 	endGame = false;
+
+	playerShooting = 0;
 }
 
 // ========= Adding or Removing GameObjects to Cells =========
@@ -187,6 +189,41 @@ Belt *Grid::GetNextBelt(const CellPosition &position)
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
 	}
 	return NULL; // not found
+}
+
+// ========= Shooting Phase Functions =========
+
+void Grid::playerFinishedTurn()
+{
+	playerShooting++;
+}
+
+bool Grid::AreAllPlayersReady() const
+{
+	return playerShooting == MaxPlayerCount;
+}
+
+void Grid::ResetTurnTracker()
+{
+	playerShooting = 0;
+}
+
+void Grid::ShootingPhase() {
+	for (int i = 0; i < MaxPlayerCount; i++) {
+		Player* currentPlayer = PlayerList[i];
+		if (currentPlayer != nullptr) {
+			for (int j = 0; j < MaxPlayerCount; j++) {
+				// Skip if the current player is checking themselves
+				if (i == j) continue;
+
+				Player* opponent = PlayerList[j];
+				if (opponent != nullptr) {
+					currentPlayer->ShootingPhase(this, opponent);
+				}
+			}
+		}
+	}
+
 }
 
 // ========= User Interface Functions =========

@@ -31,6 +31,7 @@ class Grid
 	GameObject *Clipboard; // This is used in copy/cut/paste game objects (should be set in copy/cut and got in paste)
 
 	bool endGame; // A boolean indicating if the Game is ended or not (a player reaches the flag cell or not)
+	int playerShooting;
 
 public:
 	Grid(Input *pIn, Output *pOut); // Gives the Grid a Pointer to the Output Object and the Input Object
@@ -69,6 +70,14 @@ public:
 	void RemoveAllObjects(); // Removes all objects from the grid
 	void RestartAllPlayers();
 	void ResetCurrentPlayerNum();
+
+	void playerFinishedTurn();
+
+	bool AreAllPlayersReady() const;
+
+	void ResetTurnTracker();
+
+	void ShootingPhase();
 
 	/// TODO: add any needed setter/getter "EXCEPT" ANY setters or getters of "CellList" or "PlayerList" (Forbidden for class Responsibilities)
 

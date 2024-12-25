@@ -195,10 +195,10 @@ void Player::ClearDrawing(Output *pOut) const
 
 // ====== Game Functions ======
 
-void Player::Move(Grid *pGrid, Command moveCommands[])
+void Player::Move(Grid* pGrid, Command moveCommands[])
 {
-	Output *pOut = pGrid->GetOutput();
-	Input *pIn = pGrid->GetInput();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
 	if (!getCanMove()) {
 		pOut->PrintMessage("You can't move this turn.");
@@ -248,27 +248,34 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 			pOut->PrintMessage("Invalid move. Cannot move outside the grid.");
 			return;
 		}
-		
+
 
 		pGrid->UpdatePlayerCell(this, destination);
 
 		pOut->PrintMessage("Click anywhere to execute the next command...");
 		int x, y;
-		pIn->GetPointClicked(x,y);
+		pIn->GetPointClicked(x, y);
 
 		pOut->ClearStatusBar();
+
+		pGrid->playerFinishedTurn();
+
+		if (pGrid->AreAllPlayersReady()) {
+			pGrid->ShootingPhase(); // Trigger the shooting phase
+			pGrid->ResetTurnTracker(); // Reset for the next round
+		}
+
+		GameObject* pObj = pCell->GetGameObject();
+		if (pObj != nullptr) {
+			pObj->Apply(pGrid, this);
+		}
+
+		/*if (pGrid->IsFlagCell(pCell->GetCellPosition())) {
+			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
+		}*/
 	}
 
-	GameObject* pObj = pCell->GetGameObject();
-	if (pObj != nullptr) {
-		pObj->Apply(pGrid, this);
-	}
-
-	/*if (pGrid->IsFlagCell(pCell->GetCellPosition())) {
-		pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
-	}*/
 }
-
 		/// TODO: Implement this function using the guidelines mentioned below
 
 		// - If a player has 5 (could have less) saved moveCommands, the robot will execute the first saved command,
@@ -279,6 +286,40 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		// - Use the CellPosition class to help you calculate the destination cell using the current cell
 		// - Use the Grid class to update pCell
 		// - Don't forget to apply game objects at the final destination cell and check for game ending
+
+void Player::ShootingPhase(Grid* pGrid, Player* opponent) {
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+	CellPosition myPosition = pCell->GetCellPosition();
+	CellPosition opponentPosition = opponent->GetCell()->GetCellPosition();
+
+	bool canShoot = false;
+	if (currDirection == UP && myPosition.HCell() == opponentPosition.HCell() && myPosition.VCell() > opponentPosition.VCell()) {
+		canShoot = true;
+	}
+	else if (currDirection == DOWN && myPosition.HCell() == opponentPosition.HCell() && myPosition.VCell() < opponentPosition.VCell()) {
+		canShoot = true;
+	}
+	else if (currDirection == RIGHT && myPosition.VCell() == opponentPosition.VCell() && myPosition.HCell() < opponentPosition.HCell()) {
+		canShoot = true;
+	}
+	else if (currDirection == LEFT && myPosition.VCell() == opponentPosition.VCell() && myPosition.HCell() > opponentPosition.HCell()) {
+		canShoot = true;
+	}
+
+	if (canShoot) {
+		int damage =  1; 
+		opponent->SetHealth(opponent->GetHealth() - damage); 
+
+		pOut->PrintMessage("Player " + std::to_string(playerNum) + " hit Player " + std::to_string(opponent->playerNum) + "! Click to continue.");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		pOut->ClearStatusBar();
+	}
+}
+
+
 
 
 void Player::Restart()

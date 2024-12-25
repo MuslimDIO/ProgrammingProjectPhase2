@@ -32,6 +32,7 @@ void Workshop::Apply(Grid * pGrid, Player * pPlayer)
             continue; // Re-prompt the player
         }
         else
+            break;
             return;
         
     }

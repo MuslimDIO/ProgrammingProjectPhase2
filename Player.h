@@ -71,6 +71,8 @@ public:
 
 	// ====== Game Functions ======
 
+	void ShootingPhase(Grid* pGrid, Player* opponent); // Player's shooting phase
+
 	// ====== Drawing Functions ======
 
 	void Draw(Output *pOut) const; // Draws the Player's Triangle on its current cell
