@@ -59,7 +59,9 @@ public:
 	bool getHackDevice() const; // A getter for the hackDevice
 
 	void incrementConsumableCount(); // A function to increment the consumable count
+
 	void decrementConsumableCount(); // A function to decrement the consumable count
+
 	int getConsumableCount() const; // A getter for the consumable count
 
 

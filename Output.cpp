@@ -290,62 +290,6 @@ void Output::CreateDesignModeToolBar() const
 	}
 }
 
-// void Output::CreateDesignModeToolBar() const
-// {
-// 	UI.InterfaceMode = MODE_DESIGN;
-
-// 	ClearToolBar(); // in order not to draw above the icons of the other mode when you switch
-
-// 	// You can draw the tool bar icons in any way you want.
-// 	// Below is one possible way
-
-// 	// First prepare List of images for each menu item
-// 	// To control the order of these images in the menu,
-// 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
-// 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
-// 	string MenuItemImages[DESIGN_ITM_COUNT];
-// 	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
-// 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Menu_SwitchToGame.jpg";
-
-// 	/// TODO: Change the path of the images as needed
-// 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
-
-// 	/// TODO: Prepare images for each menu item and add it to the list
-
-// 	// Draw menu item one image at a time
-// 	for (int i = 0; i < DESIGN_ITM_COUNT; i++)
-// 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////////
-#if 0
-void Output::CreatePlayModeToolBar() const
-{
-	UI.InterfaceMode = MODE_PLAY;
-
-	ClearToolBar(); // in order not to draw above the icons of the other mode when you switch
-
-	// You can draw the tool bar icons in any way you want.
-	// Below is one possible way
-
-	// First prepare List of images for each menu item
-	// To control the order of these images in the menu,
-	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
-	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
-	string MenuItemImages[PLAY_ITM_COUNT];
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
-
-	/// TODO: Change the path of the images as needed
-	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-
-	/// TODO: Prepare images for each menu item and add it to the list
-
-	// Draw menu item one image at a time
-	for (int i = 0; i < PLAY_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-}
-#endif
 
 void Output::CreatePlayModeToolBar() const
 {
