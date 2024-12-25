@@ -38,10 +38,11 @@ void ExecuteCommandAction::Execute()
     Command *savedCommands = pPlayer->GetSavedCommands(savedCommSize);
 
     pPlayer->Move(pGrid, savedCommands);
-    for (int i = 0; i < savedCommSize; i++)
+    for (int i = 0; i < availCommSize; i++)
     {
         savedCommands[i] = NO_COMMAND;
     }
+    pPlayer->GenerateAvailableCommands(availCommSize);
 
     Command *availableCommands = pPlayer->GenerateAvailableCommands(availCommSize);
 
@@ -50,5 +51,5 @@ void ExecuteCommandAction::Execute()
     pGrid->AdvanceCurrentPlayer();
      pPlayer = pGrid->GetCurrentPlayer();
    pPlayer->GenerateAvailableCommands(availCommSize);
-   
+    
 }
