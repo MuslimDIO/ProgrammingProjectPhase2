@@ -19,13 +19,15 @@ class Player
 	Direction currDirection; // Current Direction of the player
 	int health;				 // Player's current health points
 
-	// owned equipments
+	int consumableCount; // Number of consumables that the player has
 	bool canMove;
 	bool toolKit; // a boolean to indicate whether the player has a toolkit or not
 	bool hackDevice; // a boolean to indicate whether the player has a hacking device or not
 	string lasertype;						  // carried laser type (default, double laser)
-	bool isHacked;		
-						  // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
+	bool isHacked;		  // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
+
+	
+
 	Command _AvailableCommands[COMMANDS_COUNT] = {NO_COMMAND};
 	Command _SavedCommands[6] = {NO_COMMAND};
 	int _availableCommandsSize;
@@ -55,6 +57,11 @@ public:
 
 	bool getToolKit() const; // A getter for the toolkit
 	bool getHackDevice() const; // A getter for the hackDevice
+
+	void incrementConsumableCount(); // A function to increment the consumable count
+	void decrementConsumableCount(); // A function to decrement the consumable count
+	int getConsumableCount() const; // A getter for the consumable count
+
 
 	void Restart(); // Restart player's data members to their initial values at the start of the game
 

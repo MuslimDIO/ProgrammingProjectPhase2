@@ -102,6 +102,28 @@ bool Player::getHackDevice() const
 	return hackDevice;
 }
 
+void incrementConsumableCount(int& consumableCount)
+{
+	if (consumableCount < MAX_CONSUMABLES)
+	{
+		consumableCount++;
+	}
+}
+
+void decrementConsumableCount(int& consumableCount)
+{
+	if (consumableCount > 0)
+	{
+		consumableCount--;
+	}
+}
+
+int getConsumableCount(int& consumableCount)
+{
+	return consumableCount;
+}
+
+
 
 #if 0
 bool Player::UseConsumable(const string consumable, Output* pOut)
