@@ -18,6 +18,8 @@
 #include "ExecuteCommandAction.h"
 #include "CopyAction.h"
 #include "PasteAction.h"
+#include"GameManger.h"
+
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -26,6 +28,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output();
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
+    Ptr2_GMng = new GameManger(this) ;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
