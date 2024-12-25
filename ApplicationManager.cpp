@@ -20,6 +20,13 @@
 #include "PasteAction.h"
 #include"GameManger.h"
 
+
+
+
+
+
+
+
 #include "CutAction.h"
 ///TODO: Add #include for all action types
 
