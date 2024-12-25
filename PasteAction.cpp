@@ -1,11 +1,17 @@
 #include "PasteAction.h"
 #include "Grid.h"
 #include "CellPosition.h"
+#include "Flag.h"
+#include "WaterPit.h"
+#include "DangerZone.h"
+#include "Belt.h"
+#include "Workshop.h"
+#include "Antenna.h"
+#include "RotatingGear.h"
 #include "GameObject.h"
 #include "Input.h"
 #include "Output.h"
 #include <string>
-
 using namespace std;
 
 PasteAction::PasteAction(ApplicationManager* pApp) : Action(pApp) {
@@ -55,8 +61,39 @@ void PasteAction::Execute() {
         return;
     }
 
-    // Attempt to add the clipboard object to the selected cell
-    if (pGrid->AddObjectToCell(pClipboardObject)) {
+    // Create a new object based on the type of the clipboard object with the correct position
+    GameObject* pNewObject = nullptr;
+    switch (pClipboardObject->getObjType()) {
+    case FLAG:
+        pNewObject = new Flag(cellPosition); // New Flag with updated position
+        break;
+    case WATERPIT:
+        pNewObject = new WaterPit(cellPosition); // New WaterPit with updated position
+        break;
+    case DANGERZONE:
+        pNewObject = new DangerZone(cellPosition); // New DangerZone with updated position
+        break;
+    case BELT: {
+        Belt* belt = dynamic_cast<Belt*>(pClipboardObject);
+        pNewObject = new Belt(cellPosition, belt->GetEndPosition()); // Maintain belt properties
+        break;
+    }
+    case WORKSHOP:
+        pNewObject = new Workshop(cellPosition); // New Workshop with updated position
+        break;
+    case ANTENNA:
+        pNewObject = new Antenna(cellPosition); // New Antenna with updated position
+        break;
+    case ROTATING_GEAR:
+        pNewObject = new RotatingGear(cellPosition); // New RotatingGear with updated position
+        break;
+    default:
+        pOut->PrintMessage("Unknown game object type. Paste failed. Click to continue.");
+        return;
+    }
+
+    // Attempt to add the new object to the selected cell
+    if (pGrid->AddObjectToCell(pNewObject)) {
         string objectType;
         switch (pClipboardObject->getObjType()) {
         case FLAG: objectType = "Flag"; break;
@@ -72,11 +109,10 @@ void PasteAction::Execute() {
     }
     else {
         pOut->PrintMessage("Failed to paste the game object at the selected cell. It might already contain another object. Click to continue.");
+        delete pNewObject;
     }
-
-
 }
 
 PasteAction::~PasteAction() {
-    
+    // Destructor
 }
