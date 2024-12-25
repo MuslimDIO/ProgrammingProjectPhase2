@@ -34,6 +34,8 @@ void Flag::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->setReachedFlag(true);
 
 	pGrid->SetEndGame(true);
+	
+
 }
 
 

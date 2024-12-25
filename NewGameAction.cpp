@@ -15,7 +15,7 @@ void NewGameAction::Execute()
 	Output *pOut = pGrid->GetOutput();
 	Player *Ptr2_currPlayer = pGrid->GetCurrentPlayer();
 	pGrid->SetEndGame(0);
-
+	
 	CellPosition start(1);
 
 	for (int i = 0; i < MaxPlayerCount; i++)

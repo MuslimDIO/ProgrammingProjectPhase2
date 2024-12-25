@@ -34,7 +34,7 @@ Cell *Player::GetCell() const
 	return pCell;
 }
 
-void Player::SetHealth(int h)
+void Player::setHealth(int h)
 {
 	if (h < 0)
 	{
@@ -50,7 +50,7 @@ void Player::SetHealth(int h)
 	}
 }
 
-int Player::GetHealth()
+int Player::getHealth()
 {
 	return this->health;
 }
@@ -207,6 +207,11 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 		return;
 	}
 
+	if (pGrid->GetEndGame()) {
+		pOut->PrintMessage("Game has ended. Click anywhere to continue.");
+		return;
+	}
+
 	CellPosition currentPosition = pCell->GetCellPosition();
 	CellPosition destination = currentPosition;
 
@@ -268,6 +273,11 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			pObj->Apply(pGrid, this);
 		}
 
+		if (hasWon == true) {
+			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
+			EXIT;
+		}
+
 		pGrid->playerFinishedTurn();
 
 		if (pGrid->AreAllPlayersReady()) {
@@ -275,9 +285,7 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			pGrid->ResetTurnTracker(); // Reset for the next round
 	    }
 
-		/*if (pGrid->IsFlagCell(pCell->GetCellPosition())) {
-			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
-		}*/
+		
 
 }
 		/// TODO: Implement this function using the guidelines mentioned below
