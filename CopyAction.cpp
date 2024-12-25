@@ -78,9 +78,7 @@ void CopyAction::Execute()
             case ROTATING_GEAR:
                 objectType = "Rotating Gear";
                 break;
-            default:
-                objectType = "Unknown";
-                break;
+            
             }
             pOut->PrintMessage("Game object of type " + objectType + " copied successfully. Click to continue.");
         }

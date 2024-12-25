@@ -17,6 +17,7 @@
 #include "RebootAndRepair.h"
 #include "ExecuteCommandAction.h"
 #include "CopyAction.h"
+#include "PasteAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -90,6 +91,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case COPY:
 		// create an object of CopyAction here
 		pAct = new CopyAction(this);
+		break;
+
+	case PASTE:
+		// create an object of PasteAction here
+		pAct = new PasteAction(this);
 		break;
 
 	case NEW_GAME:
