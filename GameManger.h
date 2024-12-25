@@ -1,3 +1,4 @@
+// Scrapped idea 
 #ifndef _GAME_MANGER_H
 #define _GAME_MANGER_H
 #include "ApplicationManager.h"

@@ -190,7 +190,8 @@ void Player::ClearDrawing(Output *pOut) const
 	}
 
 	/// TODO: use the appropriate output function to draw the player with "cellColor" (to clear it)
-	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor, currDirection);
+	//pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor, currDirection);
+	pOut->DrawCell(pCell->GetCellPosition(),cellColor);
 }
 
 // ====== Game Functions ======
