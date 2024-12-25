@@ -19,6 +19,8 @@
 #include "CopyAction.h"
 #include "PasteAction.h"
 #include"GameManger.h"
+#include "UseConsumable.h"
+
 
 ///TODO: Add #include for all action types
 
@@ -146,6 +148,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	break;
    case EXECUTE_COMMANDS:
 	   pAct = new ExecuteCommandAction(this);
+	   break;
+   case USE_CONSUMABLE:
+	   pAct = new UseConsumable(this);
 	   break;
 		
 

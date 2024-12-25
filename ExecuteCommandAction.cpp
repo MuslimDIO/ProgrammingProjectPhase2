@@ -28,44 +28,27 @@ void ExecuteCommandAction::Execute()
     Grid *pGrid = pManager->GetGrid();
     Input *pIn = pGrid->GetInput();
     Output *pOut = pGrid->GetOutput();
-    Player *Ptr2_currPlayer = pGrid->GetCurrentPlayer();
+    Player *pPlayer = pGrid->GetCurrentPlayer();
     pOut->PrintMessage("Executing Saved Command");
     int x, y;
     pIn->GetPointClicked(x, y);
 
-    int l_svSize;
-    int l_avSize;
-    Command *l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
+    int savedCommSize;
+    int availCommSize;
+    Command *savedCommands = pPlayer->GetSavedCommands(savedCommSize);
 
-    Ptr2_currPlayer->Move(pGrid, l_SavedComm);
-    for (int i = 0; i < l_svSize; i++)
+    pPlayer->Move(pGrid, savedCommands);
+    for (int i = 0; i < savedCommSize; i++)
     {
-        l_SavedComm[i] = NO_COMMAND;
+        savedCommands[i] = NO_COMMAND;
     }
 
-    Command *l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+    Command *availableCommands = pPlayer->GenerateAvailableCommands(availCommSize);
 
-    pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
+    pOut->CreateCommandsBar(savedCommands, savedCommSize, availableCommands, availCommSize);
     pGrid->UpdateInterface();
     pGrid->AdvanceCurrentPlayer();
-     Ptr2_currPlayer = pGrid->GetCurrentPlayer();
-   Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
-    // int selected = -1;
-    // while (selected == -1)
-    //{ // loop until a valid command is selected
-    //     selected = pIn->GetSelectedCommandIndex();
-    // }
-
-    // bool l_saved = Ptr2_currPlayer->SaveCommand(selected);
-    // if (!l_saved)
-    //{
-    //     pOut->PrintMessage("Command Cannot be saved Due to Maximum Capacity");
-    //     return;
-    // }
-    // int l_avSize;
-
-    // Command* l_avComm = Ptr2_currPlayer->GetAvailableCommands(l_avSize);
-
-    // pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
-    // pOut->PrintMessage("Command saved successfully");
+     pPlayer = pGrid->GetCurrentPlayer();
+   pPlayer->GenerateAvailableCommands(availCommSize);
+   
 }

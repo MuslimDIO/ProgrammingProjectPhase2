@@ -101,7 +101,7 @@ struct UI_Info	// User Interface Info.
 	color FlagPoleColor;		// Color of the flag pole (the vertical part of the flag)
 	color DangerZoneCellColor;	// Color of the danger zone cells
 	color WaterPitsCellColor;	// Color of the water pits cells
-
+	color LaserColor;			// Color of the laser
 
 	int SpaceBetweenCommandsSlots; // Space between the slots of the saved commands in the commands bar
 	int AvailableCommandsXOffset;	// Size of the horizontal space before drawing the available commands

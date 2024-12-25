@@ -73,6 +73,8 @@ Output::Output()
 	/*UI.PlayerColors[2] = KHAKI;
 	UI.PlayerColors[3] = CHOCOLATE;*/
 
+	UI.LaserColor = TOMATO;
+
 	// Create the output window
 	pWind = CreateWind(UI.width + 15, UI.height, UI.wx, UI.wy);
 
@@ -528,7 +530,56 @@ void Output::DrawPlayer(const CellPosition &cellPos, int playerNum, color player
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+void Output::DrawLaser(const CellPosition& fromCellPos, const CellPosition& toCellPos) const
+{
+	int fromStartX = GetCellStartX(fromCellPos);
+	int fromStartY = GetCellStartY(fromCellPos);
+	int endStartX = GetCellStartX(toCellPos);
+	int endStartY = GetCellStartY(toCellPos);
 
+	int fromLaserX;
+	int endLaserX;
+	int fromLaserY;
+	int endLaserY;
+
+	if (fromCellPos.VCell() == toCellPos.VCell() || fromCellPos.HCell() == toCellPos.HCell())
+	{
+		fromLaserX = fromStartX + (UI.CellWidth / 2);
+		endLaserX = endStartX + (UI.CellWidth / 2);
+		fromLaserY = fromStartY + (UI.CellHeight / 2);
+		endLaserY = endStartY + (UI.CellHeight / 2);
+		pWind->SetPen(UI.LaserColor, UI.BeltLineWidth);
+		pWind->DrawLine(fromLaserX, fromLaserY, endLaserX, endLaserY);
+	}
+
+
+}
+
+void Output::ClearLaser(const CellPosition& fromCellPos, const CellPosition& toCellPos) const
+{
+	int fromStartX = GetCellStartX(fromCellPos);
+	int fromStartY = GetCellStartY(fromCellPos);
+	int endStartX = GetCellStartX(toCellPos);
+	int endStartY = GetCellStartY(toCellPos);
+
+	int fromLaserX;
+	int endLaserX;
+	int fromLaserY;
+	int endLaserY;
+
+	if (fromCellPos.VCell() == toCellPos.VCell() || fromCellPos.HCell() == toCellPos.HCell())
+	{
+		fromLaserX = fromStartX + (UI.CellWidth / 2);
+		endLaserX = endStartX + (UI.CellWidth / 2);
+		fromLaserY = fromStartY + (UI.CellHeight / 2);
+		endLaserY = endStartY + (UI.CellHeight / 2);
+		pWind->SetPen(UI.CellColor, UI.BeltLineWidth);
+		pWind->DrawLine(fromLaserX, fromLaserY, endLaserX, endLaserY);
+	}
+
+
+}
+//////////////////////////////////////////////////////////////////////////
 void Output::DrawBelt(const CellPosition &fromCellPos, const CellPosition &toCellPos) const
 {
 	// Validate the fromCell and toCell
