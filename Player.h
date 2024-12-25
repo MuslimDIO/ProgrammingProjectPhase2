@@ -37,6 +37,8 @@ public:
 
 	// ====== Setters and Getters ======
 
+	void Player::EnableExtendedMemory();
+
 	void SetCell(Cell *cell); // A setter for the pCell
 	Cell *GetCell() const;	  // A getter for the pCell
 

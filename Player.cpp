@@ -20,6 +20,10 @@ Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum
 
 // ====== Setters and Getters ======
 
+void Player::EnableExtendedMemory()
+{
+	
+}
 void Player::SetCell(Cell *cell)
 {
 	pCell = cell;
