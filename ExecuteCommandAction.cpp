@@ -38,18 +38,19 @@ void ExecuteCommandAction::Execute()
     Command *l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
 
     Ptr2_currPlayer->Move(pGrid, l_SavedComm);
+
     for (int i = 0; i < l_svSize; i++)
     {
         l_SavedComm[i] = NO_COMMAND;
     }
+    Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
 
-    Command *l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
-
-    pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
     pGrid->UpdateInterface();
     pGrid->AdvanceCurrentPlayer();
-     Ptr2_currPlayer = pGrid->GetCurrentPlayer();
-   Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+    
+    Ptr2_currPlayer = pGrid->GetCurrentPlayer();
+    Command * l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+    pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
     // int selected = -1;
     // while (selected == -1)
     //{ // loop until a valid command is selected
