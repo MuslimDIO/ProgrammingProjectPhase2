@@ -28,7 +28,7 @@ class Player
 						  // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
 	Command _AvailableCommands[COMMANDS_COUNT] = {NO_COMMAND};
 	Command _SavedCommands[6] = {NO_COMMAND};
-	int _availableCommandsSize;
+	int _availableCommandsSize= COMMANDS_COUNT;
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations

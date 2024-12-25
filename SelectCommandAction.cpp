@@ -1,3 +1,26 @@
+/**
+ * @file SelectCommandAction.cpp
+ * @brief Implementation of the SelectCommandAction class.
+ *
+ * This file contains the implementation of the SelectCommandAction class,
+ * which is responsible for handling the action of selecting a command
+ * from the available commands bar in the application.
+ *
+ * The SelectCommandAction class inherits from the Action class and
+ * overrides the ReadActionParameters and Execute methods to perform
+ * the specific action of selecting and saving a command.
+ *
+ * The class interacts with various components such as Grid, Input,
+ * Output, and Player to achieve its functionality.
+ *
+ * @see SelectCommandAction
+ * @see Action
+ * @see Grid
+ * @see Input
+ * @see Output
+ * @see Player
+ * @author Ibrahim Mohsen
+ */
 #include "SelectCommandAction.h"
 #include "Input.h"
 #include "Output.h"
@@ -24,7 +47,6 @@ void SelectCommandAction::ReadActionParameters()
 
 void SelectCommandAction::Execute()
 {
-
     ReadActionParameters();
     Grid *pGrid = pManager->GetGrid();
     Input *pIn = pGrid->GetInput();
