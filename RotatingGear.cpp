@@ -131,8 +131,16 @@ void RotatingGear::Apply(Grid* pGrid, Player* pPlayer)
     }
 #endif 
     //  Apply the rotation effect to the player
-
+    pPlayer->ClearDrawing(pOut);
+    CellPosition currentPos = pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition();
+    pOut->DrawRotatingGear(currentPos,isClockWise);
     pPlayer->Rotate(isClockWise, pOut); // Rotate the player in the specified direction
+   
+
+    int x, y;
+    pOut->PrintMessage("the player has been rotated succefly");
+    pIn->GetPointClicked(x, y);
+    pOut->ClearStatusBar();
 }
 
 bool RotatingGear::GetisClockWise() const

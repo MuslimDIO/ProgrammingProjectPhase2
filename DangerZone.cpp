@@ -44,6 +44,7 @@ void DangerZone::Apply(Grid *pGrid, Player *pPlayer)
 
     // Step 3: Check if the player's health is zero
     if (newHealth == 0) {
+        pPlayer->ClearDrawing(pOut);
         pOut->PrintMessage("Your health has reached zero. Game over. Click to continue");
         pGrid->SetEndGame(true); // End the game
         pIn->GetPointClicked(x, y);
