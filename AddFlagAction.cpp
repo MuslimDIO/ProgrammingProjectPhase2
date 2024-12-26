@@ -1,7 +1,7 @@
 #include "AddFlagAction.h"
 
 
-static int flagAdded = 0;
+ int flagAdded = 0;
 AddFlagAction::AddFlagAction(ApplicationManager *pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer

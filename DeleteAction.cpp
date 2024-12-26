@@ -6,7 +6,8 @@
 #include <string>
 
 using namespace std;
-
+extern int AntennaAdded; // forward decleration from AddAntennaAction.cpp to check if the antenna is added or not
+extern int flagAdded; // forward decleration from AddFlagAction.cpp to check if the flag is added or not
 DeleteAction::DeleteAction(ApplicationManager* pApp) : Action(pApp) {
     // Constructor initializes the base Action with the ApplicationManager pointer.
 }
@@ -41,6 +42,20 @@ void DeleteAction::Execute() {
     Grid* pGrid = pManager->GetGrid();
     Output* pOut = pGrid->GetOutput();
 
+    GameObject* pGameObject = nullptr;
+
+	pGameObject = pGrid->GetGameObject(cellPosition);
+   
+    if (pGameObject->getObjType() == ANTENNA) {
+
+        AntennaAdded = 0;
+    }
+     
+	if (pGameObject->getObjType() == FLAG) {
+		flagAdded = 0;
+	}
+
+
     bool deleted = pGrid->RemoveObjectFromCell(cellPosition);
     //update interface
     pGrid->UpdateInterface();
@@ -55,6 +70,7 @@ void DeleteAction::Execute() {
         pOut->ClearStatusBar();
         return;
     }
+
 
 
     

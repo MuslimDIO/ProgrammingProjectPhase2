@@ -13,6 +13,8 @@
 #include "Output.h"
 #include <string>
 using namespace std;
+extern int AntennaAdded; // forward decleration from AddAntennaAction.cpp to check if the antenna is added or not
+extern int flagAdded; // forward decleration from AddFlagAction.cpp to check if the flag is added or not
 
 PasteAction::PasteAction(ApplicationManager* pApp) : Action(pApp) {
     // Constructor initializes the base Action with the ApplicationManager pointer.
@@ -85,10 +87,12 @@ void PasteAction::Execute() {
     case ANTENNA: 
         pNewObject = new Antenna(cellPosition); // New Antenna with updated position
         break;
+		//AntennaAdded++;
 
     case FLAG:
         pNewObject = new Flag(cellPosition); // New Flag with updated position
         break;
+		//flagAdded++;
 
     case ROTATING_GEAR:
         pNewObject = new RotatingGear(cellPosition); // New RotatingGear with updated position

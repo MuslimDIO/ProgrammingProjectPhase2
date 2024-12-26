@@ -1,6 +1,6 @@
 #include "AddAntennaAction.h"
 
-static int AntennaAdded = 0;
+int AntennaAdded = 0;
 AddAntennaAction::AddAntennaAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -8,6 +8,7 @@ AddAntennaAction::AddAntennaAction(ApplicationManager* pApp) : Action(pApp)
 
 void AddAntennaAction::ReadActionParameters()
 {
+
 	// 1- Get a Pointer to the Input / Output Interfaces from the Application Manager
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
