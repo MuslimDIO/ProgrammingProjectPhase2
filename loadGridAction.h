@@ -38,15 +38,15 @@ public:
      * Additionally, it displays a message indicating that the grid is being loaded.
      */
     virtual void ReadActionParameters();
-/**
- * @brief Executes the action of loading a grid from a file.
- * 
- * This function reads the parameters required for the action, opens the specified file,
- * and loads all game objects into the grid from the file. After loading, it prints a 
- * success message.
- * 
- * @note The file to be loaded is expected to have a ".txt" extension.
- */
+    /**
+     * @brief Executes the action of loading a grid from a file.
+     *
+     * This function reads the parameters required for the action, opens the specified file,
+     * and loads all game objects into the grid from the file. After loading, it prints a
+     * success message.
+     *
+     * @note The file to be loaded is expected to have a ".txt" extension.
+     */
     virtual void Execute(); // Loads the Grid from a file
 
     virtual ~LoadGridAction(); // A Virtual Destructor

@@ -37,12 +37,12 @@ void SaveGrid::Execute()
   Grid *pGrid = pManager->GetGrid();
   ofstream l_outFile;
   l_outFile.open(_fileName + ".txt", ios::out);
-  // l_outFile<<"start file"<<endl;
+
   for (uint8_t i = 0; i <= ROTATING_GEAR; i++)
   {
     pGrid->SaveAll(l_outFile, (GameObject_Type)i);
   }
-  // l_outFile<<"END file"<<endl;
+
   l_outFile.close();
 
   Output *pOut = pGrid->GetOutput();

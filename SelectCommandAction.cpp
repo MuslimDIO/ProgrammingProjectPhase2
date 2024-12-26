@@ -44,7 +44,16 @@ void SelectCommandAction::ReadActionParameters()
     Output *pOut = pGrid->GetOutput();
     pOut->PrintMessage("Select a command from the available commands bar");
 }
-
+/**
+ * @brief Executes the action of selecting and saving a command.
+ *
+ * This method first reads the action parameters by prompting the user to select a command
+ * from the available commands bar. It then retrieves the current player and waits for a valid
+ * command to be selected. Once a command is selected, it attempts to save the command for the
+ * current player. If the command cannot be saved due to maximum capacity, an error message is
+ * displayed. Otherwise, it updates the commands bar with the saved and available commands and
+ * displays a success message.
+ */
 void SelectCommandAction::Execute()
 {
     ReadActionParameters();
