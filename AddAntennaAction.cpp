@@ -1,6 +1,6 @@
 #include "AddAntennaAction.h"
 
-
+static int AntennaAdded = 0;
 AddAntennaAction::AddAntennaAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -30,6 +30,13 @@ void AddAntennaAction::ReadActionParameters()
 		pIn->GetPointClicked(x, y);
 		return;
 	}
+	if (AntennaAdded != 0)
+	{
+		pOut->PrintMessage("Error: there is already an Antenna! Click to continue...");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		return;
+	}
 
 	// 3- Clear messages
 	pOut->ClearStatusBar();
@@ -49,10 +56,24 @@ void AddAntennaAction::Execute()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	// 3- Add the Antenna object to the GameObject of its Cell:
-	bool added = pGrid->AddObjectToCell(pAntenna);
+	
+	// 3-Add the Antenna object to the GameObject of its Cell:
 
-	// 4- if the Antenna cannot be added
+	if (AntennaAdded != 0)
+	{
+		pOut->PrintMessage("Error: there is already an Antenna! Click to continue...");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		return;
+	}
+	bool added = pGrid->AddObjectToCell(pAntenna);
+	if (added == true)
+	{
+		pOut->PrintMessage("Antenna added successfully");
+		(AntennaAdded)++;
+	}
+
+	// 4- check if the Antenna cannot be added
 	if (added == false)
 	{
 		pOut->PrintMessage("Error: Cell already has an object ! Click to continue...");
