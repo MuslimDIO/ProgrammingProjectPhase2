@@ -1,8 +1,6 @@
 
 
-#define APP_ACTIVE //comment this to debug pahse 1 and uncomment definition on tesrcode.cpp
-
-
+#define APP_ACTIVE //comment this to debug pahse 1 and uncomment definition on testcode.cpp
 #ifdef APP_ACTIVE
 #include "ApplicationManager.h"
 

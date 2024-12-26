@@ -1,5 +1,5 @@
 //if in debugging phase 1 state remove this comment and comment appactive in main .cpp
-//define  DEBUGGING_STATE
+//#define  DEBUGGING_STATE
 
 #ifdef DEBUGGING_STATE 
 
