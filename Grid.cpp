@@ -11,6 +11,8 @@
 #include "RotatingGear.h"
 #include <fstream>
 #include <iostream>
+extern int flagAdded;
+extern int AntennaAdded;
 using namespace std;
 class CellPosition;
 Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
@@ -343,6 +345,7 @@ void Grid::LoadAll(ifstream &a_InFile, GameObject_Type a_type)
 		{
 		case FLAG:
 			ptr2_GObj = new Flag(CellPosition(0, 0));
+			flagAdded++;
 			break;
 		case WATERPIT:
 			ptr2_GObj = new WaterPit(CellPosition(0, 0));
@@ -358,6 +361,7 @@ void Grid::LoadAll(ifstream &a_InFile, GameObject_Type a_type)
 			break;
 		case ANTENNA:
 			ptr2_GObj = new Antenna(CellPosition(0, 0));
+			AntennaAdded++;
 			break;
 		case ROTATING_GEAR:
 			ptr2_GObj = new RotatingGear(CellPosition(0, 0));
