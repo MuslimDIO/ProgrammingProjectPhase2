@@ -22,7 +22,6 @@ Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum
 
 void Player::EnableExtendedMemory()
 {
-	
 }
 void Player::SetCell(Cell *cell)
 {
@@ -127,7 +126,6 @@ int Player::getConsumableCount() const
 	return consumableCount;
 }
 
-
 void Player::setReachedFlag(bool flag)
 {
 	hasWon = flag;
@@ -161,18 +159,20 @@ void Player::ClearDrawing(Output *pOut) const
 
 // ====== Game Functions ======
 
-void Player::Move(Grid* pGrid, Command moveCommands[])
+void Player::Move(Grid *pGrid, Command moveCommands[])
 {
-	Output* pOut = pGrid->GetOutput();
-	Input* pIn = pGrid->GetInput();
+	Output *pOut = pGrid->GetOutput();
+	Input *pIn = pGrid->GetInput();
 
-	if (!getCanMove()) {
+	if (!getCanMove())
+	{
 		pOut->PrintMessage("You can't move this turn.");
 		setCanMove(true);
 		return;
 	}
 
-	if (pGrid->GetEndGame()) {
+	if (pGrid->GetEndGame())
+	{
 		pOut->PrintMessage("Game has ended. Click anywhere to continue.");
 		return;
 	}
@@ -180,11 +180,11 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 	CellPosition currentPosition = pCell->GetCellPosition();
 	CellPosition destination = currentPosition;
 
+	for (int i = 0; i < 6; i++)
+	{
 
-
-	for (int i = 0; i < 6; i++) {
-
-		switch (moveCommands[i]) {
+		switch (moveCommands[i])
+		{
 		case NO_COMMAND:
 			continue; 
 		case MOVE_FORWARD_ONE_STEP:
@@ -216,11 +216,11 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			continue;
 		}
 
-		if (!destination.IsValidCell()) {
+		if (!destination.IsValidCell())
+		{
 			pOut->PrintMessage("Invalid move. Cannot move outside the grid.");
 			return;
 		}
-
 
 		pGrid->UpdatePlayerCell(this, destination);
 
@@ -229,14 +229,13 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 		pIn->GetPointClicked(x, y);
 
 		pOut->ClearStatusBar();
+	}
 
-		
-		}
-
-		GameObject* pObj = pCell->GetGameObject();
-		if (pObj != nullptr) {
-			pObj->Apply(pGrid, this);
-		}
+	GameObject *pObj = pCell->GetGameObject();
+	if (pObj != nullptr)
+	{
+		pObj->Apply(pGrid, this);
+	}
 
 		if (hasWon == true) {
 			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
@@ -245,7 +244,7 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 			EXIT;
 		}
 
-		pGrid->playerFinishedTurn();
+	pGrid->playerFinishedTurn();
 
 		if (pGrid->AreAllPlayersReady()) {
 			pGrid->ShootingPhase(); 
@@ -257,24 +256,29 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 }
 	
 
-void Player::ShootingPhase(Grid* pGrid, Player* opponent) {
-	Output* pOut = pGrid->GetOutput();
-	Input* pIn = pGrid->GetInput();
+void Player::ShootingPhase(Grid *pGrid, Player *opponent)
+{
+	Output *pOut = pGrid->GetOutput();
+	Input *pIn = pGrid->GetInput();
 
 	CellPosition myPosition = pCell->GetCellPosition();
 	CellPosition opponentPosition = opponent->GetCell()->GetCellPosition();
 
 	bool canShoot = false;
-	if (currDirection == UP && myPosition.HCell() == opponentPosition.HCell() && myPosition.VCell() > opponentPosition.VCell()) {
+	if (currDirection == UP && myPosition.HCell() == opponentPosition.HCell() && myPosition.VCell() > opponentPosition.VCell())
+	{
 		canShoot = true;
 	}
-	else if (currDirection == DOWN && myPosition.HCell() == opponentPosition.HCell() && myPosition.VCell() < opponentPosition.VCell()) {
+	else if (currDirection == DOWN && myPosition.HCell() == opponentPosition.HCell() && myPosition.VCell() < opponentPosition.VCell())
+	{
 		canShoot = true;
 	}
-	else if (currDirection == RIGHT && myPosition.VCell() == opponentPosition.VCell() && myPosition.HCell() < opponentPosition.HCell()) {
+	else if (currDirection == RIGHT && myPosition.VCell() == opponentPosition.VCell() && myPosition.HCell() < opponentPosition.HCell())
+	{
 		canShoot = true;
 	}
-	else if (currDirection == LEFT && myPosition.VCell() == opponentPosition.VCell() && myPosition.HCell() > opponentPosition.HCell()) {
+	else if (currDirection == LEFT && myPosition.VCell() == opponentPosition.VCell() && myPosition.HCell() > opponentPosition.HCell())
+	{
 		canShoot = true;
 	}
 
@@ -307,7 +311,7 @@ void Player::Restart()
 	hackDevice = false;
 	hasDoubleLaser = 0;
 	currDirection = RIGHT;
-	for(int i =0; i<6;i++)
+	for (int i = 0; i < 6; i++)
 	{
 		_SavedCommands[i] = NO_COMMAND;
 	}
@@ -353,11 +357,11 @@ void Player::Rotate(bool isClockWise, Output *ptr2_Out)
 }
 /**
  * @brief Generates a list of available commands for the player based on their current health.
- * 
+ *
  * This function generates a random set of commands that the player can execute. The number of commands
  * generated is based on the player's current health, with a minimum of 5 commands. The commands are stored
  * in the _AvailableCommands array.
- * 
+ *
  * @param a_size Reference to an integer that will be set to the number of available commands generated.
  * @return Command* Pointer to the array of available commands.
  * @author Ibrahim Mohsen
@@ -371,74 +375,84 @@ Command *Player ::GenerateAvailableCommands(int &a_size)
 
 	int l_loopMax = getHealth() >= 5 ? getHealth() : 5;
 	a_size = l_loopMax;
-	_availableCommandsSize= l_loopMax;
+	_availableCommandsSize = l_loopMax;
 	for (int i = 0; i < l_loopMax; i++)
 	{
 		int randomValue = distrib(gen);
 		_AvailableCommands[i] = (Command)randomValue;
-
 	}
 	for (int i = l_loopMax; i < COMMANDS_COUNT; i++)
 	{
-		
-		_AvailableCommands[i] = NO_COMMAND;
 
+		_AvailableCommands[i] = NO_COMMAND;
 	}
 	return _AvailableCommands;
 }
 /**
  * @brief Retrieves the saved commands for the player.
- * 
+ *
  * This function returns a pointer to the array of saved commands for the player.
  * It also sets the size of the array to the provided reference parameter.
- * 
+ *
  * @param a_size Reference to an integer where the size of the saved commands array will be stored.
  * @return Command* Pointer to the array of saved commands.
  */
-Command * Player::GetSavedCommands(int & a_size) 
-{  
-	  a_size = 5;
+Command *Player::GetSavedCommands(int &a_size)
+{
+	a_size = 5;
 	return _SavedCommands;
 }
 
-
 /**
  * @brief Saves a command to the player's saved commands list.
- * 
- * This function attempts to save a command, identified by its index, 
- * to the player's list of saved commands. It searches for the first 
+ *
+ * This function attempts to save a command, identified by its index,
+ * to the player's list of saved commands. It searches for the first
  * available slot (indicated by NO_COMMAND) and saves the command there.
- * 
+ *
  * @param a_commandIndex The index of the command to be saved from the available commands list.
  * @return true if the command was successfully saved to an available slot.
  * @return false if there are no available slots to save the command.
  * @author Ibrahim Mohsen
  */
-bool  Player::SaveCommand(int  a_commandIndex)
+bool Player::SaveCommand(int a_commandIndex)
 {
 	for (int i = 0; i < 5; i++)
 	{
 		if (_SavedCommands[i] == NO_COMMAND)
 		{
 			_SavedCommands[i] = _AvailableCommands[a_commandIndex];
-			return true ;
+			if(i==4){
+				ResetAvailableCommands();
+			}
+			return true;
+		
 		}
 	}
 	return false;
 }
 /**
  * @brief Retrieves the available commands for the player.
- * 
+ *
  * This function returns a pointer to an array of Command objects that are available to the player.
  * It also sets the size of the available commands array through the reference parameter.
- * 
+ *
  * @param a_size Reference to an integer where the size of the available commands array will be stored.
  * @return Command* Pointer to the array of available Command objects.
  * @author Ibrahim Mohsen
  */
-Command * Player::GetAvailableCommands(int & a_size)
+Command *Player::GetAvailableCommands(int &a_size)
 {
 	a_size = _availableCommandsSize;
 	return _AvailableCommands;
 }
 
+
+void Player::ResetAvailableCommands(void)
+{
+	for (int i = 0; i < COMMANDS_COUNT; i++)
+	{
+		_AvailableCommands[i] =NO_COMMAND;
+	}
+
+}
