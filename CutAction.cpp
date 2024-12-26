@@ -63,7 +63,8 @@ void CutAction::Execute()
     GameObject *pGameObject = nullptr;
     pGrid->RemoveObjectFromCell(cellPosition); // This will remove the object from the cell
     pGameObject = pGrid->GetClipboard();       //  GetClipboard returns the last object added to clipboard
-
+   ///@author Ibrahim Mohsen
+   ///@brief decrement the global variable for flags and antennas so that paste and add functions can work correctly
     if (pGameObject)
     {
         if (dynamic_cast<Flag *>(pGameObject))
