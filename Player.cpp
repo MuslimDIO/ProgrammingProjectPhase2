@@ -237,11 +237,12 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		pObj->Apply(pGrid, this);
 	}
 
-	if (hasWon == true)
-	{
-		pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
-		EXIT;
-	}
+		if (hasWon == true) {
+			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
+			int x, y;
+			pIn->GetPointClicked(x, y);
+			EXIT;
+		}
 
 	pGrid->playerFinishedTurn();
 

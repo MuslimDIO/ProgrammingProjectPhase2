@@ -203,6 +203,7 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		break;
 	}
 	pWind->SetPen(triangleColor, penWidth);
+	pWind->SetBrush(triangleColor);
 	pWind->DrawTriangle(x1, y1, x2, y2, x3, y3, style);
 }
 
