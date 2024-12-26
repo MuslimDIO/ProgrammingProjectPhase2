@@ -70,6 +70,10 @@ void CutAction::Execute()
         {
             flagAdded--;
         }
+        if (dynamic_cast<Antenna *>(pGameObject))
+        {
+            AntennaAdded--;
+        }
     }
     // check if set clipboard added a valid object to clipboard
 
