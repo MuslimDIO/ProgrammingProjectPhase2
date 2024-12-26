@@ -19,8 +19,8 @@ Output::Output()
 	UI.ToolBarHeight = 55;
 	UI.MenuItemWidth = 55;
 
-	UI.width = 1210; // make it divisible by NumHorizontalCells
-	UI.height = 610;
+	UI.width = 1815; // make it divisible by NumHorizontalCells
+	UI.height = 815;
 	UI.wx = 5;
 	UI.wy = 5;
 

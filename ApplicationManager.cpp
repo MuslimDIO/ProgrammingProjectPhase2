@@ -39,6 +39,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output();
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
+
     Ptr2_GMng = new GameManger(this) ;
 }
 
