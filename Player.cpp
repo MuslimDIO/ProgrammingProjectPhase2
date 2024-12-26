@@ -240,6 +240,8 @@ void Player::Move(Grid* pGrid, Command moveCommands[])
 
 		if (hasWon == true) {
 			pOut->PrintMessage("Player " + std::to_string(playerNum) + " wins!");
+			int x, y;
+			pIn->GetPointClicked(x, y);
 			EXIT;
 		}
 
