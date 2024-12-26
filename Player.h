@@ -23,7 +23,7 @@ class Player
 	bool canMove;
 	bool toolKit; // a boolean to indicate whether the player has a toolkit or not
 	bool hackDevice; // a boolean to indicate whether the player has a hacking device or not
-	string lasertype;						  // carried laser type (default, double laser)
+	bool hasDoubleLaser;						  // carried laser type (default, double laser)
 	bool isHacked;		  // isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
 	bool hasWon;		  // hasWon (to indicate whether the player has won the game)
 	
@@ -31,6 +31,8 @@ class Player
 	Command _AvailableCommands[COMMANDS_COUNT] = {NO_COMMAND};
 	Command _SavedCommands[6] = {NO_COMMAND};
 	int _availableCommandsSize= COMMANDS_COUNT;
+
+	window* pWind;
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations
@@ -45,14 +47,14 @@ public:
 	void setHealth(int h); // A setter for the health points
 	int getHealth();	   // A getter for the health points
 
-	void setLaserType(string l); // A setter for the laser type
-	string getLaserType();		 // A getter for the laser type
+	void setDoubleLaser(bool l); // A setter for the laser type
+	bool getDoubleLaser() const;		 // A getter for the laser type
 
 	void setCanMove(bool c); // A setter for the canMove
-	bool getCanMove() ; // A getter for the canMove
+	bool getCanMove() const; // A getter for the canMove
 
 	void setHacked(bool h); // A setter for the isHacked
-	bool getHacked();		// A getter for the isHacked
+	bool getHacked() const;		// A getter for the isHacked
 
 	void hasToolKit(bool t);		   // A getter for the consumables
 	void hasHackDevice(bool h);			// A function to add a consumable to the player's inventory

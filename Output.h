@@ -83,7 +83,11 @@ public:
 	//	Player_1
 	void DrawPlayer(const CellPosition & cellpos, int playerNum, color playerColor, Direction direction) const;  
 	
-	// TODO: Complete the implementation of the following function
+	void DrawLaser(const CellPosition& fromCellPos, const CellPosition& toCellPos) const;
+
+	void ClearLaser(const CellPosition& fromCellPos, const CellPosition& toCellPos) const;
+
+		// TODO: Complete the implementation of the following function
 	// Draws a belt from start cell to end cell (start < end)
 	// Belt is drawn as a line from the start cell to the end cell
 	//		with a triangle at the middle of the line pointing to the end cell and showing the direction

@@ -21,21 +21,23 @@ void ExecuteCommandAction::ReadActionParameters()
     Output *pOut = pGrid->GetOutput();
 }
 
+
+
 void ExecuteCommandAction::Execute()
 {
 
     ReadActionParameters();
-    Grid *pGrid = pManager->GetGrid();
-    Input *pIn = pGrid->GetInput();
-    Output *pOut = pGrid->GetOutput();
-    Player *Ptr2_currPlayer = pGrid->GetCurrentPlayer();
+    Grid* pGrid = pManager->GetGrid();
+    Input* pIn = pGrid->GetInput();
+    Output* pOut = pGrid->GetOutput();
+    Player* Ptr2_currPlayer = pGrid->GetCurrentPlayer();
     pOut->PrintMessage("Executing Saved Command");
     int x, y;
     pIn->GetPointClicked(x, y);
 
     int l_svSize;
     int l_avSize;
-    Command *l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
+    Command* l_SavedComm = Ptr2_currPlayer->GetSavedCommands(l_svSize);
 
     Ptr2_currPlayer->Move(pGrid, l_SavedComm);
 
@@ -47,9 +49,9 @@ void ExecuteCommandAction::Execute()
 
     pGrid->UpdateInterface();
     pGrid->AdvanceCurrentPlayer();
-    
+
     Ptr2_currPlayer = pGrid->GetCurrentPlayer();
-    Command * l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
+    Command* l_avComm = Ptr2_currPlayer->GenerateAvailableCommands(l_avSize);
     pOut->CreateCommandsBar(l_SavedComm, l_svSize, l_avComm, l_avSize);
     // int selected = -1;
     // while (selected == -1)

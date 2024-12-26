@@ -9,7 +9,7 @@
 Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT), canMove(true)
 {
 	this->pCell = pCell;
-	lasertype = "default";
+	hasDoubleLaser = false;
 	toolKit = false;
 	hackDevice = false;
 	isHacked = false;
@@ -54,14 +54,14 @@ int Player::getHealth()
 	return this->health;
 }
 
-void Player::setLaserType(string l)
+void Player::setDoubleLaser(bool l)
 {
-	lasertype = l;
+	hasDoubleLaser = l;
 }
 
-string Player::getLaserType()
+bool Player::getDoubleLaser() const
 {
-	return lasertype;
+	return hasDoubleLaser;
 }
 
 void Player::setCanMove(bool c)
@@ -69,7 +69,7 @@ void Player::setCanMove(bool c)
 	canMove = c;
 }
 
-bool Player::getCanMove()
+bool Player::getCanMove() const 
 {
 	return canMove;
 }
@@ -80,7 +80,7 @@ void Player::setHacked(bool h)
 	setCanMove(!isHacked);
 }
 
-bool Player::getHacked()
+bool Player::getHacked() const
 {
 	return isHacked;
 }
@@ -131,38 +131,6 @@ void Player::setReachedFlag(bool flag)
 	hasWon = flag;
 }
 
-#if 0
-bool Player::UseConsumable(const string consumable, Output* pOut)
-{
-	for (int i = 0; i < consumableCount; i++)
-	{
-		if (ownedConsumables[i] == consumable)
-		{
-			if (ownedConsumables[i] == consumable) {
-				// Apply consumable effects
-				if (consumable == "Toolkit") {
-					setHealth(health + 2); // Restore health
-					pOut->PrintMessage("Used Toolkit: Restored 2 health points.");
-				}
-				else if (consumable == "HackDevice") {
-					// logic for the hack device ely ana mesh 3aref eh howa aslan
-					setHacked(true); //5alas 3rfto bas 
-					pOut->PrintMessage("Used Hack Device: Opponent is blocked this round.");
-				}
-
-				// Remove the consumable from the array
-				for (int j = i; j < consumableCount - 1; ++j) {
-					ownedConsumables[j] = ownedConsumables[j + 1];
-				}
-				ownedConsumables[--consumableCount] = ""; // Clear the last slot
-				return true;
-			}
-		}
-		pOut->PrintMessage("Consumable not available.");
-		return false; // Consumable not found
-	}
-}
-#endif
 // ====== Drawing Functions ======
 
 void Player::Draw(Output *pOut) const
@@ -171,12 +139,10 @@ void Player::Draw(Output *pOut) const
 
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor, currDirection);
 
-	/// TODO: use the appropriate output function to draw the player with "playerColor"
 }
 
 void Player::ClearDrawing(Output *pOut) const
 {
-	/// TODO: Modify the cellColor to draw the correct cellColor (hint: if cell contains non-default cellColor)
 	color cellColor = UI.CellColor;
 
 	if (pCell->HasWaterPit())
@@ -188,9 +154,7 @@ void Player::ClearDrawing(Output *pOut) const
 		cellColor = UI.CellColor_DangerZone;
 	}
 
-	/// TODO: use the appropriate output function to draw the player with "cellColor" (to clear it)
-	// pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor, currDirection);
-	pOut->DrawCell(pCell->GetCellPosition(), cellColor);
+	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor, currDirection);
 }
 
 // ====== Game Functions ======
@@ -203,6 +167,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	if (!getCanMove())
 	{
 		pOut->PrintMessage("You can't move this turn.");
+		setCanMove(true);
 		return;
 	}
 
@@ -221,7 +186,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		switch (moveCommands[i])
 		{
 		case NO_COMMAND:
-			continue; // Skip if no command
+			continue; 
 		case MOVE_FORWARD_ONE_STEP:
 			destination.AddCellNum(1, currDirection);
 			break;
@@ -280,22 +245,15 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 
 	pGrid->playerFinishedTurn();
 
-	if (pGrid->AreAllPlayersReady())
-	{
-		pGrid->ShootingPhase();	   // Trigger the shooting phase
-		pGrid->ResetTurnTracker(); // Reset for the next round
-	}
-}
-/// TODO: Implement this function using the guidelines mentioned below
+		if (pGrid->AreAllPlayersReady()) {
+			pGrid->ShootingPhase(); 
+			pGrid->ResetTurnTracker(); 
+	    }
 
-// - If a player has 5 (could have less) saved moveCommands, the robot will execute the first saved command,
-//		then wait for a mouse click (display a message "Click anywhere to execute the next command").
-//		After executing all the 5 saved commands, the game object effect at the final destination cell will
-//		be applied.
-//
-// - Use the CellPosition class to help you calculate the destination cell using the current cell
-// - Use the Grid class to update pCell
-// - Don't forget to apply game objects at the final destination cell and check for game ending
+		
+
+}
+	
 
 void Player::ShootingPhase(Grid *pGrid, Player *opponent)
 {
@@ -323,17 +281,25 @@ void Player::ShootingPhase(Grid *pGrid, Player *opponent)
 		canShoot = true;
 	}
 
-	if (canShoot)
-	{
-		int damage = 1;
+	if (canShoot) {
+		int damage = getDoubleLaser() ? 2 : 1;
 		opponent->setHealth(opponent->getHealth() - damage);
 
+		
+		pOut->DrawLaser(myPosition, opponentPosition);
+
+		Sleep(500);
+
+		pOut->ClearLaser(myPosition,opponentPosition);
+
+		pGrid->UpdateInterface();
 		pOut->PrintMessage("Player " + std::to_string(playerNum) + " hit Player " + std::to_string(opponent->playerNum) + "! Click to continue.");
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
 	}
 }
+
 
 void Player::Restart()
 {
@@ -342,7 +308,7 @@ void Player::Restart()
 	setHacked(false);
 	toolKit = false;
 	hackDevice = false;
-	lasertype = "default";
+	hasDoubleLaser = 0;
 	currDirection = RIGHT;
 	for (int i = 0; i < 6; i++)
 	{
@@ -360,6 +326,11 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(currDirection) + ", ";
 	playersInfo += to_string(health) + ")";
+	playersInfo += (isHacked ? " [Hacked]" : "");
+	playersInfo += (toolKit ? " [Toolkit]" : "");
+	playersInfo += (hackDevice ? " [HackDevice]" : "");
+	playersInfo += (hasDoubleLaser ? " [DoubleLaser]" : "");
+	playersInfo += "\t";
 }
 
 void Player::Rotate(bool isClockWise, Output *ptr2_Out)

@@ -19,6 +19,8 @@
 #include "CopyAction.h"
 #include "PasteAction.h"
 #include"GameManger.h"
+#include "UseConsumable.h"
+
 
 
 
@@ -37,6 +39,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output();
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
+
     Ptr2_GMng = new GameManger(this) ;
 }
 
@@ -165,6 +168,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	break;
    case EXECUTE_COMMANDS:
 	   pAct = new ExecuteCommandAction(this);
+	   break;
+   case USE_CONSUMABLE:
+	   pAct = new UseConsumable(this);
 	   break;
 		
 

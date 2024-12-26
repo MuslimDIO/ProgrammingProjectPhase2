@@ -56,8 +56,8 @@ void CutAction::Execute() {
     // Retrieve the game object from the selected cell
     GameObject* pGameObject = nullptr;
     pGrid->RemoveObjectFromCell(cellPosition); // This will remove the object from the cell
-    pGameObject = pGrid->GetClipboard(); // Assuming GetClipboard returns the last removed object
-
+    pGameObject = pGrid->GetClipboard(); //  GetClipboard returns the last object added to clipboard 
+// check if set clipboard added a valid object to clipboard
     if (pGameObject == nullptr) {
         pOut->PrintMessage("No game object in the selected cell to cut. Click to continue.");
         int x, y;
