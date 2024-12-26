@@ -57,7 +57,7 @@ void Belt::Apply(Grid *pGrid, Player *pPlayer)
 	pOut->PrintMessage("You have reached a belt.Click to continue"); // Print a message
 
 	// Wait for a mouse click (get coordinates)
-	int x, y; //// Declare variables to store the click coordinates
+	int x, y; 
 	pIn->GetPointClicked(x, y);
 
 	// Move the player to the end position
