@@ -45,6 +45,8 @@ void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 
 	
 	pGrid->SetEndGame(true); // End the game
+
+
 }
 
 
