@@ -69,6 +69,14 @@ void PasteAction::Execute() {
         pOut->ClearStatusBar();
         return;
     }
+    // Exclude pasting antennas
+    if (pClipboardObject->getObjType() == ANTENNA) {
+        pOut->PrintMessage("Cannot paste an antenna. This type is excluded. Click to continue.");
+        int x, y;
+        pGrid->GetInput()->GetPointClicked(x, y);
+        pOut->ClearStatusBar();
+        return;
+    }
 
     // Create a new object based on the type of the clipboard object with the correct position
     GameObject* pNewObject = nullptr;
@@ -88,9 +96,7 @@ void PasteAction::Execute() {
     case WORKSHOP:
         pNewObject = new Workshop(cellPosition); // New Workshop with updated position
         break;
-    case ANTENNA:
-        pNewObject = new Antenna(cellPosition); // New Antenna with updated position
-        break;
+  
     case ROTATING_GEAR:
         pNewObject = new RotatingGear(cellPosition); // New RotatingGear with updated position
         break;
