@@ -77,8 +77,7 @@ void CutAction::Execute()
     }
     // check if set clipboard added a valid object to clipboard
 
-    if (pGameObject == nullptr)
-    {
+   
     pGameObject = pGrid->GetClipboard(); //  GetClipboard returns the last object added to clipboard 
 // check if set clipboard added a valid object to clipboard
 
