@@ -94,4 +94,5 @@ public:
 	Command *GetAvailableCommands(int &a_size);
 	Command *GetSavedCommands(int &a_size);
 	bool SaveCommand(int);
+	void ResetAvailableCommands();
 };
