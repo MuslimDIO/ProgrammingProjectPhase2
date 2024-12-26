@@ -49,17 +49,32 @@ void CopyAction::Execute()
     Input *pIn = pGrid->GetInput();
 
     // Use Grid's GetClipboard and SetClipboard functions to manage the object
+    
     if (pGrid->SetClipboard(&cellPosition))
     {
         GameObject *pGameObject = pGrid->GetClipboard();
+        // Exclude copying flags
+        if (pGameObject->getObjType() == FLAG) {
+            pOut->PrintMessage("Cannot copy a Flag. This type is excluded. Click to continue.");
+            int x, y;
+            pGrid->GetInput()->GetPointClicked(x, y);
+            pOut->ClearStatusBar();
+            return;
+        }
+        // Exclude copying antennas
+        if (pGameObject->getObjType() == ANTENNA) {
+            pOut->PrintMessage("Cannot copy an antenna. This type is excluded. Click to continue.");
+            int x, y;
+            pGrid->GetInput()->GetPointClicked(x, y);
+            pOut->ClearStatusBar();
+            return;
+        }
         if (pGameObject)
         {
             string objectType;
             switch (pGameObject->getObjType())
             {
-            case FLAG:
-                objectType = "Flag";
-                break;
+            
             case WATERPIT:
                 objectType = "Water Pit";
                 break;
@@ -72,9 +87,7 @@ void CopyAction::Execute()
             case WORKSHOP:
                 objectType = "Workshop";
                 break;
-            case ANTENNA:
-                objectType = "Antenna";
-                break;
+          
             case ROTATING_GEAR:
                 objectType = "Rotating Gear";
                 break;
