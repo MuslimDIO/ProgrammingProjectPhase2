@@ -51,7 +51,8 @@ void PasteAction::Execute() {
 
     // Get the Grid and Output pointers
     Grid* pGrid = pManager->GetGrid(); 
-    Output* pOut = pGrid->GetOutput(); 
+    Output* pOut = pGrid->GetOutput();
+    Input* pIn = pGrid->GetInput();
 
     // Retrieve the game object from the clipboard
     GameObject* pClipboardObject = pGrid->GetClipboard();
@@ -102,8 +103,32 @@ void PasteAction::Execute() {
         return;
     }
 
+    if (flagAdded && dynamic_cast<Flag*>(pNewObject))
+    {
+        pOut->PrintMessage("Error: there is already a Flag! Click to continue...");
+        int x, y;
+        pIn->GetPointClicked(x, y);
+        return;
+    }
+    if (AntennaAdded && dynamic_cast<Antenna*>(pNewObject))
+    {
+        pOut->PrintMessage("Error: there is already an Antenna! Click to continue...");
+        int x, y;
+        pIn->GetPointClicked(x, y);
+        return;
+    }
+
     // Attempt to add the new object to the selected cell
     if (pGrid->AddObjectToCell(pNewObject)) {
+
+
+		if (pNewObject->getObjType() == ANTENNA) {
+			AntennaAdded++;
+		}
+		if (pNewObject->getObjType() == FLAG) {
+			flagAdded++;
+		}
+
         string objectType;
         switch (pClipboardObject->getObjType()) {
         case FLAG: objectType = "Flag"; break;

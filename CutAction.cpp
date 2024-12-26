@@ -79,6 +79,10 @@ void CutAction::Execute()
 
     if (pGameObject == nullptr)
     {
+    pGameObject = pGrid->GetClipboard(); //  GetClipboard returns the last object added to clipboard 
+// check if set clipboard added a valid object to clipboard
+
+    if (pGameObject == nullptr) {
         pOut->PrintMessage("No game object in the selected cell to cut. Click to continue.");
         int x, y;
         pGrid->GetInput()->GetPointClicked(x, y);
