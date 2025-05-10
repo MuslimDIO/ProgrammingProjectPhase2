@@ -35,12 +35,12 @@ Players compete to reach a designated flag cell first while navigating a 5x11 gr
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/MuslimDIO/ProgrammingProjectPhase2.git
+   git clone https://github.com/MuslimDIO/RoboRally-Programming-Project.git
    ```
 
 2. **Navigate to the Project Directory**:
    ```bash
-   cd ProgrammingProjectPhase2
+   cd RoboRally-Programming-Project
    ```
 
 3. **Compile the Code**:
